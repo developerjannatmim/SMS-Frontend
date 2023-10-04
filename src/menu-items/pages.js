@@ -1,7 +1,5 @@
-
 // assets
-import { InfoCircleTwoTone } from '@ant-design/icons';
-
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
 
@@ -15,7 +13,7 @@ const pages = {
       title: 'Admin',
       type: 'item',
       url: '/admin',
-      icon: InfoCircleTwoTone,
+      icon: SupervisorAccountIcon,
       breadcrumbs: false
     },
 
@@ -24,7 +22,7 @@ const pages = {
       title: 'Parents',
       type: 'item',
       url: '/parents',
-      icon: InfoCircleTwoTone,
+      icon: SupervisorAccountIcon,
       breadcrumbs: false
     },
 
@@ -33,7 +31,7 @@ const pages = {
       title: 'Students',
       type: 'item',
       url: '/students',
-      icon: InfoCircleTwoTone,
+      icon: SupervisorAccountIcon,
       breadcrumbs: false
     },
     {
@@ -41,7 +39,7 @@ const pages = {
       title: 'Teachers',
       type: 'item',
       url: '/teachers',
-      icon: InfoCircleTwoTone,
+      icon: SupervisorAccountIcon,
       breadcrumbs: false
     }
   ]

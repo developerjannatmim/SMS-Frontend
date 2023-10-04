@@ -1,19 +1,16 @@
+// eslint-disable-next-line
 import { useState } from 'react';
 
 // material-ui
 import {
   Avatar,
-  AvatarGroup,
-  Button,
   Grid,
   List,
   ListItemAvatar,
   ListItemButton,
   ListItemSecondaryAction,
   ListItemText,
-  MenuItem,
   Stack,
-  TextField,
   Typography
 } from '@mui/material';
 
@@ -23,10 +20,6 @@ import AnalyticEcommerce from 'components/cards/statistics/AnalyticEcommerce';
 
 // assets
 import { GiftOutlined, MessageOutlined, SettingOutlined } from '@ant-design/icons';
-import avatar1 from 'assets/images/users/avatar-1.png';
-import avatar2 from 'assets/images/users/avatar-2.png';
-import avatar3 from 'assets/images/users/avatar-3.png';
-import avatar4 from 'assets/images/users/avatar-4.png';
 
 // avatar style
 const avatarSX = {
@@ -46,25 +39,11 @@ const actionSX = {
 };
 
 // sales report status
-const status = [
-  {
-    value: 'today',
-    label: 'Today'
-  },
-  {
-    value: 'month',
-    label: 'This Month'
-  },
-  {
-    value: 'year',
-    label: 'This Year'
-  }
-];
+
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 const DashboardDefault = () => {
-  const [value, setValue] = useState('today');
 
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -72,17 +51,18 @@ const DashboardDefault = () => {
       <Grid item xs={12} sx={{ mb: -2.25 }}>
         <Typography variant="h5">Dashboard</Typography>
       </Grid>
+
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Students" count="442" percentage={442} extra="35,000" />
+        <AnalyticEcommerce total="Total" name="Students" title="Students" count="442" percentage={442} extra="35,000" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Teachers" count="78" color="warning" percentage={78} extra="8,900" />
+        <AnalyticEcommerce total="Total" name="Teachers" title="Teachers" count="78" color="warning" percentage={78} extra="8,900" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Staff" count="18" percentage={18}  extra="1,943" />
+        <AnalyticEcommerce total="Total" name="Parents" title="Parents" count="340" percentage={340} color="warning" extra="$20,395" />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <AnalyticEcommerce title="Parents" count="340" percentage={340} color="warning" extra="$20,395" />
+        <AnalyticEcommerce total="Total" name="Staff" title="Staff" count="18" percentage={18}  extra="1,943" />
       </Grid>
 
       <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
@@ -92,43 +72,30 @@ const DashboardDefault = () => {
       <Grid item xs={12} md={7} lg={8}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
-            <Typography variant="h5">Sales Report</Typography>
+            <Typography variant="h5">Progress Report</Typography>
           </Grid>
           <Grid item>
-            <TextField
-              id="standard-select-currency"
-              size="small"
-              select
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              sx={{ '& .MuiInputBase-input': { py: 0.5, fontSize: '0.875rem' } }}
-            >
-              {status.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
           </Grid>
         </Grid>
         <MainCard sx={{ mt: 1.75 }}>
           <Stack spacing={1.5} sx={{ mb: -12 }}>
             <Typography variant="h6" color="secondary">
-              Net Profit
+            Progress Report
             </Typography>
-            <Typography variant="h4">$1560</Typography>
           </Stack>
           <SalesColumnChart />
         </MainCard>
       </Grid>
+
+
       <Grid item xs={12} md={5} lg={4}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid item>
-            <Typography variant="h5">Transaction History</Typography>
+            <Typography variant="h5">Upcoming Events</Typography>
           </Grid>
           <Grid item />
         </Grid>
-        <MainCard sx={{ mt: 2 }} content={false}>
+        <MainCard sx={{ mt: 3 }} content={false}>
           <List
             component="nav"
             sx={{
@@ -152,18 +119,67 @@ const DashboardDefault = () => {
                   <GiftOutlined />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Order #002434</Typography>} secondary="Today, 2:00 AM" />
+              <ListItemText primary={<Typography variant="subtitle1">SCHOOL FOUNDATION DAY</Typography>} secondary="Sun, Sep 17 2023" />
               <ListItemSecondaryAction>
                 <Stack alignItems="flex-end">
                   <Typography variant="subtitle1" noWrap>
-                    + $1,430
+                    
                   </Typography>
                   <Typography variant="h6" color="secondary" noWrap>
-                    78%
+                    
                   </Typography>
                 </Stack>
               </ListItemSecondaryAction>
             </ListItemButton>
+                  
+            <ListItemButton divider>
+              <ListItemAvatar>
+                <Avatar
+                  sx={{
+                    color: 'success.main',
+                    bgcolor: 'success.lighter'
+                  }}
+                >
+                  <GiftOutlined />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={<Typography variant="subtitle1">UNIQUE SPECIAL EVENT IDEAS</Typography>} secondary="Sun, Sep 17 2023" />
+              <ListItemSecondaryAction>
+                <Stack alignItems="flex-end">
+                  <Typography variant="subtitle1" noWrap>
+                    
+                  </Typography>
+                  <Typography variant="h6" color="secondary" noWrap>
+                    
+                  </Typography>
+                </Stack>
+              </ListItemSecondaryAction>
+            </ListItemButton>
+
+            <ListItemButton divider>
+              <ListItemAvatar>
+                <Avatar
+                  sx={{
+                    color: 'success.main',
+                    bgcolor: 'success.lighter'
+                  }}
+                >
+                  <GiftOutlined />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={<Typography variant="subtitle1">REPUBLIC DAY</Typography>} secondary="Sun, Sep 17 2023" />
+              <ListItemSecondaryAction>
+                <Stack alignItems="flex-end">
+                  <Typography variant="subtitle1" noWrap>
+                    
+                  </Typography>
+                  <Typography variant="h6" color="secondary" noWrap>
+                    
+                  </Typography>
+                </Stack>
+              </ListItemSecondaryAction>
+            </ListItemButton>
+
             <ListItemButton divider>
               <ListItemAvatar>
                 <Avatar
@@ -175,14 +191,14 @@ const DashboardDefault = () => {
                   <MessageOutlined />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Order #984947</Typography>} secondary="5 August, 1:45 PM" />
+              <ListItemText primary={<Typography variant="subtitle1">WINTER VACATION</Typography>} secondary="Sun, Sep 17 2023" />
               <ListItemSecondaryAction>
                 <Stack alignItems="flex-end">
                   <Typography variant="subtitle1" noWrap>
-                    + $302
+                    
                   </Typography>
                   <Typography variant="h6" color="secondary" noWrap>
-                    8%
+                    
                   </Typography>
                 </Stack>
               </ListItemSecondaryAction>
@@ -198,46 +214,19 @@ const DashboardDefault = () => {
                   <SettingOutlined />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={<Typography variant="subtitle1">Order #988784</Typography>} secondary="7 hours ago" />
+              <ListItemText primary={<Typography variant="subtitle1">SCHOOL PICNIC</Typography>} secondary="Sun, Sep 17 2023" />
               <ListItemSecondaryAction>
                 <Stack alignItems="flex-end">
                   <Typography variant="subtitle1" noWrap>
-                    + $682
+                    
                   </Typography>
                   <Typography variant="h6" color="secondary" noWrap>
-                    16%
+                    
                   </Typography>
                 </Stack>
               </ListItemSecondaryAction>
             </ListItemButton>
           </List>
-        </MainCard>
-        <MainCard sx={{ mt: 2 }}>
-          <Stack spacing={3}>
-            <Grid container justifyContent="space-between" alignItems="center">
-              <Grid item>
-                <Stack>
-                  <Typography variant="h5" noWrap>
-                    Help & Support Chat
-                  </Typography>
-                  <Typography variant="caption" color="secondary" noWrap>
-                    Typical replay within 5 min
-                  </Typography>
-                </Stack>
-              </Grid>
-              <Grid item>
-                <AvatarGroup sx={{ '& .MuiAvatar-root': { width: 32, height: 32 } }}>
-                  <Avatar alt="Remy Sharp" src={avatar1} />
-                  <Avatar alt="Travis Howard" src={avatar2} />
-                  <Avatar alt="Cindy Baker" src={avatar3} />
-                  <Avatar alt="Agnes Walker" src={avatar4} />
-                </AvatarGroup>
-              </Grid>
-            </Grid>
-            <Button size="small" variant="contained" sx={{ textTransform: 'capitalize' }}>
-              Need Help?
-            </Button>
-          </Stack>
         </MainCard>
       </Grid>
     </Grid>
