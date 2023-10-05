@@ -1,7 +1,7 @@
 import {
-    DeleteOutlined as DeleteOutlinedIcon,
-    EditOutlined as EditOutlinedIcon,
-    InfoOutlined as InfoOutlinedIcon,
+    DeleteOutlined,
+    EditOutlined,
+    InfoOutlined,
   } from '@ant-design/icons';
   import {
     Button,

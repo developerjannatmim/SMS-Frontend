@@ -99,8 +99,10 @@ const AdminForm = ({ admin, onSubmit}) => {
                     </Button>
                 </Grid>
             </Grid>
-            </from>
+          </from>
         )}
         </Formik>
     )
 }
+
+export default AdminForm;

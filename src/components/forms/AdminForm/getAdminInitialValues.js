@@ -1,4 +1,4 @@
-const getAdminInitialValues = admin => ({
+export default getAdminInitialValues = admin => ({
     name: admin?.name || '',
     email: admin?.email || '',
     password: admin?.password || '',

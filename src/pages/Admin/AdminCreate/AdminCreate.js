@@ -1,4 +1,4 @@
-import { ArrowLeftOutlined as ArrowLeftOutlinedIcon } from '@ant-design/icons';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -6,7 +6,7 @@ import AdminForm, {getAdminInitialValues} from '../../../components/forms/AdminF
 import MainCard from '../../../components/MainCard';
 
 const AdminCreate = () => {
-    const handleSubmit = (values, {resetForm, setSubmit}) => {
+    const handleSubmit = (values, {resetForm, setSubmitting }) => {
         fetch('http://127.0.0.1:8000/api/admin', {
             body: JSON.stringify({
                 ...values,
@@ -17,7 +17,7 @@ const AdminCreate = () => {
             },
             method: 'POST',
         })
-        .then((reponse) => response.json())
+        .then((response) => response.json())
         .then((response) => {
             console.info(response);
             setSubmitting(false);

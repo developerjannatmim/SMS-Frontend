@@ -1,4 +1,4 @@
-import { PlusOutlined as PlusOutlinedIcon } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,8 @@ import AdminTable from '../../../components/tables/AdminTable';
 
 const AdminList = () => {
   const [admin, setAdmin] = useState([]);
+  const [page, setPage] = useState(0);
+  const [perPage, setPerPage] = useState(5);
   const [reload, setReload] = useState(0);
 
   const handleDelete = admin => {
@@ -29,8 +31,13 @@ const AdminList = () => {
     }
   };
 
+  const handlePage = value => setPage(value);
+  const handlePerPage = value => setPerPage(value);
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/admin?', {
+    fetch('http://127.0.0.1:8000/api/admin?', + new URLSearchParams({
+    page: String(page + 1),
+    perPage: String(perPage),
+    }), {
       headers: {
         Accept: 'application/json',
       },
@@ -43,9 +50,9 @@ const AdminList = () => {
       })
       .catch((error) => {
         console.error(error);
-        setAdmin([]);
+        setAdmin(null);
       });
-  }, [reload]);
+  }, [page, perPage, reload]);
 
   return (
     <Grid container>
@@ -64,7 +71,7 @@ const AdminList = () => {
             <Link to="/admin/create">
               <Button
                 color="primary"
-                startIcon={<PlusOutlinedIcon />}
+                startIcon={<PlusOutlined />}
                 variant="contained"
               >
                 Admin
@@ -76,6 +83,10 @@ const AdminList = () => {
           <AdminTable
             admin={admin}
             onDelete={handleDelete}
+            onPage={handlePage}
+            onPerPage={handlePerPage}
+            page={page}
+            perPage={perPage}
           />
         </MainCard>
       </Grid>

@@ -1,9 +1,9 @@
-import { ArrowLeftOutlined as ArrowLeftOutlinedIcon } from '@ant-design/icons';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import AdminDetail from '../../../components/details/AdminDetail/AdminDetail';
+import AdminDetail from '../../../components/details/AdminDetail';
 import MainCard from '../../../components/MainCard';
 
 const AdminShow = () => {
@@ -46,7 +46,7 @@ const AdminShow = () => {
             <Link to="/admin">
               <Button
                 color="primary"
-                startIcon={<ArrowLeftOutlinedIcon />}
+                startIcon={<ArrowLeftOutlined />}
                 variant="contained"
               >
                 Admin List

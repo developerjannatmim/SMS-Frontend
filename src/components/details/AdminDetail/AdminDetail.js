@@ -62,3 +62,5 @@ const AdminDetail = ({ admin }) => {
     )
   );
 };
+
+export default AdminDetail;
