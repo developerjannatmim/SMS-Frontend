@@ -9,7 +9,7 @@ import AdminTable from '../../../components/tables/AdminTable';
 const AdminList = () => {
   const [admin, setAdmin] = useState([]);
   const [page, setPage] = useState(0);
-  const [perPage, setPerPage] = useState(5);
+  const [perPage, setPerPage] = useState(10);
   const [reload, setReload] = useState(0);
 
   const handleDelete = admin => {
@@ -32,7 +32,9 @@ const AdminList = () => {
   };
 
   const handlePage = value => setPage(value);
+
   const handlePerPage = value => setPerPage(value);
+  
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/admin?', + new URLSearchParams({
     page: String(page + 1),
