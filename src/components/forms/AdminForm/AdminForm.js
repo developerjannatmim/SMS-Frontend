@@ -1,6 +1,6 @@
 import { Button, Grid } from '@mui/material';
 import { Formik } from 'formik';
-import Yup from 'yup';
+import * as Yup from 'yup';
 
 import getAdminInitialValues from './getAdminInitialValues';
 import InputField from '../../InputField';

@@ -12,7 +12,7 @@ const AdminList = () => {
 
   const handleDelete = admin => {
     if (confirm(`Are you sure you want to delete admin ${admin.id}?`)) {
-      fetch(``, {
+      fetch(`http://127.0.0.1:8000/api/admin/${admin.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const AdminList = () => {
   };
 
   useEffect(() => {
-    fetch('', {
+    fetch('http://127.0.0.1:8000/api/admin?', {
       headers: {
         Accept: 'application/json',
       },

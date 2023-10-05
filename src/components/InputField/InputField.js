@@ -1,6 +1,6 @@
 import { FormHelperText, Grid, MenuItem, TextField } from '@mui/material';
 
-import { DatePicker } from '@material-ui/pickers';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Field, useField } from 'formik';
 
 interface InputFieldProps {

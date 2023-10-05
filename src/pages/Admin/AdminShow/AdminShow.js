@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import AdminDetail from '../../../components/details/AdminDetail';
+import AdminDetail from '../../../components/details/AdminDetail/AdminDetail';
 import MainCard from '../../../components/MainCard';
 
 const AdminShow = () => {
@@ -12,7 +12,7 @@ const AdminShow = () => {
   const [admin, setAdmin] = useState(null);
 
   useEffect(() => {
-    fetch(``, {
+    fetch(`http://127.0.0.1:8000/api/admin/${adminId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -55,7 +55,7 @@ const AdminShow = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 2 }} sx={{ mt: 2 }}>
-          <AdminDetail admin={admin} />
+          <AdminDetail admin={admin}/>
         </MainCard>
       </Grid>
     </Grid>

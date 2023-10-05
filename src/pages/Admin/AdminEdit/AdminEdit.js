@@ -12,7 +12,7 @@ const AdminEdit = () => {
   const [admin, setAdmin] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(``, {
+    fetch(`http://127.0.0.1:8000/api/admin/${adminId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const AdminEdit = () => {
   };
 
   useEffect(() => {
-    fetch(``, {
+    fetch(`http://127.0.0.1:8000/api/admin/${adminId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -81,7 +81,7 @@ const AdminEdit = () => {
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
           <AdminForm
-            address={admin}
+            admin={admin}
             onSubmit={handleSubmit}
           />
         </MainCard>

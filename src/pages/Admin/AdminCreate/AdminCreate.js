@@ -7,7 +7,7 @@ import MainCard from '../../../components/MainCard';
 
 const AdminCreate = () => {
     const handleSubmit = (values, {resetForm, setSubmit}) => {
-        fetch('', {
+        fetch('http://127.0.0.1:8000/api/admin', {
             body: JSON.stringify({
                 ...values,
             }),
