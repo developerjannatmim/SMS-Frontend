@@ -38,6 +38,7 @@
     "react-router": "^6.4.1",
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1",
+    "react-suspense-fetch": "^0.6.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-window": "^1.8.7",
     "redux": "^4.2.0",

@@ -11,7 +11,6 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
   TableRow,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -19,24 +18,12 @@ import { useNavigate } from 'react-router-dom';
 
 const ParentTable = ({
   parent,
-  onDelete,
-  onPage,
-  onPerPage,
-  page,
-  perPage
+  onDelete
 }) => {
   const navigate = useNavigate();
 
   return parent && (
       <>
-          <TablePagination 
-              component="div"
-              count={parent.total || 0}
-              onPageChange={(_, value) => onPage(value)}
-              onRowsPerPageChange={event => onPerPage(event.target.value)}
-              page={page}
-              rowsPerPage={perPage}
-          />
           <TableContainer>
               <Table>
                   <TableHead>

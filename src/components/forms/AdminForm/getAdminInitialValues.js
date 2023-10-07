@@ -1,4 +1,4 @@
-export default getAdminInitialValues = admin => ({
+const getAdminInitialValues = admin => ({
     name: admin?.name || '',
     email: admin?.email || '',
     password: admin?.password || '',
@@ -9,3 +9,4 @@ export default getAdminInitialValues = admin => ({
     photo: admin?.photo || '',
     blood_group: admin?.blood_group || ''
 });
+export default getAdminInitialValues;

@@ -1,4 +1,5 @@
 // project import
+import React, { Suspense } from 'react';
 import Routes from './routes';
 import ThemeCustomization from './themes';
 import ScrollTop from './components/ScrollTop';
@@ -8,7 +9,9 @@ import ScrollTop from './components/ScrollTop';
 const App = () => (
   <ThemeCustomization>
     <ScrollTop>
-      <Routes />
+      <Suspense fallback={<span>Loading...</span>}>
+        <Routes />
+      </Suspense>
     </ScrollTop>
   </ThemeCustomization>
 );

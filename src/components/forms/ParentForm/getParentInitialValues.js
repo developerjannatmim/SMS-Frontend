@@ -1,4 +1,4 @@
-export default getParentInitialValues = parent => ({
+const getParentInitialValues = parent => ({
   name: parent?.name || '',
   email: parent?.email || '',
   password: parent?.password || '',
@@ -9,3 +9,5 @@ export default getParentInitialValues = parent => ({
   photo: parent?.photo || '',
   blood_group: parent?.blood_group || ''
 });
+
+export default getParentInitialValues;

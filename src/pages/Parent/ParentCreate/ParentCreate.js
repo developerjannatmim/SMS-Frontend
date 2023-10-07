@@ -7,7 +7,7 @@ import MainCard from '../../../components/MainCard';
 
 const ParentCreate = () => {
     const handleSubmit = (values, {resetForm, setSubmitting }) => {
-        fetch('http://127.0.0.1:8000/api/parent', {
+        fetch('http://127.0.0.1:8000/api/parents', {
             body: JSON.stringify({
                 ...values,
             }),

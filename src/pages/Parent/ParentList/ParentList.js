@@ -8,8 +8,6 @@ import ParentTable from '../../../components/tables/ParentTable';
 
 const ParentList = () => {
   const [parent, setParent] = useState([]);
-  const [page, setPage] = useState(0);
-  const [perPage, setPerPage] = useState(10);
   const [reload, setReload] = useState(0);
 
   const handleDelete = parent => {
@@ -30,16 +28,9 @@ const ParentList = () => {
         });
     }
   };
-
-  const handlePage = value => setPage(value);
-
-  const handlePerPage = value => setPerPage(value);
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/parent?', + new URLSearchParams({
-    page: String(page + 1),
-    perPage: String(perPage),
-    }), {
+    fetch('http://127.0.0.1:8000/api/parent?', {
       headers: {
         Accept: 'application/json',
       },
@@ -54,7 +45,7 @@ const ParentList = () => {
         console.error(error);
         setParent(null);
       });
-  }, [page, perPage, reload]);
+  }, [reload]);
 
   return (
     <Grid container>
@@ -85,10 +76,6 @@ const ParentList = () => {
           <ParentTable
             parent={parent}
             onDelete={handleDelete}
-            onPage={handlePage}
-            onPerPage={handlePerPage}
-            page={page}
-            perPage={perPage}
           />
         </MainCard>
       </Grid>

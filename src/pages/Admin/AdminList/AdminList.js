@@ -8,8 +8,6 @@ import AdminTable from '../../../components/tables/AdminTable';
 
 const AdminList = () => {
   const [admin, setAdmin] = useState([]);
-  const [page, setPage] = useState(0);
-  const [perPage, setPerPage] = useState(10);
   const [reload, setReload] = useState(0);
 
   const handleDelete = admin => {
@@ -30,16 +28,9 @@ const AdminList = () => {
         });
     }
   };
-
-  const handlePage = value => setPage(value);
-
-  const handlePerPage = value => setPerPage(value);
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/admin?', + new URLSearchParams({
-    page: String(page + 1),
-    perPage: String(perPage),
-    }), {
+    fetch('http://127.0.0.1:8000/api/admin', {
       headers: {
         Accept: 'application/json',
       },
@@ -54,7 +45,7 @@ const AdminList = () => {
         console.error(error);
         setAdmin(null);
       });
-  }, [page, perPage, reload]);
+  }, [reload]);
 
   return (
     <Grid container>
@@ -83,12 +74,8 @@ const AdminList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <AdminTable
-            admin={admin}
-            onDelete={handleDelete}
-            onPage={handlePage}
-            onPerPage={handlePerPage}
-            page={page}
-            perPage={perPage}
+            admin={ admin }
+            onDelete={ handleDelete }
           />
         </MainCard>
       </Grid>

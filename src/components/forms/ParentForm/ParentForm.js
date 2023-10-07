@@ -8,7 +8,7 @@ import InputField from '../../InputField';
 const parentValidationSchema = Yup.object().shape({
     name: Yup.string().required(),
     email: Yup.string().email().required(),
-    password: Yup.string().max(6).required(),
+    password: Yup.string().min(6).required(),
     gender: Yup.string().required(),
     birthday: Yup.string().required(),
     address: Yup.string().required(),

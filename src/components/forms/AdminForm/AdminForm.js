@@ -8,7 +8,7 @@ import InputField from '../../InputField';
 const adminValidationSchema = Yup.object().shape({
     name: Yup.string().required(),
     email: Yup.string().email().required(),
-    password: Yup.string().max(6).required(),
+    password: Yup.string().min(6).required(),
     gender: Yup.string().required(),
     birthday: Yup.string().required(),
     address: Yup.string().required(),
@@ -17,7 +17,7 @@ const adminValidationSchema = Yup.object().shape({
     blood_group: Yup.string().required()
 });
 
-const AdminForm = ({ admin, onSubmit}) => {
+const AdminForm = ({ admin, onSubmit }) => {
     return (admin === undefined || admin !== null) && (
         <Formik
             initialValues={getAdminInitialValues(admin)}
@@ -90,7 +90,7 @@ const AdminForm = ({ admin, onSubmit}) => {
                 <Grid item xs={12}>
                     <Button
                     color="primary"
-                    disabled={isSubmitting}
+                    enabled={isSubmitting}
                     fullWidth
                     type="submit"
                     variant="contained"

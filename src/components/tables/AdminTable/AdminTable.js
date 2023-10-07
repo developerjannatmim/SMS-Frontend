@@ -11,7 +11,6 @@ import {
     TableCell,
     TableContainer,
     TableHead,
-    TablePagination,
     TableRow,
   } from '@mui/material';
   import { useNavigate } from 'react-router-dom';
@@ -19,31 +18,16 @@ import {
 
 const AdminTable = ({
     admin,
-    onDelete,
-    onPage,
-    onPerPage,
-    page,
-    perPage
+    onDelete
 }) => {
     const navigate = useNavigate();
 
     return admin && (
         <>
-            <TablePagination 
-                component="div"
-                count={admin.total || 0}
-                onPageChange={(_, value) => onPage(value)}
-                onRowsPerPageChange={event => onPerPage(event.target.value)}
-                page={page}
-                rowsPerPage={perPage}
-            />
             <TableContainer>
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>
-                                Actions
-                            </TableCell>
                             <TableCell>
                                 ID
                             </TableCell>
@@ -71,39 +55,14 @@ const AdminTable = ({
                             <TableCell>
                             Blood Group
                             </TableCell>
+                            <TableCell>
+                                Actions
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    {admin.data?.map(admin => (
+                    { admin.data?.map( admin => (
                         <TableRow key={admin.id}>
-                            <TableCell>
-                                <ButtonGroup
-                                    size="small"
-                                    variant="contained"
-                                >
-                                <Button
-                                    color="info"
-                                    onClick={() => navigate(`/admin/${admin.id}`)}
-                                    title="Show Admin"
-                                >
-                                    <InfoOutlined />
-                                </Button>
-                                <Button
-                                    color="warning"
-                                    onClick={() => navigate(`/admin/${admin.id}/edit`)}
-                                    title="Edit Admin"
-                                >
-                                    <EditOutlined />
-                                </Button>
-                                <Button
-                                    color="warning"
-                                    onClick={() => onDelete(admin)}
-                                    title="Edit Admin"
-                                >
-                                    <DeleteOutlined />
-                                </Button>
-                                </ButtonGroup>
-                            </TableCell>
                             <TableCell>
                                 {admin.id}
                             </TableCell>
@@ -130,6 +89,34 @@ const AdminTable = ({
                             </TableCell>
                             <TableCell>
                                 {admin.blood_group}
+                            </TableCell>
+                            <TableCell>
+                                <ButtonGroup
+                                    size="small"
+                                    variant="contained"
+                                >
+                                <Button
+                                    color="info"
+                                    onClick={() => navigate(`/admin/${admin.id}`)}
+                                    title="Show Admin"
+                                >
+                                    <InfoOutlined />
+                                </Button>
+                                <Button
+                                    color="warning"
+                                    onClick={() => navigate(`/admin/${admin.id}/edit`)}
+                                    title="Edit Admin"
+                                >
+                                    <EditOutlined />
+                                </Button>
+                                <Button
+                                    color="warning"
+                                    onClick={() => onDelete(admin)}
+                                    title="Delete Admin"
+                                >
+                                    <DeleteOutlined />
+                                </Button>
+                                </ButtonGroup>
                             </TableCell>
                         </TableRow>
                     ))}
