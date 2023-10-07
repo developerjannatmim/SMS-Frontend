@@ -29,9 +29,6 @@ const ParentTable = ({
                   <TableHead>
                       <TableRow>
                           <TableCell>
-                              Actions
-                          </TableCell>
-                          <TableCell>
                               ID
                           </TableCell>
                           <TableCell>
@@ -58,11 +55,41 @@ const ParentTable = ({
                           <TableCell>
                           Blood Group
                           </TableCell>
+                          <TableCell>
+                              Actions
+                          </TableCell>
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  {parent.data?.map(parent => (
+                  {parent?.map(parent => (
                       <TableRow key={parent.id}>
+                          <TableCell>
+                              {parent.id}
+                          </TableCell>
+                          <TableCell>
+                              {parent.name}
+                          </TableCell>
+                          <TableCell>
+                              {parent.email}
+                          </TableCell>
+                          <TableCell>
+                              {parent.gender}
+                          </TableCell>
+                          <TableCell>
+                              {parent.birthday}
+                          </TableCell>
+                          <TableCell>
+                              {parent.address}
+                          </TableCell>
+                          <TableCell>
+                              {parent.phone}
+                          </TableCell>
+                          <TableCell>
+                              {parent.photo}
+                          </TableCell>
+                          <TableCell>
+                              {parent.blood_group}
+                          </TableCell>
                           <TableCell>
                               <ButtonGroup
                                   size="small"
@@ -90,33 +117,6 @@ const ParentTable = ({
                                   <DeleteOutlined />
                               </Button>
                               </ButtonGroup>
-                          </TableCell>
-                          <TableCell>
-                              {parent.id}
-                          </TableCell>
-                          <TableCell>
-                              {parent.name}
-                          </TableCell>
-                          <TableCell>
-                              {parent.email}
-                          </TableCell>
-                          <TableCell>
-                              {parent.gender}
-                          </TableCell>
-                          <TableCell>
-                              {parent.birthday}
-                          </TableCell>
-                          <TableCell>
-                              {parent.address}
-                          </TableCell>
-                          <TableCell>
-                              {parent.phone}
-                          </TableCell>
-                          <TableCell>
-                              {parent.photo}
-                          </TableCell>
-                          <TableCell>
-                              {parent.blood_group}
                           </TableCell>
                       </TableRow>
                   ))}

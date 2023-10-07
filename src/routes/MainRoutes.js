@@ -1,20 +1,9 @@
 import { lazy } from 'react';
 
-// project import
-//import Loadable from '../components/Loadable';
 import MainLayout from '../layout/MainLayout';
 
 // render - dashboard
 const Dashboard = lazy(() => import('../pages/dashboard'));
-
-// render - sample page
-// const SamplePage = Loadable(lazy(() => import('pages/extra-pages/SamplePage')));
-
-// render - utilities
-// const Typography = Loadable(lazy(() => import('pages/components-overview/Typography')));
-// const Color = Loadable(lazy(() => import('pages/components-overview/Color')));
-// const Shadow = Loadable(lazy(() => import('pages/components-overview/Shadow')));
-// const AntIcons = Loadable(lazy(() => import('pages/components-overview/AntIcons')));
 
 // render - pages
 const AdminCreate = lazy(() => import('../pages/Admin/AdminCreate'));
@@ -36,10 +25,6 @@ const MainRoutes = {
       path: '/',
       element: <Dashboard />
     },
-    // {
-    //   path: 'color',
-    //   element: <Color />
-    // },
     {
       path: 'dashboard',
       children: [
@@ -49,42 +34,25 @@ const MainRoutes = {
         }
       ]
     },
-    // {
-    //   path: 'sample-page',
-    //   element: <SamplePage />
-    // },
-    // {
-    //   path: 'shadow',
-    //   element: <Shadow />
-    // },
-    // {
-    //   path: 'typography',
-    //   element: <Typography />
-    // },
-    // {
-    //   path: 'icons/ant',
-    //   element: <AntIcons />
-    // },
-    //pages
     {
       children: [
         {
-          path: '',
-          element: <AdminList />
+          element: <AdminList />,
+          path: ''
         },
         {
-          path: 'create',
-          element: <AdminCreate />
+          element: <AdminCreate />,
+          path: 'create'
         },
         {
           children: [
             {
-              path: '',
-              element: <AdminShow />
+              element: <AdminShow />,
+              path: ''
             },
             {
-              path: 'edit',
-              element: <AdminEdit />
+              element: <AdminEdit />,
+              path: 'edit'
             },
           ],
           path: ':adminId',
@@ -95,28 +63,28 @@ const MainRoutes = {
     {
       children: [
         {
-          path: '',
-          element: <ParentList />
+          element: <ParentList />,
+          path: ''
         },
         {
-          path: '',
-          element: <ParentCreate />
+          element: <ParentCreate />,
+          path: 'create'
         },
         {
           children: [
             {
-              path: '',
-              element: <ParentShow />
+              element: <ParentShow />,
+              path: ''
             },
             {
-              path: 'edit',
-              element: <ParentEdit />
+              element: <ParentEdit />,
+              path: 'edit'
             },
           ],
           path: ':parentId',
         },
       ],
-      path: 'parent',
+      path: 'parents',
     }
   ]
 };

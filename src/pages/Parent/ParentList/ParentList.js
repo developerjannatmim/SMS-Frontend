@@ -30,7 +30,7 @@ const ParentList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/parent?', {
+    fetch('http://127.0.0.1:8000/api/parents?', {
       headers: {
         Accept: 'application/json',
       },
@@ -74,7 +74,7 @@ const ParentList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <ParentTable
-            parent={parent}
+            parent={ parent }
             onDelete={handleDelete}
           />
         </MainCard>

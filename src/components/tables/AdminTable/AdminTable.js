@@ -29,39 +29,39 @@ const AdminTable = ({
                     <TableHead>
                         <TableRow>
                             <TableCell>
-                                ID
+                              ID
                             </TableCell>
                             <TableCell>
-                                Name
+                              Name
                             </TableCell>
                             <TableCell>
-                            Email
+                              Email
                             </TableCell>
                             <TableCell>
-                            Gender
+                              Gender
                             </TableCell>
                             <TableCell>
-                            Birthday
+                              Birthday
                             </TableCell>
                             <TableCell>
-                            Address
+                              Address
                             </TableCell>
                             <TableCell>
-                            Phone
+                              Phone
                             </TableCell>
                             <TableCell>
-                            Photo
+                              Photo
                             </TableCell>
                             <TableCell>
-                            Blood Group
+                              Blood Group
                             </TableCell>
                             <TableCell>
-                                Actions
+                              Actions
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    { admin.data?.map( admin => (
+                    { admin?.map( admin => (
                         <TableRow key={admin.id}>
                             <TableCell>
                                 {admin.id}
@@ -73,7 +73,7 @@ const AdminTable = ({
                                 {admin.email}
                             </TableCell>
                             <TableCell>
-                                {admin.gender}
+                                {admin.user_information}
                             </TableCell>
                             <TableCell>
                                 {admin.birthday}
@@ -92,29 +92,29 @@ const AdminTable = ({
                             </TableCell>
                             <TableCell>
                                 <ButtonGroup
-                                    size="small"
-                                    variant="contained"
+                                  size="small"
+                                  variant="contained"
                                 >
                                 <Button
-                                    color="info"
-                                    onClick={() => navigate(`/admin/${admin.id}`)}
-                                    title="Show Admin"
+                                  color="info"
+                                  onClick={() => navigate(`/admin/${admin.id}`)}
+                                  title="Show Admin"
                                 >
                                     <InfoOutlined />
                                 </Button>
                                 <Button
-                                    color="warning"
-                                    onClick={() => navigate(`/admin/${admin.id}/edit`)}
-                                    title="Edit Admin"
+                                  color="warning"
+                                  onClick={() => navigate(`/admin/${admin.id}/edit`)}
+                                  title="Edit Admin"
                                 >
-                                    <EditOutlined />
+                                  <EditOutlined />
                                 </Button>
                                 <Button
-                                    color="warning"
-                                    onClick={() => onDelete(admin)}
-                                    title="Delete Admin"
+                                  color="warning"
+                                  onClick={() => onDelete(admin)}
+                                  title="Delete Admin"
                                 >
-                                    <DeleteOutlined />
+                                  <DeleteOutlined />
                                 </Button>
                                 </ButtonGroup>
                             </TableCell>
