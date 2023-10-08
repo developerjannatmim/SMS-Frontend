@@ -16,13 +16,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const AdminTable = ({
-  admin,
+const RoutineTable = ({
+  routine,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return admin && (
+  return routine && (
       <>
           <TableContainer>
               <Table>
@@ -32,28 +32,34 @@ const AdminTable = ({
                             ID
                           </TableCell>
                           <TableCell>
-                            Name
+                          class_id
                           </TableCell>
                           <TableCell>
-                            Email
+                          section_id
                           </TableCell>
                           <TableCell>
-                            Gender
+                          routine_creator
                           </TableCell>
                           <TableCell>
-                            Birthday
+                          subject_id
                           </TableCell>
                           <TableCell>
-                            Address
+                          room_id
                           </TableCell>
                           <TableCell>
-                            Phone
+                          starting_hour
                           </TableCell>
                           <TableCell>
-                            Photo
+                          ending_hour
                           </TableCell>
                           <TableCell>
-                            Blood Group
+                          starting_minute
+                          </TableCell>
+                          <TableCell>
+                          ending_minute
+                          </TableCell>
+                          <TableCell>
+                          day
                           </TableCell>
                           <TableCell>
                             Actions
@@ -61,34 +67,40 @@ const AdminTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { admin?.map( admin => (
-                      <TableRow key={admin.id}>
+                  { routine?.map( routine => (
+                      <TableRow key={routine.id}>
                           <TableCell>
-                              {admin.id}
+                              {routine.id}
                           </TableCell>
                           <TableCell>
-                              {admin.name}
+                              {routine.class_id}
                           </TableCell>
                           <TableCell>
-                              {admin.email}
+                              {routine.section_id}
                           </TableCell>
                           <TableCell>
-                              {admin.user_information}
+                              {routine.routine_creator}
                           </TableCell>
                           <TableCell>
-                              {admin.birthday}
+                              {routine.subject_id}
                           </TableCell>
                           <TableCell>
-                              {admin.address}
+                              {routine.room_id}
                           </TableCell>
                           <TableCell>
-                              {admin.phone}
+                              {routine.starting_hour}
                           </TableCell>
                           <TableCell>
-                              {admin.photo}
+                              {routine.ending_hour}
                           </TableCell>
                           <TableCell>
-                              {admin.blood_group}
+                              {routine.starting_minute}
+                          </TableCell>
+                          <TableCell>
+                              {routine.ending_minute}
+                          </TableCell>
+                          <TableCell>
+                              {routine.day}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,22 +109,22 @@ const AdminTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/admin/${admin.id}`)}
-                                title="Show Admin"
+                                onClick={() => navigate(`/routine/${routine.id}`)}
+                                title="Show Routine"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/admin/${admin.id}/edit`)}
-                                title="Edit Admin"
+                                onClick={() => navigate(`/routine/${routine.id}/edit`)}
+                                title="Edit Routine"
                               >
                                 <EditOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => onDelete(admin)}
-                                title="Delete Admin"
+                                onClick={() => onDelete(routine)}
+                                title="Delete Routine"
                               >
                                 <DeleteOutlined />
                               </Button>
@@ -126,7 +138,7 @@ const AdminTable = ({
       </>
   )
 }
-export default AdminTable;
+export default RoutineTable;
 
 
 

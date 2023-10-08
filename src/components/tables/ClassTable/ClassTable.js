@@ -16,13 +16,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const AdminTable = ({
-  admin,
+const ClassTable = ({
+  class,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return admin && (
+  return class && (
       <>
           <TableContainer>
               <Table>
@@ -35,25 +35,7 @@ const AdminTable = ({
                             Name
                           </TableCell>
                           <TableCell>
-                            Email
-                          </TableCell>
-                          <TableCell>
-                            Gender
-                          </TableCell>
-                          <TableCell>
-                            Birthday
-                          </TableCell>
-                          <TableCell>
-                            Address
-                          </TableCell>
-                          <TableCell>
-                            Phone
-                          </TableCell>
-                          <TableCell>
-                            Photo
-                          </TableCell>
-                          <TableCell>
-                            Blood Group
+                            Section
                           </TableCell>
                           <TableCell>
                             Actions
@@ -61,34 +43,16 @@ const AdminTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { admin?.map( admin => (
-                      <TableRow key={admin.id}>
+                  { class?.map( class => (
+                      <TableRow key={class.id}>
                           <TableCell>
-                              {admin.id}
+                              {class.id}
                           </TableCell>
                           <TableCell>
-                              {admin.name}
+                              {class.name}
                           </TableCell>
                           <TableCell>
-                              {admin.email}
-                          </TableCell>
-                          <TableCell>
-                              {admin.user_information}
-                          </TableCell>
-                          <TableCell>
-                              {admin.birthday}
-                          </TableCell>
-                          <TableCell>
-                              {admin.address}
-                          </TableCell>
-                          <TableCell>
-                              {admin.phone}
-                          </TableCell>
-                          <TableCell>
-                              {admin.photo}
-                          </TableCell>
-                          <TableCell>
-                              {admin.blood_group}
+                              {class.section_id}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,22 +61,22 @@ const AdminTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/admin/${admin.id}`)}
-                                title="Show Admin"
+                                onClick={() => navigate(`/class/${class.id}`)}
+                                title="Show Class"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/admin/${admin.id}/edit`)}
-                                title="Edit Admin"
+                                onClick={() => navigate(`/class/${class.id}/edit`)}
+                                title="Edit Class"
                               >
                                 <EditOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => onDelete(admin)}
-                                title="Delete Admin"
+                                onClick={() => onDelete(class)}
+                                title="Delete Class"
                               >
                                 <DeleteOutlined />
                               </Button>
@@ -126,7 +90,7 @@ const AdminTable = ({
       </>
   )
 }
-export default AdminTable;
+export default ClassTable;
 
 
 

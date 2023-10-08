@@ -16,7 +16,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const AdminTable = ({
+const MarksTable = ({
   admin,
   onDelete
 }) => {
@@ -32,28 +32,28 @@ const AdminTable = ({
                             ID
                           </TableCell>
                           <TableCell>
-                            Name
+                          user_id
                           </TableCell>
                           <TableCell>
-                            Email
+                          exam_id
                           </TableCell>
                           <TableCell>
-                            Gender
+                          class_id
                           </TableCell>
                           <TableCell>
-                            Birthday
+                          section_id
                           </TableCell>
                           <TableCell>
-                            Address
+                          subject_id
                           </TableCell>
                           <TableCell>
-                            Phone
+                          marks
                           </TableCell>
                           <TableCell>
-                            Photo
+                          grade_point
                           </TableCell>
                           <TableCell>
-                            Blood Group
+                          comment
                           </TableCell>
                           <TableCell>
                             Actions
@@ -61,34 +61,34 @@ const AdminTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { admin?.map( admin => (
-                      <TableRow key={admin.id}>
+                  { marks?.map( marks => (
+                      <TableRow key={marks.id}>
                           <TableCell>
-                              {admin.id}
+                              {marks.id}
                           </TableCell>
                           <TableCell>
-                              {admin.name}
+                              {marks.user_id}
                           </TableCell>
                           <TableCell>
-                              {admin.email}
+                              {marks.exam_id}
                           </TableCell>
                           <TableCell>
-                              {admin.user_information}
+                              {marks.class_id}
                           </TableCell>
                           <TableCell>
-                              {admin.birthday}
+                              {marks.section_id}
                           </TableCell>
                           <TableCell>
-                              {admin.address}
+                              {marks.subject_id}
                           </TableCell>
                           <TableCell>
-                              {admin.phone}
+                              {marks.marks}
                           </TableCell>
                           <TableCell>
-                              {admin.photo}
+                              {marks.grade_point}
                           </TableCell>
                           <TableCell>
-                              {admin.blood_group}
+                              {marks.comment}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,22 +97,22 @@ const AdminTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/admin/${admin.id}`)}
-                                title="Show Admin"
+                                onClick={() => navigate(`/marks/${marks.id}`)}
+                                title="Show Marks"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/admin/${admin.id}/edit`)}
-                                title="Edit Admin"
+                                onClick={() => navigate(`/marks/${marks.id}/edit`)}
+                                title="Edit Marks"
                               >
                                 <EditOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => onDelete(admin)}
-                                title="Delete Admin"
+                                onClick={() => onDelete(marks)}
+                                title="Delete Marks"
                               >
                                 <DeleteOutlined />
                               </Button>
@@ -126,7 +126,7 @@ const AdminTable = ({
       </>
   )
 }
-export default AdminTable;
+export default MarksTable;
 
 
 

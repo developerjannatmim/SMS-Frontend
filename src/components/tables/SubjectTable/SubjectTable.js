@@ -16,117 +16,78 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const ParentTable = ({
-  parent,
+const SubjectTable = ({
+  subject,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return parent && (
-      <>
-          <TableContainer>
-              <Table>
-                  <TableHead>
-                      <TableRow>
-                          <TableCell>
-                              ID
-                          </TableCell>
-                          <TableCell>
-                              Name
-                          </TableCell>
-                          <TableCell>
-                          Email
-                          </TableCell>
-                          <TableCell>
-                          Gender
-                          </TableCell>
-                          <TableCell>
-                          Birthday
-                          </TableCell>
-                          <TableCell>
-                          Address
-                          </TableCell>
-                          <TableCell>
-                          Phone
-                          </TableCell>
-                          <TableCell>
-                          Photo
-                          </TableCell>
-                          <TableCell>
-                          Blood Group
-                          </TableCell>
-                          <TableCell>
-                              Actions
-                          </TableCell>
-                      </TableRow>
-                  </TableHead>
-                  <TableBody>
-                  {parent?.map(parent => (
-                      <TableRow key={parent.id}>
-                          <TableCell>
-                              {parent.id}
-                          </TableCell>
-                          <TableCell>
-                              {parent.name}
-                          </TableCell>
-                          <TableCell>
-                              {parent.email}
-                          </TableCell>
-                          <TableCell>
-                              {parent.gender}
-                          </TableCell>
-                          <TableCell>
-                              {parent.birthday}
-                          </TableCell>
-                          <TableCell>
-                              {parent.address}
-                          </TableCell>
-                          <TableCell>
-                              {parent.phone}
-                          </TableCell>
-                          <TableCell>
-                              {parent.photo}
-                          </TableCell>
-                          <TableCell>
-                              {parent.blood_group}
-                          </TableCell>
-                          <TableCell>
-                              <ButtonGroup
-                                  size="small"
-                                  variant="contained"
-                              >
-                              <Button
-                                  color="info"
-                                  onClick={() => navigate(`/parent/${parent.id}`)}
-                                  title="Show Parent"
-                              >
-                                  <InfoOutlined />
-                              </Button>
-                              <Button
-                                  color="warning"
-                                  onClick={() => navigate(`/parent/${parent.id}/edit`)}
-                                  title="Edit Parent"
-                              >
-                                  <EditOutlined />
-                              </Button>
-                              <Button
-                                  color="warning"
-                                  onClick={() => onDelete(parent)}
-                                  title="Delete Parent"
-                              >
-                                  <DeleteOutlined />
-                              </Button>
-                              </ButtonGroup>
-                          </TableCell>
-                      </TableRow>
-                  ))}
-                  </TableBody>
-              </Table>
-          </TableContainer>
-      </>
+  return subject && (
+    <>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                ID
+              </TableCell>
+              <TableCell>
+                Name
+              </TableCell>
+              <TableCell>
+                Class
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {subject?.map(subject => (
+              <TableRow key={subject.id}>
+                <TableCell>
+                  {subject.id}
+                </TableCell>
+                <TableCell>
+                  {subject.name}
+                </TableCell>
+                <TableCell>
+                  {subject.class_id}
+                </TableCell>
+                <TableCell>
+                  <ButtonGroup
+                    size="small"
+                    variant="contained"
+                  >
+                    <Button
+                      color="info"
+                      onClick={() => navigate(`/subject/${subject.id}`)}
+                      title="Show Subject"
+                    >
+                      <InfoOutlined />
+                    </Button>
+                    <Button
+                      color="warning"
+                      onClick={() => navigate(`/subject/${subject.id}/edit`)}
+                      title="Edit Subject"
+                    >
+                      <EditOutlined />
+                    </Button>
+                    <Button
+                      color="warning"
+                      onClick={() => onDelete(subject)}
+                      title="Delete Subject"
+                    >
+                      <DeleteOutlined />
+                    </Button>
+                  </ButtonGroup>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   )
 }
-export default ParentTable;
+export default SubjectTable;
 
 
 

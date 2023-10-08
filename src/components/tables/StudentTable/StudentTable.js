@@ -16,13 +16,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const AdminTable = ({
-  admin,
+const StudentTable = ({
+  student,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return admin && (
+  return student && (
       <>
           <TableContainer>
               <Table>
@@ -61,34 +61,34 @@ const AdminTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { admin?.map( admin => (
-                      <TableRow key={admin.id}>
+                  { student?.map( student => (
+                      <TableRow key={student.id}>
                           <TableCell>
-                              {admin.id}
+                              {student.id}
                           </TableCell>
                           <TableCell>
-                              {admin.name}
+                              {student.name}
                           </TableCell>
                           <TableCell>
-                              {admin.email}
+                              {student.email}
                           </TableCell>
                           <TableCell>
-                              {admin.user_information}
+                              {student.user_information}
                           </TableCell>
                           <TableCell>
-                              {admin.birthday}
+                              {student.birthday}
                           </TableCell>
                           <TableCell>
-                              {admin.address}
+                              {student.address}
                           </TableCell>
                           <TableCell>
-                              {admin.phone}
+                              {student.phone}
                           </TableCell>
                           <TableCell>
-                              {admin.photo}
+                              {student.photo}
                           </TableCell>
                           <TableCell>
-                              {admin.blood_group}
+                              {student.blood_group}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,22 +97,22 @@ const AdminTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/admin/${admin.id}`)}
-                                title="Show Admin"
+                                onClick={() => navigate(`/student/${student.id}`)}
+                                title="Show Student"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/admin/${admin.id}/edit`)}
-                                title="Edit Admin"
+                                onClick={() => navigate(`/student/${student.id}/edit`)}
+                                title="Edit Student"
                               >
                                 <EditOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => onDelete(admin)}
-                                title="Delete Admin"
+                                onClick={() => onDelete(student)}
+                                title="Delete Student"
                               >
                                 <DeleteOutlined />
                               </Button>
@@ -126,7 +126,7 @@ const AdminTable = ({
       </>
   )
 }
-export default AdminTable;
+export default StudentTable;
 
 
 

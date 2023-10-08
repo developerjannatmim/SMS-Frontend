@@ -16,13 +16,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const AdminTable = ({
-  admin,
+const GradeTable = ({
+  grade,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return admin && (
+  return grade && (
       <>
           <TableContainer>
               <Table>
@@ -35,25 +35,13 @@ const AdminTable = ({
                             Name
                           </TableCell>
                           <TableCell>
-                            Email
+                          grade_point
                           </TableCell>
                           <TableCell>
-                            Gender
+                          mark_from
                           </TableCell>
                           <TableCell>
-                            Birthday
-                          </TableCell>
-                          <TableCell>
-                            Address
-                          </TableCell>
-                          <TableCell>
-                            Phone
-                          </TableCell>
-                          <TableCell>
-                            Photo
-                          </TableCell>
-                          <TableCell>
-                            Blood Group
+                          mark_upto
                           </TableCell>
                           <TableCell>
                             Actions
@@ -61,34 +49,22 @@ const AdminTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { admin?.map( admin => (
-                      <TableRow key={admin.id}>
+                  { grade?.map( grade => (
+                      <TableRow key={grade.id}>
                           <TableCell>
-                              {admin.id}
+                              {grade.id}
                           </TableCell>
                           <TableCell>
-                              {admin.name}
+                              {grade.name}
                           </TableCell>
                           <TableCell>
-                              {admin.email}
+                              {grade.grade_point}
                           </TableCell>
                           <TableCell>
-                              {admin.user_information}
+                              {grade.mark_from}
                           </TableCell>
                           <TableCell>
-                              {admin.birthday}
-                          </TableCell>
-                          <TableCell>
-                              {admin.address}
-                          </TableCell>
-                          <TableCell>
-                              {admin.phone}
-                          </TableCell>
-                          <TableCell>
-                              {admin.photo}
-                          </TableCell>
-                          <TableCell>
-                              {admin.blood_group}
+                              {grade.mark_upto}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,22 +73,22 @@ const AdminTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/admin/${admin.id}`)}
-                                title="Show Admin"
+                                onClick={() => navigate(`/grade/${grade.id}`)}
+                                title="Show Grade"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/admin/${admin.id}/edit`)}
-                                title="Edit Admin"
+                                onClick={() => navigate(`/grade/${grade.id}/edit`)}
+                                title="Edit Grade"
                               >
                                 <EditOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => onDelete(admin)}
-                                title="Delete Admin"
+                                onClick={() => onDelete(grade)}
+                                title="Delete Grade"
                               >
                                 <DeleteOutlined />
                               </Button>
@@ -126,7 +102,7 @@ const AdminTable = ({
       </>
   )
 }
-export default AdminTable;
+export default GradeTable;
 
 
 

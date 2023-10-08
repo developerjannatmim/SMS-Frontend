@@ -16,117 +16,93 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const AdminTable = ({
-  admin,
+const SyllabusTable = ({
+  syllabus,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return admin && (
-      <>
-          <TableContainer>
-              <Table>
-                  <TableHead>
-                      <TableRow>
-                          <TableCell>
-                            ID
-                          </TableCell>
-                          <TableCell>
-                            Name
-                          </TableCell>
-                          <TableCell>
-                            Email
-                          </TableCell>
-                          <TableCell>
-                            Gender
-                          </TableCell>
-                          <TableCell>
-                            Birthday
-                          </TableCell>
-                          <TableCell>
-                            Address
-                          </TableCell>
-                          <TableCell>
-                            Phone
-                          </TableCell>
-                          <TableCell>
-                            Photo
-                          </TableCell>
-                          <TableCell>
-                            Blood Group
-                          </TableCell>
-                          <TableCell>
-                            Actions
-                          </TableCell>
-                      </TableRow>
-                  </TableHead>
-                  <TableBody>
-                  { admin?.map( admin => (
-                      <TableRow key={admin.id}>
-                          <TableCell>
-                              {admin.id}
-                          </TableCell>
-                          <TableCell>
-                              {admin.name}
-                          </TableCell>
-                          <TableCell>
-                              {admin.email}
-                          </TableCell>
-                          <TableCell>
-                              {admin.user_information}
-                          </TableCell>
-                          <TableCell>
-                              {admin.birthday}
-                          </TableCell>
-                          <TableCell>
-                              {admin.address}
-                          </TableCell>
-                          <TableCell>
-                              {admin.phone}
-                          </TableCell>
-                          <TableCell>
-                              {admin.photo}
-                          </TableCell>
-                          <TableCell>
-                              {admin.blood_group}
-                          </TableCell>
-                          <TableCell>
-                              <ButtonGroup
-                                size="small"
-                                variant="contained"
-                              >
-                              <Button
-                                color="info"
-                                onClick={() => navigate(`/admin/${admin.id}`)}
-                                title="Show Admin"
-                              >
-                                  <InfoOutlined />
-                              </Button>
-                              <Button
-                                color="warning"
-                                onClick={() => navigate(`/admin/${admin.id}/edit`)}
-                                title="Edit Admin"
-                              >
-                                <EditOutlined />
-                              </Button>
-                              <Button
-                                color="warning"
-                                onClick={() => onDelete(admin)}
-                                title="Delete Admin"
-                              >
-                                <DeleteOutlined />
-                              </Button>
-                              </ButtonGroup>
-                          </TableCell>
-                      </TableRow>
-                  ))}
-                  </TableBody>
-              </Table>
-          </TableContainer>
-      </>
+  return syllabus && (
+    <>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                ID
+              </TableCell>
+              <TableCell>
+                Class
+              </TableCell>
+              <TableCell>
+                Section
+              </TableCell>
+              <TableCell>
+                Subject
+              </TableCell>
+              <TableCell>
+                File
+              </TableCell>
+              <TableCell>
+                Actions
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {syllabus?.map(syllabus => (
+              <TableRow key={syllabus.id}>
+                <TableCell>
+                  {syllabus.id}
+                </TableCell>
+                <TableCell>
+                  {syllabus.class_id}
+                </TableCell>
+                <TableCell>
+                  {syllabus.section_id}
+                </TableCell>
+                <TableCell>
+                  {syllabus.subject_id}
+                </TableCell>
+                <TableCell>
+                  {syllabus.file}
+                </TableCell>
+                <TableCell>
+                  <ButtonGroup
+                    size="small"
+                    variant="contained"
+                  >
+                    <Button
+                      color="info"
+                      onClick={() => navigate(`/syllabus/${syllabus.id}`)}
+                      title="Show Syllabus"
+                    >
+                      <InfoOutlined />
+                    </Button>
+                    <Button
+                      color="warning"
+                      onClick={() => navigate(`/syllabus/${syllabus.id}/edit`)}
+                      title="Edit Syllabus"
+                    >
+                      <EditOutlined />
+                    </Button>
+                    <Button
+                      color="warning"
+                      onClick={() => onDelete(syllabus)}
+                      title="Delete Syllabus"
+                    >
+                      <DeleteOutlined />
+                    </Button>
+                  </ButtonGroup>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   )
 }
-export default AdminTable;
+export default SyllabusTable;
 
 
 

@@ -16,13 +16,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const ParentTable = ({
-  parent,
+const TeacherTable = ({
+  teacher,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return parent && (
+  return teacher && (
       <>
           <TableContainer>
               <Table>
@@ -61,34 +61,34 @@ const ParentTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  {parent?.map(parent => (
-                      <TableRow key={parent.id}>
+                  {teacher?.map(teacher => (
+                      <TableRow key={teacher.id}>
                           <TableCell>
-                              {parent.id}
+                              {teacher.id}
                           </TableCell>
                           <TableCell>
-                              {parent.name}
+                              {teacher.name}
                           </TableCell>
                           <TableCell>
-                              {parent.email}
+                              {teacher.email}
                           </TableCell>
                           <TableCell>
-                              {parent.gender}
+                              {teacher.gender}
                           </TableCell>
                           <TableCell>
-                              {parent.birthday}
+                              {teacher.birthday}
                           </TableCell>
                           <TableCell>
-                              {parent.address}
+                              {teacher.address}
                           </TableCell>
                           <TableCell>
-                              {parent.phone}
+                              {teacher.phone}
                           </TableCell>
                           <TableCell>
-                              {parent.photo}
+                              {teacher.photo}
                           </TableCell>
                           <TableCell>
-                              {parent.blood_group}
+                              {teacher.blood_group}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,22 +97,22 @@ const ParentTable = ({
                               >
                               <Button
                                   color="info"
-                                  onClick={() => navigate(`/parent/${parent.id}`)}
-                                  title="Show Parent"
+                                  onClick={() => navigate(`/teacher/${teacher.id}`)}
+                                  title="Show Teacher"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                   color="warning"
-                                  onClick={() => navigate(`/parent/${parent.id}/edit`)}
-                                  title="Edit Parent"
+                                  onClick={() => navigate(`/teacher/${teacher.id}/edit`)}
+                                  title="Edit Teacher"
                               >
                                   <EditOutlined />
                               </Button>
                               <Button
                                   color="warning"
-                                  onClick={() => onDelete(parent)}
-                                  title="Delete Parent"
+                                  onClick={() => onDelete(teacher)}
+                                  title="Delete Teacher"
                               >
                                   <DeleteOutlined />
                               </Button>
@@ -126,7 +126,7 @@ const ParentTable = ({
       </>
   )
 }
-export default ParentTable;
+export default TeacherTable;
 
 
 
