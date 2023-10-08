@@ -1,2 +1,1 @@
-export { default } from './ExaminationList
-';
+export { default } from './ExaminationList';

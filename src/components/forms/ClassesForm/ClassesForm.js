@@ -2,20 +2,20 @@ import { Button, Grid } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import getClassInitialValues from './getClassInitialValues';
+import getClassesInitialValues from './getClassesInitialValues';
 import InputField from '../../InputField';
 
-const classValidationSchema = Yup.object().shape({
+const classesValidationSchema = Yup.object().shape({
     name: Yup.string().required(),
     section_id: Yup.string().required()
 });
 
-const ClassForm = ({ class, onSubmit }) => {
-    return (class === undefined || class !== null) && (
+const ClassesForm = ({ classes, onSubmit }) => {
+    return (classes === undefined || classes !== null) && (
         <Formik
-            initialValues={getClassInitialValues(class)}
+            initialValues={getClassesInitialValues(classes)}
             onSubmit={onSubmit}
-            validationSchema={classValidationSchema}
+            validationSchema={classesValidationSchema}
         >
         {({
             handleSubmit,
@@ -30,10 +30,10 @@ const ClassForm = ({ class, onSubmit }) => {
                     placeholder="Enter name"
                 />
                 <InputField 
-                    label="Class"
-                    id="class"
-                    name="class"
-                    placeholder="Enter class"
+                    label="Classes"
+                    id="classes"
+                    name="classes"
+                    placeholder="Enter classes"
                     type="text"
                 />
                 <InputField 
@@ -61,4 +61,4 @@ const ClassForm = ({ class, onSubmit }) => {
     )
 }
 
-export default ClassForm;
+export default ClassesForm;

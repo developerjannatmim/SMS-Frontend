@@ -1,2 +1,1 @@
-export { default } from './GradeList
-';
+export { default } from './GradeList';

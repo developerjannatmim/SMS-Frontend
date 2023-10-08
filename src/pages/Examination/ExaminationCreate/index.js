@@ -1,2 +1,1 @@
-export { default } from './ExaminationCreate
-';
+export { default } from './ExaminationCreate';

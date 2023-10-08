@@ -1,2 +1,1 @@
-export { default } from './GradeEdit
-';
+export { default } from './GradeEdit';

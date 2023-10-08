@@ -16,13 +16,13 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 
-const ClassTable = ({
-  class,
+const ClassesTable = ({
+  classes,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return class && (
+  return classes && (
       <>
           <TableContainer>
               <Table>
@@ -43,16 +43,16 @@ const ClassTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { class?.map( class => (
-                      <TableRow key={class.id}>
+                  { classes?.map( classes => (
+                      <TableRow key={classes.id}>
                           <TableCell>
-                              {class.id}
+                              {classes.id}
                           </TableCell>
                           <TableCell>
-                              {class.name}
+                              {classes.name}
                           </TableCell>
                           <TableCell>
-                              {class.section_id}
+                              {classes.section_id}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -61,22 +61,22 @@ const ClassTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/class/${class.id}`)}
-                                title="Show Class"
+                                onClick={() => navigate(`/classes/${classes.id}`)}
+                                title="Show Classes"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/class/${class.id}/edit`)}
-                                title="Edit Class"
+                                onClick={() => navigate(`/classes/${classes.id}/edit`)}
+                                title="Edit Classes"
                               >
                                 <EditOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => onDelete(class)}
-                                title="Delete Class"
+                                onClick={() => onDelete(classes)}
+                                title="Delete Classes"
                               >
                                 <DeleteOutlined />
                               </Button>
@@ -90,7 +90,7 @@ const ClassTable = ({
       </>
   )
 }
-export default ClassTable;
+export default ClassesTable;
 
 
 

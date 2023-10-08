@@ -67,7 +67,7 @@ const AdminTable = ({
                           userInformation = JSON.parse(admin.user_information);
                         } catch (error) { /**/ }
                       return (
-                        <TableRow key={admin.id}>
+                        <TableRow key={admin?.id}>
                             <TableCell>
                                 {admin?.id}
                             </TableCell>
