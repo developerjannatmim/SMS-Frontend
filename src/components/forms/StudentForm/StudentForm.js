@@ -1,0 +1,50 @@
+import { Button, Grid } from '@mui/material';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+import getStudentInitialValues from './getStudentInitialValues';
+import InputField from '../../InputField';
+
+const studentValidationSchema = Yup.object().shape({
+    name: Yup.string().required(),
+    email: Yup.string().email().required(),
+    password: Yup.string().min(6).required(),
+    gender: Yup.string().required(),
+    birthday: Yup.string().required(),
+    address: Yup.string().required(),
+    phone: Yup.string().required(),
+    photo: Yup.string().required(),
+    blood_group: Yup.string().required()
+});
+
+const StudentForm = ({ student, onSubmit }) => {
+    return (
+        (student === undefined || student !== null) && (
+            <Formik initialValues={getStudentInitialValues(student)} onSubmit={onSubmit} validationSchema={studentValidationSchema}>
+                {({ handleSubmit, isSubmitting }) => (
+                    <from noValidate onSubmit={handleSubmit}>
+                        <Grid container spacing={3}>
+                            <InputField label="Name" id="name" name="name" placeholder="Enter name" />
+                            <InputField label="Email" id="email" name="email" placeholder="Enter email" type="email" />
+                            <InputField label="Password" id="password" name="password" placeholder="Enter password" type="password" />
+                            <InputField label="Gender" id="gender" name="gender" placeholder="Enter gender" />
+                            <InputField label="Birthday" id="birthday" name="birthday" placeholder="Enter birthday" />
+                            <InputField label="Address" id="address" name="address" placeholder="Enter address" />
+                            <InputField label="Phone" id="phone" name="phone" placeholder="Enter phone" />
+                            <InputField label="Photo" id="photo" name="photo" placeholder="Enter photo" />
+                            <InputField label="Blood Group" id="blood_group" name="blood_group" placeholder="Enter blood group" />
+
+                            <Grid item xs={12}>
+                                <Button color="primary" disabled={isSubmitting} fullWidth type="submit" variant="contained">
+                                    Submit
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </from>
+                )}
+            </Formik>
+        )
+    );
+};
+
+export default StudentForm;
