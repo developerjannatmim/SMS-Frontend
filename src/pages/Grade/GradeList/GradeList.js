@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import MainCard from '../../../components/MainCard';
-import AdminTable from '../../../components/tables/AdminTable';
+import GradeTable from '../../../components/tables/GradeTable';
 
-const AdminList = () => {
-  const [admins, setAdmins] = useState([]);
+const GradeList = () => {
+  const [grade, setGrade] = useState([]);
   const [reload, setReload] = useState(0);
 
-  const handleDelete = admin => {
-    if (confirm(`Are you sure you want to delete admin ${admin.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/admin/${admin.id}`, {
+  const handleDelete = grade => {
+    if (confirm(`Are you sure you want to delete grade ${grade.id}?`)) {
+      fetch(`http://127.0.0.1:8000/api/grade/${grade.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const AdminList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/admin?', {
+    fetch('http://127.0.0.1:8000/api/grade?', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,11 +39,11 @@ const AdminList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setAdmins(response.data?.admin);
+        setGrade(response.data?.grade);
       })
       .catch((error) => {
         console.error(error);
-        setAdmins(null);
+        setGrade(null);
       });
   }, [reload]);
 
@@ -57,24 +57,24 @@ const AdminList = () => {
         >
           <Grid item>
             <Typography variant="h5">
-              Admin List
+              Grade List
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/admin/create">
+            <Link to="/grade/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}
                 variant="contained"
               >
-                Admin
+                Grade
               </Button>
             </Link>
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
-          <AdminTable
-            admins={ admins }
+          <GradeTable
+            grade={ grade }
             onDelete={ handleDelete }
           />
         </MainCard>
@@ -83,4 +83,4 @@ const AdminList = () => {
   );
 };
 
-export default AdminList;
+export default GradeList;

@@ -17,12 +17,12 @@ import {
 
 
 const AdminTable = ({
-    admin,
+    admins,
     onDelete
 }) => {
     const navigate = useNavigate();
 
-    return admin && (
+    return admins && (
         <>
             <TableContainer>
                 <Table>
@@ -61,34 +61,39 @@ const AdminTable = ({
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    { admin?.map( admin => (
+                    { admins?.map( admin => {
+                      let userInformation;
+                        try {
+                          userInformation = JSON.parse(admin.user_information);
+                        } catch (error) { /**/ }
+                      return (
                         <TableRow key={admin.id}>
                             <TableCell>
-                                {admin.id}
+                                {admin?.id}
                             </TableCell>
                             <TableCell>
-                                {admin.name}
+                                {admin?.name}
                             </TableCell>
                             <TableCell>
-                                {admin.email}
+                                {admin?.email}
                             </TableCell>
                             <TableCell>
-                                {admin.user_information}
+                                {userInformation?.gender}
                             </TableCell>
                             <TableCell>
-                                {admin.birthday}
+                                {userInformation?.birthday}
                             </TableCell>
                             <TableCell>
-                                {admin.address}
+                                {userInformation?.address}
                             </TableCell>
                             <TableCell>
-                                {admin.phone}
+                                {userInformation?.phone}
                             </TableCell>
                             <TableCell>
-                                {admin.photo}
+                                {userInformation?.photo}
                             </TableCell>
                             <TableCell>
-                                {admin.blood_group}
+                                {userInformation?.blood_group}
                             </TableCell>
                             <TableCell>
                                 <ButtonGroup
@@ -119,7 +124,8 @@ const AdminTable = ({
                                 </ButtonGroup>
                             </TableCell>
                         </TableRow>
-                    ))}
+                      );
+                    })}
                     </TableBody>
                 </Table>
             </TableContainer>
