@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material';
 const AdminDetail = ({ admin }) => {
   let userInformation;
   try {
-    userInformation = JSON.parse(admin?.user_information);
+    userInformation = JSON.parse(admin.user_information);
   } catch (error) { /**/ }
   return (
     admin && (
