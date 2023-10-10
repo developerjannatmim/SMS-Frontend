@@ -8,19 +8,19 @@ const SubjectDetail = ({ subject }) => {
           <Typography component="dt" variant="h5">
             ID
           </Typography>
-          <Typography component="dd">{subject.id}</Typography>
+          <Typography component="dd">{subject?.id}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
             Name
           </Typography>
-          <Typography component="dd">{subject.name}</Typography>
+          <Typography component="dd">{subject?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
           Class
           </Typography>
-          <Typography component="dd">{subject.class_id}</Typography>
+          <Typography component="dd">{subject?.class_id}</Typography>
         </Grid>
       </Grid>
     )

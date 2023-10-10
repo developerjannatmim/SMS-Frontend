@@ -12,7 +12,7 @@ const SyllabusShow = () => {
   const [syllabus, setSyllabus] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/syllabus/${syllabusId}`, {
+    fetch(`http://127.0.0.1:8000/api/syllabuses/${syllabusId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -43,7 +43,7 @@ const SyllabusShow = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/syllabus">
+            <Link to="/syllabuses">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}

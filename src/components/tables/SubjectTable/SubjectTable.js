@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SubjectTable = ({
-  subject,
+  subjects,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return subject && (
+  return subjects && (
     <>
       <TableContainer>
         <Table>
@@ -40,16 +40,16 @@ const SubjectTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {subject?.map(subject => (
-              <TableRow key={subject.id}>
+            {subjects?.map(subject => (
+              <TableRow key={subject?.id}>
                 <TableCell>
-                  {subject.id}
+                  {subject?.id}
                 </TableCell>
                 <TableCell>
-                  {subject.name}
+                  {subject?.name}
                 </TableCell>
                 <TableCell>
-                  {subject.class_id}
+                  {subject?.class_id}
                 </TableCell>
                 <TableCell>
                   <ButtonGroup
@@ -58,14 +58,14 @@ const SubjectTable = ({
                   >
                     <Button
                       color="info"
-                      onClick={() => navigate(`/subject/${subject.id}`)}
+                      onClick={() => navigate(`/subjects/${subject.id}`)}
                       title="Show Subject"
                     >
                       <InfoOutlined />
                     </Button>
                     <Button
                       color="warning"
-                      onClick={() => navigate(`/subject/${subject.id}/edit`)}
+                      onClick={() => navigate(`/subjects/${subject.id}/edit`)}
                       title="Edit Subject"
                     >
                       <EditOutlined />

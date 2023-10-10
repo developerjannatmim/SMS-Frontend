@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SyllabusTable = ({
-  syllabus,
+  syllabuses,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return syllabus && (
+  return syllabuses && (
     <>
       <TableContainer>
         <Table>
@@ -30,6 +30,9 @@ const SyllabusTable = ({
             <TableRow>
               <TableCell>
                 ID
+              </TableCell>
+              <TableCell>
+                Title
               </TableCell>
               <TableCell>
                 Class
@@ -49,22 +52,25 @@ const SyllabusTable = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {syllabus?.map(syllabus => (
-              <TableRow key={syllabus.id}>
+            {syllabuses?.map(syllabus => (
+              <TableRow key={syllabus?.id}>
                 <TableCell>
-                  {syllabus.id}
+                  {syllabus?.id}
                 </TableCell>
                 <TableCell>
-                  {syllabus.class_id}
+                  {syllabus?.title}
                 </TableCell>
                 <TableCell>
-                  {syllabus.section_id}
+                  {syllabus?.class_id}
                 </TableCell>
                 <TableCell>
-                  {syllabus.subject_id}
+                  {syllabus?.section_id}
                 </TableCell>
                 <TableCell>
-                  {syllabus.file}
+                  {syllabus?.subject_id}
+                </TableCell>
+                <TableCell>
+                  {syllabus?.file}
                 </TableCell>
                 <TableCell>
                   <ButtonGroup
@@ -73,14 +79,14 @@ const SyllabusTable = ({
                   >
                     <Button
                       color="info"
-                      onClick={() => navigate(`/syllabus/${syllabus.id}`)}
+                      onClick={() => navigate(`/syllabuses/${syllabus.id}`)}
                       title="Show Syllabus"
                     >
                       <InfoOutlined />
                     </Button>
                     <Button
                       color="warning"
-                      onClick={() => navigate(`/syllabus/${syllabus.id}/edit`)}
+                      onClick={() => navigate(`/syllabuses/${syllabus.id}/edit`)}
                       title="Edit Syllabus"
                     >
                       <EditOutlined />

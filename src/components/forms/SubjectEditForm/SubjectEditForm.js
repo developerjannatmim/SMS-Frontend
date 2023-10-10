@@ -28,6 +28,7 @@ const SubjectEditForm = ({ subject, onSubmit }) => {
                     id="name"
                     name="name"
                     placeholder="Enter name"
+                    type="text"
                 />
                 <InputField 
                     label="class_id"

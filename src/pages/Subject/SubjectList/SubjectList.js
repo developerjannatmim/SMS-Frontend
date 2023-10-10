@@ -7,12 +7,12 @@ import MainCard from '../../../components/MainCard';
 import SubjectTable from '../../../components/tables/SubjectTable';
 
 const SubjectList = () => {
-  const [subject, setSubject] = useState([]);
+  const [subjects, setSubjects] = useState([]);
   const [reload, setReload] = useState(0);
 
   const handleDelete = subject => {
     if (confirm(`Are you sure you want to delete subject ${subject.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/subject/${subject.id}`, {
+      fetch(`http://127.0.0.1:8000/api/subjects/${subject.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const SubjectList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/subject?', {
+    fetch('http://127.0.0.1:8000/api/subjects?', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,11 +39,11 @@ const SubjectList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setSubject(response.data?.subject);
+        setSubjects(response.data?.subject);
       })
       .catch((error) => {
         console.error(error);
-        setSubject(null);
+        setSubjects(null);
       });
   }, [reload]);
 
@@ -74,7 +74,7 @@ const SubjectList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <SubjectTable
-            subject={ subject }
+            subjects={ subjects }
             onDelete={ handleDelete }
           />
         </MainCard>

@@ -36,12 +36,12 @@ const ClassesCreate = () => {
       <Grid item xs={12}>
         <Grid alignItems="center" container justifyContent="space-between">
           <Grid item>
-            <Typography variant="h5">Classes Create</Typography>
+            <Typography variant="h5">Class Create</Typography>
           </Grid>
           <Grid item>
             <Link to="/classes">
               <Button color="primary" startIcon={<ArrowLeftOutlined />} variant="contained">
-                Classes List
+                Class List
               </Button>
             </Link>
           </Grid>

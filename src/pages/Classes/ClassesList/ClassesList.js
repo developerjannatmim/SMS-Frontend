@@ -10,9 +10,9 @@ const ClassesList = () => {
   const [classes, setClasses] = useState([]);
   const [reload, setReload] = useState(0);
 
-  const handleDelete = classes => {
-    if (confirm(`Are you sure you want to delete classes ${classes.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/classes/${classes.id}`, {
+  const handleDelete = singleClass => {
+    if (confirm(`Are you sure you want to delete classes ${singleClass.id}?`)) {
+      fetch(`http://127.0.0.1:8000/api/classes/${singleClass.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -57,7 +57,7 @@ const ClassesList = () => {
         >
           <Grid item>
             <Typography variant="h5">
-              Classes List
+              Class List
             </Typography>
           </Grid>
           <Grid item>
@@ -67,7 +67,7 @@ const ClassesList = () => {
                 startIcon={<PlusOutlined />}
                 variant="contained"
               >
-                Classes
+                Class
               </Button>
             </Link>
           </Grid>

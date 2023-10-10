@@ -31,31 +31,35 @@ const SyllabusEditForm = ({ syllabus, onSubmit }) => {
                     id="title"
                     name="title"
                     placeholder="Enter title"
+                    type="text"
                 />
                 <InputField 
                     label="class_id"
                     id="class_id"
                     name="class_id"
                     placeholder="Enter class_id"
+                    type="text"
                 />
                 <InputField 
                     label="section_id"
                     id="section_id"
                     name="section_id"
                     placeholder="Enter section_id"
+                    type="text"
                 />
                 <InputField 
                     label="subject_id"
                     id="subject_id"
                     name="subject_id"
                     placeholder="Enter subject_id"
+                    type="text"
                 />
                 <InputField 
                     label="file"
                     id="file"
                     name="file"
                     placeholder="Enter file"
-                    type="file"
+                    type="text"
                 />
 
                 <Grid item xs={12}>

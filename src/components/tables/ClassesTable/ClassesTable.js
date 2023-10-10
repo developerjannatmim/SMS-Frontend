@@ -43,16 +43,16 @@ const ClassesTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { classes?.map( classes => (
-                      <TableRow key={classes.id}>
+                  { classes?.map( singleClass => (
+                      <TableRow key={singleClass.id}>
                           <TableCell>
-                              {classes.id}
+                              {singleClass.id}
                           </TableCell>
                           <TableCell>
-                              {classes.name}
+                              {singleClass.name}
                           </TableCell>
                           <TableCell>
-                              {classes.section_id}
+                              {singleClass.section_id}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -61,22 +61,22 @@ const ClassesTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/classes/${classes.id}`)}
-                                title="Show Classes"
+                                onClick={() => navigate(`/classes/${singleClass.id}`)}
+                                title="Show Class"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/classes/${classes.id}/edit`)}
-                                title="Edit Classes"
+                                onClick={() => navigate(`/classes/${singleClass.id}/edit`)}
+                                title="Edit Class"
                               >
                                 <EditOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => onDelete(classes)}
-                                title="Delete Classes"
+                                onClick={() => onDelete(singleClass)}
+                                title="Delete Class"
                               >
                                 <DeleteOutlined />
                               </Button>

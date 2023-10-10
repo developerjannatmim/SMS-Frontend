@@ -7,12 +7,12 @@ import ClassesEditForm, { getClassesInitialValues } from '../../../components/fo
 import MainCard from '../../../components/MainCard';
 
 const ClassesEdit = () => {
-  const { classesId } = useParams();
+  const { singleClassId } = useParams();
 
-  const [classes, setClasses] = useState(null);
+  const [singleClass, setSingleClass] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/classes/${classesId}`, {
+    fetch(`http://127.0.0.1:8000/api/classes/${singleClassId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const ClassesEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/classes/${classesId}`, {
+    fetch(`http://127.0.0.1:8000/api/classes/${singleClassId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -46,13 +46,13 @@ const ClassesEdit = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setClasses(response.data?.classes);
+        setSingleClass(response.data?.classes);
       })
       .catch((error) => {
         console.error(error);
-        setClasses(null);
+        setSingleClass(null);
       });
-  }, [classesId]);
+  }, [singleClassId]);
 
   return (
     <Grid container>
@@ -64,7 +64,7 @@ const ClassesEdit = () => {
         >
           <Grid item>
             <Typography variant="h5">
-              Classes Edit
+              Class Edit
             </Typography>
           </Grid>
           <Grid item>
@@ -74,14 +74,14 @@ const ClassesEdit = () => {
                 startIcon={<ArrowLeftOutlined />}
                 variant="contained"
               >
-                Classes List
+                Class List
               </Button>
             </Link>
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
           <ClassesEditForm
-            classes={classes}
+            singleClass={singleClass}
             onSubmit={handleSubmit}
           />
         </MainCard>

@@ -10,10 +10,10 @@ const classesValidationSchema = Yup.object().shape({
     section_id: Yup.string().required()
 });
 
-const ClassesCreateForm = ({ classes, onSubmit }) => {
-    return (classes === undefined || classes !== null) && (
+const ClassesCreateForm = ({ singleClass, onSubmit }) => {
+    return (singleClass === undefined || singleClass !== null) && (
         <Formik
-            initialValues={getClassesCreateInitialValues(classes)}
+            initialValues={getClassesCreateInitialValues(singleClass)}
             onSubmit={onSubmit}
             validationSchema={classesValidationSchema}
         >
@@ -28,19 +28,13 @@ const ClassesCreateForm = ({ classes, onSubmit }) => {
                     id="name"
                     name="name"
                     placeholder="Enter name"
-                />
-                <InputField 
-                    label="Classes"
-                    id="classes"
-                    name="classes"
-                    placeholder="Enter classes"
                     type="text"
                 />
                 <InputField 
                     label="Section"
-                    id="section"
-                    name="section"
-                    placeholder="Enter section"
+                    id="section_id"
+                    name="section_id"
+                    placeholder="Enter section_id"
                     type="text"
                 />
                 <Grid item xs={12}>

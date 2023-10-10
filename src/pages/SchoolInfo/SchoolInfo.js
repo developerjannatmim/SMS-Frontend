@@ -3,16 +3,16 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import SubjectEditForm, { getSubjectInitialValues } from '../../../components/forms/SubjectEditForm';
-import MainCard from '../../../components/MainCard';
+import SchoolEditForm, { getSchoolInitialValues } from '../../components/forms/SchoolEditForm';
+import MainCard from '../../components/MainCard';
 
-const SubjectEdit = () => {
-  const { subjectId } = useParams();
+const SchoolInfo = () => {
+  const { schoolId } = useParams();
 
-  const [subject, setSubject] = useState(null);
+  const [school, setSchool] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/subjects/${subjectId}`, {
+    fetch(`http://127.0.0.1:8000/api/schools/${schoolId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -27,7 +27,7 @@ const SubjectEdit = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getSubjectInitialValues(response.data?.subject),
+          values: getSchoolInitialValues(response.data?.school),
         });
       })
       .catch((error) => {
@@ -37,7 +37,7 @@ const SubjectEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/subjects/${subjectId}`, {
+    fetch(`http://127.0.0.1:8000/api/schools/${schoolId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -46,13 +46,13 @@ const SubjectEdit = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setSubject(response.data?.subject);
+        setSchool(response.data?.school);
       })
       .catch((error) => {
         console.error(error);
-        setSubject(null);
+        setSchool(null);
       });
-  }, [subjectId]);
+  }, [schoolId]);
 
   return (
     <Grid container>
@@ -64,24 +64,24 @@ const SubjectEdit = () => {
         >
           <Grid item>
             <Typography variant="h5">
-              Subject Edit
+              School Edit
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/subjects">
+            <Link to="/schools">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}
                 variant="contained"
               >
-                Subject List
+                School List
               </Button>
             </Link>
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <SubjectEditForm
-            subject={subject}
+          <SchoolEditForm
+            school={school}
             onSubmit={handleSubmit}
           />
         </MainCard>
@@ -90,4 +90,4 @@ const SubjectEdit = () => {
   );
 };
 
-export default SubjectEdit;
+export default SchoolInfo;

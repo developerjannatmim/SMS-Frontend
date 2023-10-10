@@ -7,12 +7,12 @@ import ClassesDetail from '../../../components/details/ClassesDetail';
 import MainCard from '../../../components/MainCard';
 
 const ClassesShow = () => {
-  const { classesId } = useParams();
+  const { singleClassId } = useParams();
 
-  const [classes, setClasses] = useState(null);
+  const [singleClass, setSingleClass] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/classes/${classesId}`, {
+    fetch(`http://127.0.0.1:8000/api/classes/${singleClassId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -21,13 +21,13 @@ const ClassesShow = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setClasses(response.data?.classes);
+        setSingleClass(response.data?.classes);
       })
       .catch((error) => {
         console.error(error);
-        setClasses(null);
+        setSingleClass(null);
       });
-  }, [classesId]);
+  }, [singleClassId]);
 
   return (
     <Grid container>
@@ -39,7 +39,7 @@ const ClassesShow = () => {
         >
           <Grid item>
             <Typography variant="h5">
-              Classes Detail
+              Class Detail
             </Typography>
           </Grid>
           <Grid item>
@@ -49,13 +49,13 @@ const ClassesShow = () => {
                 startIcon={<ArrowLeftOutlined />}
                 variant="contained"
               >
-                Classes List
+                Class List
               </Button>
             </Link>
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 2 }} sx={{ mt: 2 }}>
-          <ClassesDetail classes={classes}/>
+          <ClassesDetail singleClass={ singleClass }/>
         </MainCard>
       </Grid>
     </Grid>

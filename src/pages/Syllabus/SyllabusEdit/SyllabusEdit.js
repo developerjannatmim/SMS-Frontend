@@ -12,7 +12,7 @@ const SyllabusEdit = () => {
   const [syllabus, setSyllabus] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/syllabus/${syllabusId}`, {
+    fetch(`http://127.0.0.1:8000/api/syllabuses/${syllabusId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const SyllabusEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/syllabus/${syllabusId}`, {
+    fetch(`http://127.0.0.1:8000/api/syllabuses/${syllabusId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -68,7 +68,7 @@ const SyllabusEdit = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/syllabus">
+            <Link to="/syllabuses">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}

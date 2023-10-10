@@ -7,12 +7,12 @@ import MainCard from '../../../components/MainCard';
 import SyllabusTable from '../../../components/tables/SyllabusTable';
 
 const SyllabusList = () => {
-  const [syllabus, setSyllabus] = useState([]);
+  const [syllabuses, setSyllabuses] = useState([]);
   const [reload, setReload] = useState(0);
 
   const handleDelete = syllabus => {
     if (confirm(`Are you sure you want to delete syllabus ${syllabus.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/syllabus/${syllabus.id}`, {
+      fetch(`http://127.0.0.1:8000/api/syllabuses/${syllabus.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const SyllabusList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/syllabus?', {
+    fetch('http://127.0.0.1:8000/api/syllabuses?', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,11 +39,11 @@ const SyllabusList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setSyllabus(response.data?.syllabus);
+        setSyllabuses(response.data?.syllabus);
       })
       .catch((error) => {
         console.error(error);
-        setSyllabus(null);
+        setSyllabuses(null);
       });
   }, [reload]);
 
@@ -61,7 +61,7 @@ const SyllabusList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/syllabus/create">
+            <Link to="/syllabuses/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}
@@ -74,7 +74,7 @@ const SyllabusList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <SyllabusTable
-            syllabus={ syllabus }
+            syllabuses={ syllabuses }
             onDelete={ handleDelete }
           />
         </MainCard>

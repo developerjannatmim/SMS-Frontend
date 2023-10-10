@@ -38,10 +38,10 @@ const pages = {
       breadcrumbs: false
     },
     {
-      id: 'class_list',
-      title: 'Class List',
+      id: 'classes',
+      title: 'Classes',
       type: 'item',
-      url: '/class_list',
+      url: '/classes',
       icon: AssignmentIcon,
       breadcrumbs: false
     }

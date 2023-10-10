@@ -7,7 +7,7 @@ import MainCard from '../../../components/MainCard';
 
 const SubjectCreate = () => {
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch('http://127.0.0.1:8000/api/subject', {
+    fetch('http://127.0.0.1:8000/api/subjects', {
       body: JSON.stringify({
         ...values
       }),
@@ -39,7 +39,7 @@ const SubjectCreate = () => {
             <Typography variant="h5">Subject Create</Typography>
           </Grid>
           <Grid item>
-            <Link to="/subject">
+            <Link to="/subjects">
               <Button color="primary" startIcon={<ArrowLeftOutlined />} variant="contained">
                 Subject List
               </Button>

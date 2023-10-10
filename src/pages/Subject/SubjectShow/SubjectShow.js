@@ -12,7 +12,7 @@ const SubjectShow = () => {
   const [subject, setSubject] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/subject/${subjectId}`, {
+    fetch(`http://127.0.0.1:8000/api/subjects/${subjectId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -43,7 +43,7 @@ const SubjectShow = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/subject">
+            <Link to="/subjects">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}

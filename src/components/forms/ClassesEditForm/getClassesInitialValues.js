@@ -1,5 +1,5 @@
-const getClassesInitialValues = classes => ({
-  name: classes?.name || '',
-  section_id: classes?.section_id || ''
+const getClassesInitialValues = singleClass => ({
+  name: singleClass?.name || '',
+  section_id: singleClass?.section_id || ''
 });
 export default getClassesInitialValues;
