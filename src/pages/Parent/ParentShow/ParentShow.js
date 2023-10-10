@@ -12,7 +12,7 @@ const ParentShow = () => {
   const [parent, setParent] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/parent/${parentId}`, {
+    fetch(`http://127.0.0.1:8000/api/parents/${parentId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -43,7 +43,7 @@ const ParentShow = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/parent">
+            <Link to="/parents">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}

@@ -257,7 +257,7 @@ const MainRoutes = {
               path: 'edit'
             },
           ],
-          path: ':marksId',
+          path: ':markId',
         },
       ],
       path: 'marks',

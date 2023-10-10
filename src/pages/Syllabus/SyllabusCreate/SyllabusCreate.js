@@ -2,7 +2,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import SyllabusForm, { getSyllabusInitialValues } from '../../../components/forms/SyllabusForm';
+import SyllabusCreateForm, { getSyllabusCreateInitialValues } from '../../../components/forms/SyllabusCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const SyllabusCreate = () => {
@@ -22,7 +22,7 @@ const SyllabusCreate = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getSyllabusInitialValues(undefined)
+          values: getSyllabusCreateInitialValues(undefined)
         });
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ const SyllabusCreate = () => {
           </Grid>
         </Grid>
         <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
-          <SyllabusForm onSubmit={handleSubmit} />
+          <SyllabusCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>
     </Grid>

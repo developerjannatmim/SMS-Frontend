@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const RoutineTable = ({
-  routine,
+  routines,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return routine && (
+  return routines && (
       <>
           <TableContainer>
               <Table>
@@ -67,40 +67,40 @@ const RoutineTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { routine?.map( routine => (
-                      <TableRow key={routine.id}>
+                  { routines?.map( routine => (
+                      <TableRow key={routine?.id}>
                           <TableCell>
-                              {routine.id}
+                              {routine?.id}
                           </TableCell>
                           <TableCell>
-                              {routine.class_id}
+                              {routine?.class_id}
                           </TableCell>
                           <TableCell>
-                              {routine.section_id}
+                              {routine?.section_id}
                           </TableCell>
                           <TableCell>
-                              {routine.routine_creator}
+                              {routine?.routine_creator}
                           </TableCell>
                           <TableCell>
-                              {routine.subject_id}
+                              {routine?.subject_id}
                           </TableCell>
                           <TableCell>
-                              {routine.room_id}
+                              {routine?.room_id}
                           </TableCell>
                           <TableCell>
-                              {routine.starting_hour}
+                              {routine?.starting_hour}
                           </TableCell>
                           <TableCell>
-                              {routine.ending_hour}
+                              {routine?.ending_hour}
                           </TableCell>
                           <TableCell>
-                              {routine.starting_minute}
+                              {routine?.starting_minute}
                           </TableCell>
                           <TableCell>
-                              {routine.ending_minute}
+                              {routine?.ending_minute}
                           </TableCell>
                           <TableCell>
-                              {routine.day}
+                              {routine?.day}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -109,14 +109,14 @@ const RoutineTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/routine/${routine.id}`)}
+                                onClick={() => navigate(`/routines/${routine.id}`)}
                                 title="Show Routine"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/routine/${routine.id}/edit`)}
+                                onClick={() => navigate(`/routines/${routine.id}/edit`)}
                                 title="Edit Routine"
                               >
                                 <EditOutlined />

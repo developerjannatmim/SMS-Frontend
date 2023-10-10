@@ -12,7 +12,7 @@ const RoutineShow = () => {
   const [routine, setRoutine] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/routine/${routineId}`, {
+    fetch(`http://127.0.0.1:8000/api/routines/${routineId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -43,7 +43,7 @@ const RoutineShow = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/routine">
+            <Link to="/routines">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}

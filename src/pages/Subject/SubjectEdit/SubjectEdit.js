@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import SubjectForm, { getSubjectInitialValues } from '../../../components/forms/SubjectForm';
+import SubjectEditForm, { getSubjectInitialValues } from '../../../components/forms/SubjectEditForm';
 import MainCard from '../../../components/MainCard';
 
 const SubjectEdit = () => {
@@ -80,7 +80,7 @@ const SubjectEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <SubjectForm
+          <SubjectEditForm
             subject={subject}
             onSubmit={handleSubmit}
           />

@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import SyllabusForm, { getSyllabusInitialValues } from '../../../components/forms/SyllabusForm';
+import SyllabusEditForm, { getSyllabusInitialValues } from '../../../components/forms/SyllabusEditForm';
 import MainCard from '../../../components/MainCard';
 
 const SyllabusEdit = () => {
@@ -80,7 +80,7 @@ const SyllabusEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <SyllabusForm
+          <SyllabusEditForm
             syllabus={syllabus}
             onSubmit={handleSubmit}
           />

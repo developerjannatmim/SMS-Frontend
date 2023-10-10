@@ -7,12 +7,12 @@ import MainCard from '../../../components/MainCard';
 import TeacherTable from '../../../components/tables/TeacherTable';
 
 const TeacherList = () => {
-  const [teacher, setTeacher] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   const [reload, setReload] = useState(0);
 
   const handleDelete = teacher => {
     if (confirm(`Are you sure you want to delete teacher ${teacher.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/teacher/${teacher.id}`, {
+      fetch(`http://127.0.0.1:8000/api/teachers/${teacher.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const TeacherList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/teacher?', {
+    fetch('http://127.0.0.1:8000/api/teachers?', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,11 +39,11 @@ const TeacherList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setTeacher(response.data?.teacher);
+        setTeachers(response.data?.teacher);
       })
       .catch((error) => {
         console.error(error);
-        setTeacher(null);
+        setTeachers(null);
       });
   }, [reload]);
 
@@ -61,7 +61,7 @@ const TeacherList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/teacher/create">
+            <Link to="/teachers/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}
@@ -74,7 +74,7 @@ const TeacherList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <TeacherTable
-            teacher={ teacher }
+            teachers={ teachers }
             onDelete={ handleDelete }
           />
         </MainCard>

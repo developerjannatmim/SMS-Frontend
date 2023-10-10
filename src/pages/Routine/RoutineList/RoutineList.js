@@ -7,12 +7,12 @@ import MainCard from '../../../components/MainCard';
 import RoutineTable from '../../../components/tables/RoutineTable';
 
 const RoutineList = () => {
-  const [routine, setRoutine] = useState([]);
+  const [routines, setRoutines] = useState([]);
   const [reload, setReload] = useState(0);
 
   const handleDelete = routine => {
     if (confirm(`Are you sure you want to delete routine ${routine.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/routine/${routine.id}`, {
+      fetch(`http://127.0.0.1:8000/api/routines/${routine.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const RoutineList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/routine?', {
+    fetch('http://127.0.0.1:8000/api/routines?', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,11 +39,11 @@ const RoutineList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setRoutine(response.data?.routine);
+        setRoutines(response.data?.routine);
       })
       .catch((error) => {
         console.error(error);
-        setRoutine(null);
+        setRoutines(null);
       });
   }, [reload]);
 
@@ -74,7 +74,7 @@ const RoutineList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <RoutineTable
-            routine={ routine }
+            routines={ routines }
             onDelete={ handleDelete }
           />
         </MainCard>

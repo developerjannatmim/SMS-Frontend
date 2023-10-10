@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const GradeTable = ({
-  grade,
+  grades,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return grade && (
+  return grades && (
       <>
           <TableContainer>
               <Table>
@@ -49,22 +49,22 @@ const GradeTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { grade?.map( grade => (
-                      <TableRow key={grade.id}>
+                  { grades?.map( grade => (
+                      <TableRow key={grade?.id}>
                           <TableCell>
-                              {grade.id}
+                              {grade?.id}
                           </TableCell>
                           <TableCell>
-                              {grade.name}
+                              {grade?.name}
                           </TableCell>
                           <TableCell>
-                              {grade.grade_point}
+                              {grade?.grade_point}
                           </TableCell>
                           <TableCell>
-                              {grade.mark_from}
+                              {grade?.mark_from}
                           </TableCell>
                           <TableCell>
-                              {grade.mark_upto}
+                              {grade?.mark_upto}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -73,14 +73,14 @@ const GradeTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/grade/${grade.id}`)}
+                                onClick={() => navigate(`/grades/${grade.id}`)}
                                 title="Show Grade"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/grade/${grade.id}/edit`)}
+                                onClick={() => navigate(`/grades/${grade.id}/edit`)}
                                 title="Edit Grade"
                               >
                                 <EditOutlined />

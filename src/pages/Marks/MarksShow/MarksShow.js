@@ -7,12 +7,12 @@ import MarksDetail from '../../../components/details/MarksDetail';
 import MainCard from '../../../components/MainCard';
 
 const MarksShow = () => {
-  const { marksId } = useParams();
+  const { markId } = useParams();
 
-  const [marks, setMarks] = useState(null);
+  const [mark, setMark] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/marks/${marksId}`, {
+    fetch(`http://127.0.0.1:8000/api/marks/${markId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -21,13 +21,13 @@ const MarksShow = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setMarks(response.data?.marks);
+        setMark(response.data?.mark);
       })
       .catch((error) => {
         console.error(error);
-        setMarks(null);
+        setMark(null);
       });
-  }, [marksId]);
+  }, [markId]);
 
   return (
     <Grid container>
@@ -55,7 +55,7 @@ const MarksShow = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 2 }} sx={{ mt: 2 }}>
-          <MarksDetail marks={marks}/>
+          <MarksDetail mark={mark}/>
         </MainCard>
       </Grid>
     </Grid>

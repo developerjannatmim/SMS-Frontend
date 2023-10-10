@@ -15,7 +15,7 @@ const pages = {
       id: 'exam',
       title: 'Exam',
       type: 'item',
-      url: '/exam',
+      url: '/exams',
       icon: ExplicitIcon,
       breadcrumbs: false
     },

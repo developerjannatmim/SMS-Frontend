@@ -12,10 +12,10 @@ const pages = {
   type: 'group',
   children: [
     {
-      id: 'class_routine',
+      id: 'routines',
       title: 'Class Routiune',
       type: 'item',
-      url: '/class_routine',
+      url: '/routines',
       icon: TextSnippetIcon,
       breadcrumbs: false
     },
@@ -30,10 +30,10 @@ const pages = {
     },
 
     {
-      id: 'syllabus',
+      id: 'syllabuses',
       title: 'Syllabus',
       type: 'item',
-      url: '/syllabus',
+      url: '/syllabuses',
       icon: ArticleIcon,
       breadcrumbs: false
     },

@@ -7,12 +7,12 @@ import MainCard from '../../../components/MainCard';
 import StudentTable from '../../../components/tables/StudentTable';
 
 const StudentList = () => {
-  const [student, setStudent] = useState([]);
+  const [students, setStudents] = useState([]);
   const [reload, setReload] = useState(0);
 
   const handleDelete = student => {
     if (confirm(`Are you sure you want to delete student ${student.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/student/${student.id}`, {
+      fetch(`http://127.0.0.1:8000/api/students/${student.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const StudentList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/student?', {
+    fetch('http://127.0.0.1:8000/api/students?', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,11 +39,11 @@ const StudentList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setStudent(response.data?.student);
+        setStudents(response.data?.students);
       })
       .catch((error) => {
         console.error(error);
-        setStudent(null);
+        setStudents(null);
       });
   }, [reload]);
 
@@ -61,7 +61,7 @@ const StudentList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/student/create">
+            <Link to="/students/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}
@@ -74,7 +74,7 @@ const StudentList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <StudentTable
-            student={ student }
+            students={ students }
             onDelete={ handleDelete }
           />
         </MainCard>

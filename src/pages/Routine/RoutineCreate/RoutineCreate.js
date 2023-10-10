@@ -2,12 +2,12 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import RoutineForm, { getRoutineInitialValues } from '../../../components/forms/RoutineForm';
+import RoutineCreateForm, { getRoutineCreateInitialValues } from '../../../components/forms/RoutineCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const RoutineCreate = () => {
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch('http://127.0.0.1:8000/api/routine', {
+    fetch('http://127.0.0.1:8000/api/routines', {
       body: JSON.stringify({
         ...values
       }),
@@ -22,7 +22,7 @@ const RoutineCreate = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getRoutineInitialValues(undefined)
+          values: getRoutineCreateInitialValues(undefined)
         });
       })
       .catch((error) => {
@@ -39,7 +39,7 @@ const RoutineCreate = () => {
             <Typography variant="h5">Routine Create</Typography>
           </Grid>
           <Grid item>
-            <Link to="/routine">
+            <Link to="/routines">
               <Button color="primary" startIcon={<ArrowLeftOutlined />} variant="contained">
                 Routine List
               </Button>
@@ -47,7 +47,7 @@ const RoutineCreate = () => {
           </Grid>
         </Grid>
         <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
-          <RoutineForm onSubmit={handleSubmit} />
+          <RoutineCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>
     </Grid>

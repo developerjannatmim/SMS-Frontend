@@ -7,12 +7,12 @@ import MainCard from '../../../components/MainCard';
 import GradeTable from '../../../components/tables/GradeTable';
 
 const GradeList = () => {
-  const [grade, setGrade] = useState([]);
+  const [grades, setGrades] = useState([]);
   const [reload, setReload] = useState(0);
 
   const handleDelete = grade => {
     if (confirm(`Are you sure you want to delete grade ${grade.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/grade/${grade.id}`, {
+      fetch(`http://127.0.0.1:8000/api/grades/${grade.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const GradeList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/grade?', {
+    fetch('http://127.0.0.1:8000/api/grades?', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,11 +39,11 @@ const GradeList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setGrade(response.data?.grade);
+        setGrades(response.data?.grade);
       })
       .catch((error) => {
         console.error(error);
-        setGrade(null);
+        setGrades(null);
       });
   }, [reload]);
 
@@ -61,7 +61,7 @@ const GradeList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/grade/create">
+            <Link to="/grades/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}
@@ -74,7 +74,7 @@ const GradeList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <GradeTable
-            grade={ grade }
+            grades={ grades }
             onDelete={ handleDelete }
           />
         </MainCard>

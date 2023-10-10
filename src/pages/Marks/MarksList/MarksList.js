@@ -10,9 +10,9 @@ const MarksList = () => {
   const [marks, setMarks] = useState([]);
   const [reload, setReload] = useState(0);
 
-  const handleDelete = marks => {
-    if (confirm(`Are you sure you want to delete marks ${marks.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/marks/${marks.id}`, {
+  const handleDelete = mark => {
+    if (confirm(`Are you sure you want to delete marks ${mark.id}?`)) {
+      fetch(`http://127.0.0.1:8000/api/marks/${mark.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -39,7 +39,7 @@ const MarksList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setMarks(response.data?.marks);
+        setMarks(response.data?.mark);
       })
       .catch((error) => {
         console.error(error);

@@ -7,12 +7,12 @@ import MainCard from '../../../components/MainCard';
 import ParentTable from '../../../components/tables/ParentTable';
 
 const ParentList = () => {
-  const [parent, setParent] = useState([]);
+  const [parents, setParents] = useState([]);
   const [reload, setReload] = useState(0);
 
   const handleDelete = parent => {
     if (confirm(`Are you sure you want to delete parent ${parent.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/parent/${parent.id}`, {
+      fetch(`http://127.0.0.1:8000/api/parents/${parent.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -39,11 +39,11 @@ const ParentList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setParent(response.data?.parent);
+        setParents(response.data?.parent);
       })
       .catch((error) => {
         console.error(error);
-        setParent(null);
+        setParents(null);
       });
   }, [reload]);
 
@@ -61,7 +61,7 @@ const ParentList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/parent/create">
+            <Link to="/parents/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}
@@ -74,7 +74,7 @@ const ParentList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <ParentTable
-            parent={ parent }
+            parents={ parents }
             onDelete={handleDelete}
           />
         </MainCard>

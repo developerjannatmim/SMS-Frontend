@@ -1,6 +1,10 @@
 import { Grid, Typography } from '@mui/material';
 
 const StudentDetail = ({ student }) => {
+  let userInformation;
+  try {
+    userInformation = JSON.parse(student.user_information);
+  } catch (error) { /**/ }
   return (
     student && (
       <Grid component="dl" contianer flexDirection="column" spacing={2}>
@@ -26,37 +30,37 @@ const StudentDetail = ({ student }) => {
           <Typography component="dt" variant="h5">
             Gender
           </Typography>
-          <Typography component="dd">{student.gender}</Typography>
+          <Typography component="dd">{userInformation?.gender}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
             Birthday
           </Typography>
-          <Typography component="dd">{student.birthday}</Typography>
+          <Typography component="dd">{userInformation?.birthday}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
             Address
           </Typography>
-          <Typography component="dd">{student.address}</Typography>
+          <Typography component="dd">{userInformation?.address}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
             Phone
           </Typography>
-          <Typography component="dd">{student.phone}</Typography>
+          <Typography component="dd">{userInformation?.phone}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
             Photo
           </Typography>
-          <Typography component="dd">{student.photo}</Typography>
+          <Typography component="dd">{userInformation?.photo}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
             Blood Group
           </Typography>
-          <Typography component="dd">{student.blood_group}</Typography>
+          <Typography component="dd">{userInformation?.blood_group}</Typography>
         </Grid>
       </Grid>
     )

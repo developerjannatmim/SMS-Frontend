@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import RoutineForm, { getRoutineInitialValues } from '../../../components/forms/RoutineForm';
+import RoutineEditForm, { getRoutineInitialValues } from '../../../components/forms/RoutineEditForm';
 import MainCard from '../../../components/MainCard';
 
 const RoutineEdit = () => {
@@ -12,7 +12,7 @@ const RoutineEdit = () => {
   const [routine, setRoutine] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/routine/${routineId}`, {
+    fetch(`http://127.0.0.1:8000/api/routines/${routineId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const RoutineEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/routine/${routineId}`, {
+    fetch(`http://127.0.0.1:8000/api/routines/${routineId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -68,7 +68,7 @@ const RoutineEdit = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/routine">
+            <Link to="/routines">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}
@@ -80,7 +80,7 @@ const RoutineEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <RoutineForm
+          <RoutineEditForm
             routine={routine}
             onSubmit={handleSubmit}
           />

@@ -7,12 +7,12 @@ import MainCard from '../../../components/MainCard';
 import ExaminationTable from '../../../components/tables/ExaminationTable';
 
 const ExaminationList = () => {
-  const [exam, setExamination] = useState([]);
+  const [exams, setExaminations] = useState([]);
   const [reload, setReload] = useState(0);
 
   const handleDelete = exam => {
     if (confirm(`Are you sure you want to delete exam ${exam.id}?`)) {
-      fetch(`http://127.0.0.1:8000/api/exam/${exam.id}`, {
+      fetch(`http://127.0.0.1:8000/api/exams/${exam.id}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -30,7 +30,7 @@ const ExaminationList = () => {
   };
   
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/exam?', {
+    fetch('http://127.0.0.1:8000/api/exams?', {
       headers: {
         Accept: 'application/json',
       },
@@ -39,11 +39,11 @@ const ExaminationList = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setExamination(response.data?.exam);
+        setExaminations(response.data?.exam);
       })
       .catch((error) => {
         console.error(error);
-        setExamination(null);
+        setExaminations(null);
       });
   }, [reload]);
 
@@ -61,7 +61,7 @@ const ExaminationList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/exam/create">
+            <Link to="/exams/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}
@@ -74,7 +74,7 @@ const ExaminationList = () => {
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>
           <ExaminationTable
-            exam={ exam }
+            exams={ exams }
             onDelete={ handleDelete }
           />
         </MainCard>

@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import ClassesForm, { getClassesInitialValues } from '../../../components/forms/ClassesForm';
+import ClassesEditForm, { getClassesInitialValues } from '../../../components/forms/ClassesEditForm';
 import MainCard from '../../../components/MainCard';
 
 const ClassesEdit = () => {
@@ -80,7 +80,7 @@ const ClassesEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <ClassesForm
+          <ClassesEditForm
             classes={classes}
             onSubmit={handleSubmit}
           />

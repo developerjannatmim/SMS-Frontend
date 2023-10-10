@@ -2,7 +2,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import SubjectForm, { getSubjectInitialValues } from '../../../components/forms/SubjectForm';
+import SubjectCreateForm, { getSubjectCreateInitialValues } from '../../../components/forms/SubjectCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const SubjectCreate = () => {
@@ -22,7 +22,7 @@ const SubjectCreate = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getSubjectInitialValues(undefined)
+          values: getSubjectCreateInitialValues(undefined)
         });
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ const SubjectCreate = () => {
           </Grid>
         </Grid>
         <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
-          <SubjectForm onSubmit={handleSubmit} />
+          <SubjectCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>
     </Grid>

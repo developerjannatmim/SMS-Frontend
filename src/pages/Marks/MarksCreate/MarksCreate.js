@@ -2,7 +2,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import MarksForm, { getMarksInitialValues } from '../../../components/forms/MarksForm';
+import MarksCreateForm, { getMarksCreateInitialValues } from '../../../components/forms/MarksCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const MarksCreate = () => {
@@ -22,7 +22,7 @@ const MarksCreate = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getMarksInitialValues(undefined)
+          values: getMarksCreateInitialValues(undefined)
         });
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ const MarksCreate = () => {
           </Grid>
         </Grid>
         <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
-          <MarksForm onSubmit={handleSubmit} />
+          <MarksCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>
     </Grid>

@@ -2,7 +2,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import AdminForm, { getAdminInitialValues } from '../../../components/forms/AdminForm';
+import AdminCreateForm, { getAdminCreateInitialValues } from '../../../components/forms/AdminCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const AdminCreate = () => {
@@ -22,7 +22,7 @@ const AdminCreate = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getAdminInitialValues(undefined)
+          values: getAdminCreateInitialValues(undefined)
         });
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ const AdminCreate = () => {
           </Grid>
         </Grid>
         <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
-          <AdminForm onSubmit={handleSubmit} />
+          <AdminCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>
     </Grid>

@@ -3,16 +3,16 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import MarksForm, { getMarksInitialValues } from '../../../components/forms/MarksForm';
+import MarksEditForm, { getMarksInitialValues } from '../../../components/forms/MarksEditForm';
 import MainCard from '../../../components/MainCard';
 
 const MarksEdit = () => {
-  const { marksId } = useParams();
+  const { markId } = useParams();
 
-  const [marks, setMarks] = useState(null);
+  const [mark, setMark] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/marks/${marksId}`, {
+    fetch(`http://127.0.0.1:8000/api/marks/${markId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -27,7 +27,7 @@ const MarksEdit = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getMarksInitialValues(response.data?.marks),
+          values: getMarksInitialValues(response.data?.mark),
         });
       })
       .catch((error) => {
@@ -37,7 +37,7 @@ const MarksEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/marks/${marksId}`, {
+    fetch(`http://127.0.0.1:8000/api/marks/${markId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -46,13 +46,13 @@ const MarksEdit = () => {
       .then((response) => response.json())
       .then((response) => {
         console.info(response);
-        setMarks(response.data?.marks);
+        setMark(response.data?.mark);
       })
       .catch((error) => {
         console.error(error);
-        setMarks(null);
+        setMark(null);
       });
-  }, [marksId]);
+  }, [markId]);
 
   return (
     <Grid container>
@@ -80,8 +80,8 @@ const MarksEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <MarksForm
-            marks={marks}
+          <MarksEditForm
+            mark={mark}
             onSubmit={handleSubmit}
           />
         </MainCard>

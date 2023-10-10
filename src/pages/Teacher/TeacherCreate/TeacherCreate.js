@@ -2,12 +2,12 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import TeacherForm, { getTeacherInitialValues } from '../../../components/forms/TeacherForm';
+import TeacherCreateForm, { getTeacherCreateInitialValues } from '../../../components/forms/TeacherCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const TeacherCreate = () => {
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch('http://127.0.0.1:8000/api/teacher', {
+    fetch('http://127.0.0.1:8000/api/teachers', {
       body: JSON.stringify({
         ...values
       }),
@@ -22,7 +22,7 @@ const TeacherCreate = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getTeacherInitialValues(undefined)
+          values: getTeacherCreateInitialValues(undefined)
         });
       })
       .catch((error) => {
@@ -39,7 +39,7 @@ const TeacherCreate = () => {
             <Typography variant="h5">Teacher Create</Typography>
           </Grid>
           <Grid item>
-            <Link to="/teacher">
+            <Link to="/teachers">
               <Button color="primary" startIcon={<ArrowLeftOutlined />} variant="contained">
                 Teacher List
               </Button>
@@ -47,7 +47,7 @@ const TeacherCreate = () => {
           </Grid>
         </Grid>
         <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
-          <TeacherForm onSubmit={handleSubmit} />
+          <TeacherCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>
     </Grid>

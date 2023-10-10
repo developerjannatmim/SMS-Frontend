@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const MarksTable = ({
-  admin,
+  marks,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return admin && (
+  return marks && (
       <>
           <TableContainer>
               <Table>
@@ -61,34 +61,34 @@ const MarksTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { marks?.map( marks => (
-                      <TableRow key={marks.id}>
+                  { marks?.map( mark => (
+                      <TableRow key={mark?.id}>
                           <TableCell>
-                              {marks.id}
+                              {mark?.id}
                           </TableCell>
                           <TableCell>
-                              {marks.user_id}
+                              {mark?.user_id}
                           </TableCell>
                           <TableCell>
-                              {marks.exam_id}
+                              {mark?.exam_id}
                           </TableCell>
                           <TableCell>
-                              {marks.class_id}
+                              {mark?.class_id}
                           </TableCell>
                           <TableCell>
-                              {marks.section_id}
+                              {mark?.section_id}
                           </TableCell>
                           <TableCell>
-                              {marks.subject_id}
+                              {mark?.subject_id}
                           </TableCell>
                           <TableCell>
-                              {marks.marks}
+                              {mark?.marks}
                           </TableCell>
                           <TableCell>
-                              {marks.grade_point}
+                              {mark?.grade_point}
                           </TableCell>
                           <TableCell>
-                              {marks.comment}
+                              {mark?.comment}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,21 +97,21 @@ const MarksTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/marks/${marks.id}`)}
+                                onClick={() => navigate(`/marks/${mark.id}`)}
                                 title="Show Marks"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/marks/${marks.id}/edit`)}
+                                onClick={() => navigate(`/marks/${mark.id}/edit`)}
                                 title="Edit Marks"
                               >
                                 <EditOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => onDelete(marks)}
+                                onClick={() => onDelete(mark)}
                                 title="Delete Marks"
                               >
                                 <DeleteOutlined />

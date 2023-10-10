@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import ExaminationForm, { getExaminationInitialValues } from '../../../components/forms/ExaminationForm';
+import ExaminationEditForm, { getExaminationInitialValues } from '../../../components/forms/ExaminationEditForm';
 import MainCard from '../../../components/MainCard';
 
 const ExaminationEdit = () => {
@@ -12,7 +12,7 @@ const ExaminationEdit = () => {
   const [exam, setExamination] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/exam/${examId}`, {
+    fetch(`http://127.0.0.1:8000/api/exams/${examId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const ExaminationEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/exam/${examId}`, {
+    fetch(`http://127.0.0.1:8000/api/exams/${examId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -68,7 +68,7 @@ const ExaminationEdit = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/exam">
+            <Link to="/exams">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}
@@ -80,7 +80,7 @@ const ExaminationEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <ExaminationForm
+          <ExaminationEditForm
             exam={exam}
             onSubmit={handleSubmit}
           />

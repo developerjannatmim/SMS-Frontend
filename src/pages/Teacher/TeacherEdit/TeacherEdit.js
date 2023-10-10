@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import TeacherForm, { getTeacherInitialValues } from '../../../components/forms/TeacherForm';
+import TeacherEditForm, { getTeacherInitialValues } from '../../../components/forms/TeacherEditForm';
 import MainCard from '../../../components/MainCard';
 
 const TeacherEdit = () => {
@@ -12,7 +12,7 @@ const TeacherEdit = () => {
   const [teacher, setTeacher] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/teacher/${teacherId}`, {
+    fetch(`http://127.0.0.1:8000/api/teachers/${teacherId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const TeacherEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/teacher/${teacherId}`, {
+    fetch(`http://127.0.0.1:8000/api/teachers/${teacherId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -68,7 +68,7 @@ const TeacherEdit = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/teacher">
+            <Link to="/teachers">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}
@@ -80,7 +80,7 @@ const TeacherEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <TeacherForm
+          <TeacherEditForm
             teacher={teacher}
             onSubmit={handleSubmit}
           />

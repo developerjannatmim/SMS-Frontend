@@ -2,7 +2,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import ClassesForm, { getClassesInitialValues } from '../../../components/forms/ClassesForm';
+import ClassesCreateForm, { getClassesCreateInitialValues } from '../../../components/forms/ClassesCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const ClassesCreate = () => {
@@ -22,7 +22,7 @@ const ClassesCreate = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getClassesInitialValues(undefined)
+          values: getClassesCreateInitialValues(undefined)
         });
       })
       .catch((error) => {
@@ -47,7 +47,7 @@ const ClassesCreate = () => {
           </Grid>
         </Grid>
         <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
-          <ClassesForm onSubmit={handleSubmit} />
+          <ClassesCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>
     </Grid>

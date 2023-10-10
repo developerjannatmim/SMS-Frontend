@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import StudentForm, { getStudentInitialValues } from '../../../components/forms/StudentForm';
+import StudentEditForm, { getStudentInitialValues } from '../../../components/forms/StudentEditForm';
 import MainCard from '../../../components/MainCard';
 
 const StudentEdit = () => {
@@ -12,7 +12,7 @@ const StudentEdit = () => {
   const [student, setStudent] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/student/${studentId}`, {
+    fetch(`http://127.0.0.1:8000/api/students/${studentId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const StudentEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/student/${studentId}`, {
+    fetch(`http://127.0.0.1:8000/api/students/${studentId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -68,7 +68,7 @@ const StudentEdit = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/student">
+            <Link to="/students">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}
@@ -80,7 +80,7 @@ const StudentEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <StudentForm
+          <StudentEditForm
             student={student}
             onSubmit={handleSubmit}
           />

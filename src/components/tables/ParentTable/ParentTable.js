@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ParentTable = ({
-  parent,
+  parents,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return parent && (
+  return parents && (
       <>
           <TableContainer>
               <Table>
@@ -61,34 +61,39 @@ const ParentTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  {parent?.map(parent => (
-                      <TableRow key={parent.id}>
+                  {parents?.map(parent => {
+                    let userInformation;
+                        try {
+                          userInformation = JSON.parse(parent.user_information);
+                        } catch (error) { /**/ }
+                      return (
+                      <TableRow key={parent?.id}>
                           <TableCell>
-                              {parent.id}
+                              {parent?.id}
                           </TableCell>
                           <TableCell>
-                              {parent.name}
+                              {parent?.name}
                           </TableCell>
                           <TableCell>
-                              {parent.email}
+                              {parent?.email}
                           </TableCell>
                           <TableCell>
-                              {parent.gender}
+                              {userInformation?.gender}
                           </TableCell>
                           <TableCell>
-                              {parent.birthday}
+                              {userInformation?.birthday}
                           </TableCell>
                           <TableCell>
-                              {parent.address}
+                              {userInformation?.address}
                           </TableCell>
                           <TableCell>
-                              {parent.phone}
+                              {userInformation?.phone}
                           </TableCell>
                           <TableCell>
-                              {parent.photo}
+                              {userInformation?.photo}
                           </TableCell>
                           <TableCell>
-                              {parent.blood_group}
+                              {userInformation?.blood_group}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,14 +102,14 @@ const ParentTable = ({
                               >
                               <Button
                                   color="info"
-                                  onClick={() => navigate(`/parent/${parent.id}`)}
+                                  onClick={() => navigate(`/parents/${parent.id}`)}
                                   title="Show Parent"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                   color="warning"
-                                  onClick={() => navigate(`/parent/${parent.id}/edit`)}
+                                  onClick={() => navigate(`/parents/${parent.id}/edit`)}
                                   title="Edit Parent"
                               >
                                   <EditOutlined />
@@ -119,7 +124,8 @@ const ParentTable = ({
                               </ButtonGroup>
                           </TableCell>
                       </TableRow>
-                  ))}
+                      );
+                    })}
                   </TableBody>
               </Table>
           </TableContainer>

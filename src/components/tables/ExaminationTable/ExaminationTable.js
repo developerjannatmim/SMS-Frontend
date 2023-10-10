@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ExaminationTable = ({
-  exam,
+  exams,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return exam && (
+  return exams && (
       <>
           <TableContainer>
               <Table>
@@ -61,7 +61,7 @@ const ExaminationTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { exam?.map( exam => (
+                  { exams?.map( exam => (
                       <TableRow key={exam.id}>
                           <TableCell>
                               {exam.id}
@@ -97,14 +97,14 @@ const ExaminationTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/exam/${exam.id}`)}
+                                onClick={() => navigate(`/exams/${exam.id}`)}
                                 title="Show Exam"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/exam/${exam.id}/edit`)}
+                                onClick={() => navigate(`/exams/${exam.id}/edit`)}
                                 title="Edit Exam"
                               >
                                 <EditOutlined />

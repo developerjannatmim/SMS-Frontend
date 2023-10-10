@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import AdminForm, { getAdminInitialValues } from '../../../components/forms/AdminForm';
+import AdminEditForm, { getAdminInitialValues } from '../../../components/forms/AdminEditForm';
 import MainCard from '../../../components/MainCard';
 
 const AdminEdit = () => {
@@ -80,7 +80,7 @@ const AdminEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <AdminForm
+          <AdminEditForm
             admin={admin}
             onSubmit={handleSubmit}
           />

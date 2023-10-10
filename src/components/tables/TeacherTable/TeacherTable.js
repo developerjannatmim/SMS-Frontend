@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const TeacherTable = ({
-  teacher,
+  teachers,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return teacher && (
+  return teachers && (
       <>
           <TableContainer>
               <Table>
@@ -61,34 +61,39 @@ const TeacherTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  {teacher?.map(teacher => (
-                      <TableRow key={teacher.id}>
+                  {teachers?.map(teacher => {
+                    let userInformation;
+                        try {
+                          userInformation = JSON.parse(teacher.user_information);
+                        } catch (error) { /**/ }
+                      return (
+                      <TableRow key={teacher?.id}>
                           <TableCell>
-                              {teacher.id}
+                              {teacher?.id}
                           </TableCell>
                           <TableCell>
-                              {teacher.name}
+                              {teacher?.name}
                           </TableCell>
                           <TableCell>
-                              {teacher.email}
+                              {teacher?.email}
                           </TableCell>
                           <TableCell>
-                              {teacher.gender}
+                              {userInformation?.gender}
                           </TableCell>
                           <TableCell>
-                              {teacher.birthday}
+                              {userInformation?.birthday}
                           </TableCell>
                           <TableCell>
-                              {teacher.address}
+                              {userInformation?.address}
                           </TableCell>
                           <TableCell>
-                              {teacher.phone}
+                              {userInformation?.phone}
                           </TableCell>
                           <TableCell>
-                              {teacher.photo}
+                              {userInformation?.photo}
                           </TableCell>
                           <TableCell>
-                              {teacher.blood_group}
+                              {userInformation?.blood_group}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,14 +102,14 @@ const TeacherTable = ({
                               >
                               <Button
                                   color="info"
-                                  onClick={() => navigate(`/teacher/${teacher.id}`)}
+                                  onClick={() => navigate(`/teachers/${teacher.id}`)}
                                   title="Show Teacher"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                   color="warning"
-                                  onClick={() => navigate(`/teacher/${teacher.id}/edit`)}
+                                  onClick={() => navigate(`/teachers/${teacher.id}/edit`)}
                                   title="Edit Teacher"
                               >
                                   <EditOutlined />
@@ -119,7 +124,8 @@ const TeacherTable = ({
                               </ButtonGroup>
                           </TableCell>
                       </TableRow>
-                  ))}
+                     );
+                    })}
                   </TableBody>
               </Table>
           </TableContainer>

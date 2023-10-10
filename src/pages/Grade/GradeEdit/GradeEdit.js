@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import GradeForm, { getGradeInitialValues } from '../../../components/forms/GradeForm';
+import GradeEditForm, { getGradeInitialValues } from '../../../components/forms/GradeEditForm';
 import MainCard from '../../../components/MainCard';
 
 const GradeEdit = () => {
@@ -12,7 +12,7 @@ const GradeEdit = () => {
   const [grade, setGrade] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/grade/${gradeId}`, {
+    fetch(`http://127.0.0.1:8000/api/grades/${gradeId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const GradeEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/grade/${gradeId}`, {
+    fetch(`http://127.0.0.1:8000/api/grades/${gradeId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -68,7 +68,7 @@ const GradeEdit = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/grade">
+            <Link to="/grades">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}
@@ -80,7 +80,7 @@ const GradeEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <GradeForm
+          <GradeEditForm
             grade={grade}
             onSubmit={handleSubmit}
           />

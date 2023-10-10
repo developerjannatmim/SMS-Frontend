@@ -17,12 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 const StudentTable = ({
-  student,
+  students,
   onDelete
 }) => {
   const navigate = useNavigate();
 
-  return student && (
+  return students && (
       <>
           <TableContainer>
               <Table>
@@ -61,34 +61,39 @@ const StudentTable = ({
                       </TableRow>
                   </TableHead>
                   <TableBody>
-                  { student?.map( student => (
-                      <TableRow key={student.id}>
+                  { students?.map( student => {
+                    let userInformation;
+                      try {
+                        userInformation = JSON.parse(student.user_information);
+                      } catch (error) { /**/ }
+                      return (
+                      <TableRow key={student?.id}>
                           <TableCell>
-                              {student.id}
+                              {student?.id}
                           </TableCell>
                           <TableCell>
-                              {student.name}
+                              {student?.name}
                           </TableCell>
                           <TableCell>
-                              {student.email}
+                              {student?.email}
                           </TableCell>
                           <TableCell>
-                              {student.user_information}
+                              {userInformation?.gender}
                           </TableCell>
                           <TableCell>
-                              {student.birthday}
+                              {userInformation?.birthday}
                           </TableCell>
                           <TableCell>
-                              {student.address}
+                              {userInformation?.address}
                           </TableCell>
                           <TableCell>
-                              {student.phone}
+                              {userInformation?.phone}
                           </TableCell>
                           <TableCell>
-                              {student.photo}
+                              {userInformation?.photo}
                           </TableCell>
                           <TableCell>
-                              {student.blood_group}
+                              {userInformation?.blood_group}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup
@@ -97,14 +102,14 @@ const StudentTable = ({
                               >
                               <Button
                                 color="info"
-                                onClick={() => navigate(`/student/${student.id}`)}
+                                onClick={() => navigate(`/students/${student.id}`)}
                                 title="Show Student"
                               >
                                   <InfoOutlined />
                               </Button>
                               <Button
                                 color="warning"
-                                onClick={() => navigate(`/student/${student.id}/edit`)}
+                                onClick={() => navigate(`/students/${student.id}/edit`)}
                                 title="Edit Student"
                               >
                                 <EditOutlined />
@@ -114,12 +119,13 @@ const StudentTable = ({
                                 onClick={() => onDelete(student)}
                                 title="Delete Student"
                               >
-                                <DeleteOutlined />
+                              <DeleteOutlined />
                               </Button>
                               </ButtonGroup>
                           </TableCell>
                       </TableRow>
-                  ))}
+                      );
+                    })}
                   </TableBody>
               </Table>
           </TableContainer>

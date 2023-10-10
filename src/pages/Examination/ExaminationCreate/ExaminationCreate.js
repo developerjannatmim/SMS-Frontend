@@ -2,12 +2,12 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import ExaminationForm, { getExaminationInitialValues } from '../../../components/forms/ExaminationForm';
+import ExaminationCreateForm, { getExaminationCreateInitialValues } from '../../../components/forms/ExaminationCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const ExaminationCreate = () => {
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch('http://127.0.0.1:8000/api/exam', {
+    fetch('http://127.0.0.1:8000/api/exams', {
       body: JSON.stringify({
         ...values
       }),
@@ -22,7 +22,7 @@ const ExaminationCreate = () => {
         console.info(response);
         setSubmitting(false);
         resetForm({
-          values: getExaminationInitialValues(undefined)
+          values: getExaminationCreateInitialValues(undefined)
         });
       })
       .catch((error) => {
@@ -39,7 +39,7 @@ const ExaminationCreate = () => {
             <Typography variant="h5">Examination Create</Typography>
           </Grid>
           <Grid item>
-            <Link to="/exam">
+            <Link to="/exams">
               <Button color="primary" startIcon={<ArrowLeftOutlined />} variant="contained">
                 Examination List
               </Button>
@@ -47,7 +47,7 @@ const ExaminationCreate = () => {
           </Grid>
         </Grid>
         <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
-          <ExaminationForm onSubmit={handleSubmit} />
+          <ExaminationCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>
     </Grid>

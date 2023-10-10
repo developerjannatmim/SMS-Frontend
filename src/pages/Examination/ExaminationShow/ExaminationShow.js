@@ -12,7 +12,7 @@ const ExaminationShow = () => {
   const [exam, setExamination] = useState(null);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/exam/${examId}`, {
+    fetch(`http://127.0.0.1:8000/api/exams/${examId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -43,7 +43,7 @@ const ExaminationShow = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/exam">
+            <Link to="/exams">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}

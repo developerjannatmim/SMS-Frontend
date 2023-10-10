@@ -3,7 +3,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import ParentForm, { getParentInitialValues } from '../../../components/forms/ParentForm';
+import ParentEditForm, { getParentInitialValues } from '../../../components/forms/ParentEditForm';
 import MainCard from '../../../components/MainCard';
 
 const ParentEdit = () => {
@@ -12,7 +12,7 @@ const ParentEdit = () => {
   const [parent, setParent] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
-    fetch(`http://127.0.0.1:8000/api/parent/${parentId}`, {
+    fetch(`http://127.0.0.1:8000/api/parents/${parentId}`, {
       body: JSON.stringify({
         ...values,
       }),
@@ -37,7 +37,7 @@ const ParentEdit = () => {
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/parent/${parentId}`, {
+    fetch(`http://127.0.0.1:8000/api/parents/${parentId}`, {
       headers: {
         Accept: 'application/json',
       },
@@ -68,7 +68,7 @@ const ParentEdit = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/parent">
+            <Link to="/parents">
               <Button
                 color="primary"
                 startIcon={<ArrowLeftOutlined />}
@@ -80,7 +80,7 @@ const ParentEdit = () => {
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
-          <ParentForm
+          <ParentEditForm
             parent={parent}
             onSubmit={handleSubmit}
           />
