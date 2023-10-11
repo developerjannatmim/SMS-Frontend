@@ -9,10 +9,10 @@ const pages = {
   type: 'group',
   children: [
     {
-      id: 'school_info',
+      id: 'schools',
       title: 'School Settings',
       type: 'item',
-      url: '/school_info',
+      url: '/schools',
       icon: HistoryEduIcon,
       breadcrumbs: false
     }

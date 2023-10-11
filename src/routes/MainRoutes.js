@@ -62,7 +62,8 @@ const ClassesList = lazy(() => import('../pages/Classes/ClassesList'));
 const ClassesShow = lazy(() => import('../pages/Classes/ClassesShow'));
 
 //School Info
-const SchoolInfo = lazy(() => import('../pages/SchoolInfo/SchoolInfo'));
+const SchoolInfo = lazy(() => import('../pages/School/SchoolInfo'));
+const SchoolList = lazy(() => import('../pages/School/SchoolList'));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -372,12 +373,22 @@ const MainRoutes = {
     {
       children: [
         {
-          element: <SchoolInfo />,
-          path: 'edit'
+          element: <SchoolList />,
+          path: ''
+        },
+        {
+          children: [
+            {
+              element: <SchoolInfo />,
+              path: 'edit'
+            },
+          ],
+          path: ':schoolId',
         },
       ],
-      path: ':syllabusId',
+      path: 'schools',
     },
+
   ],
 };
 

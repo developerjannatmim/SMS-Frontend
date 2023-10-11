@@ -3,8 +3,8 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import SchoolEditForm, { getSchoolInitialValues } from '../../components/forms/SchoolEditForm';
-import MainCard from '../../components/MainCard';
+import SchoolEditForm, { getSchoolInitialValues } from '../../../components/forms/SchoolEditForm';
+import MainCard from '../../../components/MainCard';
 
 const SchoolInfo = () => {
   const { schoolId } = useParams();
