@@ -1,7 +1,6 @@
 import {
   DeleteOutlined,
   EditOutlined,
-  InfoOutlined,
 } from '@ant-design/icons';
 import {
   Button,
@@ -84,14 +83,7 @@ const SchoolTable = ({
                                 variant="contained"
                               >
                               <Button
-                                color="info"
-                                onClick={() => navigate(`/schools/${school.id}`)}
-                                title="Show School"
-                              >
-                                  <InfoOutlined />
-                              </Button>
-                              <Button
-                                color="warning"
+                                color="success"
                                 onClick={() => navigate(`/schools/${school.id}/edit`)}
                                 title="Edit School"
                               >

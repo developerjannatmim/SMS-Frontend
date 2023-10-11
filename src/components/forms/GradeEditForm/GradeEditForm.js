@@ -20,8 +20,7 @@ const GradeEditForm = ({ grade, onSubmit }) => {
             validationSchema={gradeValidationSchema}
         >
         {({
-            handleSubmit,
-            isSubmitting,
+            handleSubmit
         }) => (
             <from noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -56,7 +55,7 @@ const GradeEditForm = ({ grade, onSubmit }) => {
                 <Grid item xs={12}>
                     <Button
                     color="primary"
-                    enabled={isSubmitting}
+                    onClick={handleSubmit}
                     fullWidth
                     type="submit"
                     variant="contained"

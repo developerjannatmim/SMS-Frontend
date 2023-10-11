@@ -3,6 +3,7 @@ import {
   EditOutlined,
   InfoOutlined,
 } from '@ant-design/icons';
+import { Image } from 'mui-image';
 import {
   Button,
   ButtonGroup,
@@ -90,7 +91,7 @@ const ParentTable = ({
                               {userInformation?.phone}
                           </TableCell>
                           <TableCell>
-                              {userInformation?.photo}
+                              <Image src={userInformation?.photo} alt="image"/>
                           </TableCell>
                           <TableCell>
                               {userInformation?.blood_group}

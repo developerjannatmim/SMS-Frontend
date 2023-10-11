@@ -20,8 +20,12 @@ const adminValidationSchema = Yup.object().shape({
 const AdminCreateForm = ({ admin, onSubmit }) => {
   return (
     (admin === undefined || admin !== null) && (
-      <Formik initialValues={getAdminCreateInitialValues(admin)} onSubmit={onSubmit} validationSchema={adminValidationSchema}>
-        {({ handleSubmit, isSubmitting }) => (
+      <Formik
+        initialValues={getAdminCreateInitialValues(admin)}
+        onSubmit={onSubmit}
+        validationSchema={adminValidationSchema}
+      >
+        {({ handleSubmit }) => (
           <from noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <InputField
@@ -29,7 +33,7 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 id="name"
                 name="name"
                 placeholder="Enter name"
-
+                type="text"
               />
               <InputField
                 label="Email"
@@ -37,59 +41,58 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 name="email"
                 placeholder="Enter email"
                 type="email"
-
               />
               <InputField
                 label="Password"
                 id="password"
                 name="password"
-                placeholder="Enter password" type="password"
-
+                placeholder="Enter password"
+                type="password"
               />
               <InputField
                 label="Gender"
                 id="gender"
                 name="gender"
-                placeholder="Enter gender" />
+                placeholder="Enter gender" 
+                type="text"
+              />
               <InputField
                 label="Birthday"
                 id="birthday"
                 name="birthday"
                 placeholder="Enter birthday"
-
               />
               <InputField
                 label="Address"
                 id="address"
                 name="address"
                 placeholder="Enter address"
-
+                type="text"
               />
               <InputField
                 label="Phone"
                 id="phone"
                 name="phone"
                 placeholder="Enter phone"
-
+                type="text"
               />
               <InputField
-                label="Photo"
                 id="photo"
                 name="photo"
                 placeholder="Enter photo"
-
+                type="file"
               />
               <InputField
                 label="Blood Group"
                 id="blood_group"
                 name="blood_group"
                 placeholder="Enter blood group"
-
+                type="text"
               />
               <Grid item xs={12}>
                 <Button
                   color="primary"
-                  disabled={isSubmitting}
+                  onClick={handleSubmit}
                   fullWidth type="submit"
                   variant="contained"
                 >

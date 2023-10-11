@@ -25,8 +25,7 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
             validationSchema={ teacherValidationSchema }
         >
         {({
-            handleSubmit,
-            isSubmitting,
+            handleSubmit
         }) => (
             <from noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -90,7 +89,7 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
                 <Grid item xs={12}>
                     <Button
                     color="primary"
-                    disabled={isSubmitting}
+                    onClick={handleSubmit}
                     fullWidth
                     type="submit"
                     variant="contained"

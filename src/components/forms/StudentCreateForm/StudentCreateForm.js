@@ -21,7 +21,7 @@ const StudentCreateForm = ({ student, onSubmit }) => {
     return (
         (student === undefined || student !== null) && (
             <Formik initialValues={getStudentCreateInitialValues(student)} onSubmit={onSubmit} validationSchema={studentValidationSchema}>
-                {({ handleSubmit, isSubmitting }) => (
+                {({ handleSubmit }) => (
                     <from noValidate onSubmit={handleSubmit}>
                         <Grid container spacing={3}>
                             <InputField label="Name" id="name" name="name" placeholder="Enter name" />
@@ -35,7 +35,7 @@ const StudentCreateForm = ({ student, onSubmit }) => {
                             <InputField label="Blood Group" id="blood_group" name="blood_group" placeholder="Enter blood group" />
 
                             <Grid item xs={12}>
-                                <Button color="primary" disabled={isSubmitting} fullWidth type="submit" variant="contained">
+                                <Button color="primary" onClick={handleSubmit} fullWidth type="submit" variant="contained">
                                     Submit
                                 </Button>
                             </Grid>

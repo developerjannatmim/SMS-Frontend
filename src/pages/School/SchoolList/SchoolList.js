@@ -1,7 +1,6 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import MainCard from '../../../components/MainCard';
 import SchoolTable from '../../../components/tables/SchoolTable';
@@ -57,19 +56,8 @@ const SchoolList = () => {
         >
           <Grid item>
             <Typography variant="h5">
-              School List
+              School Information
             </Typography>
-          </Grid>
-          <Grid item>
-            <Link to="/schools/create">
-              <Button
-                color="primary"
-                startIcon={<PlusOutlined />}
-                variant="contained"
-              >
-                School
-              </Button>
-            </Link>
           </Grid>
         </Grid>
         <MainCard contentSX={{ p: 1 }} sx={{ mt: 2 }}>

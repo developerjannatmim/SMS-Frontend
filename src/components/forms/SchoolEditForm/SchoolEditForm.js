@@ -1,6 +1,8 @@
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, InputLabel } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import * as React from 'react';
+import Radio from '@mui/material/Radio';
 
 import getSchoolInitialValues from './getSchoolInitialValues';
 import InputField from '../../InputField';
@@ -15,6 +17,13 @@ const schoolValidationSchema = Yup.object().shape({
 });
 
 const SchoolEditForm = ({ school, onSubmit }) => {
+  const [selected, setSelected] = React.useState("1");
+
+  const handleChange = event => {
+    console.log(event.target.value);
+    setSelected(event.target.value);
+  };
+
   return (school === undefined || school !== null) && (
     <Formik
       initialValues={getSchoolInitialValues(school)}
@@ -62,13 +71,29 @@ const SchoolEditForm = ({ school, onSubmit }) => {
               placeholder="Enter school_info"
               type="text"
             />
-            <InputField
-              label="status"
-              id="status"
+            <InputLabel sx={{ my: 3, mx: 4, display: 'block' }}>Active
+            <Radio
+              type="radio"
+              id= "1"
               name="status"
-              placeholder="Enter status"
-              type="text"
+              value= "1"
+              checked={ selected === "1" }
+              onChange={handleChange}
+              color="primary"
             />
+            </InputLabel>
+            {/* 
+            <InputLabel sx={{ my: 3, mx: 4, display: 'block' }}>Active
+            <Radio
+              type="radio"
+              id= "2"
+              name="status"
+              value= "2"
+              checked={ selected === "2" }
+              onChange={handleChange}
+              color="success"
+            />
+            </InputLabel> */}
             <Grid item xs={12}>
               <Button
                 color="primary"

@@ -24,8 +24,7 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
             validationSchema={marksValidationSchema}
         >
         {({
-            handleSubmit,
-            isSubmitting,
+            handleSubmit
         }) => (
             <from noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -77,7 +76,7 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
                 <Grid item xs={12}>
                     <Button
                     color="primary"
-                    enabled={isSubmitting}
+                    onClick={handleSubmit}
                     fullWidth
                     type="submit"
                     variant="contained"

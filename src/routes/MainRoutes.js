@@ -388,7 +388,15 @@ const MainRoutes = {
       ],
       path: 'schools',
     },
-
+    // {
+    //   children: [
+    //     {
+    //       element: <SchoolInfo />,
+    //       path: 'edit'
+    //     },
+    //   ],
+    //   path: ':schoolId',
+    // },
   ],
 };
 

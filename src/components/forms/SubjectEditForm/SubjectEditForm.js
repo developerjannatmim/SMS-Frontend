@@ -18,8 +18,7 @@ const SubjectEditForm = ({ subject, onSubmit }) => {
             validationSchema={subjectValidationSchema}
         >
         {({
-            handleSubmit,
-            isSubmitting,
+            handleSubmit
         }) => (
             <from noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -41,7 +40,7 @@ const SubjectEditForm = ({ subject, onSubmit }) => {
                 <Grid item xs={12}>
                     <Button
                     color="primary"
-                    enabled={isSubmitting}
+                    onClick={handleSubmit}
                     fullWidth
                     type="submit"
                     variant="contained"

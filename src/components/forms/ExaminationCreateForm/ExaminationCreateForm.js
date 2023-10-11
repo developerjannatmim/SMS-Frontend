@@ -26,8 +26,7 @@ const ExaminationCreateForm = ({ exam, onSubmit }) => {
       validationSchema={examValidationSchema}
     >
       {({
-        handleSubmit,
-        isSubmitting,
+        handleSubmit
       }) => (
         <from noValidate onSubmit={handleSubmit}>
           <Grid container spacing={3}>
@@ -103,7 +102,7 @@ const ExaminationCreateForm = ({ exam, onSubmit }) => {
             <Grid item xs={12}>
               <Button
                 color="primary"
-                enabled={isSubmitting}
+                onClick={handleSubmit}
                 fullWidth
                 type="submit"
                 variant="contained"

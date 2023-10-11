@@ -7,8 +7,8 @@ import InputField from '../../InputField';
 
 const routineValidationSchema = Yup.object().shape({
     class_id: Yup.string().required(),
-    section_id: Yup.string().email().required(),
-    routine_creator: Yup.string().min(6).required(),
+    section_id: Yup.string().required(),
+    routine_creator: Yup.string().required(),
     subject_id: Yup.string().required(),
     room_id: Yup.string().required(),
     starting_hour: Yup.string().required(),
@@ -26,8 +26,7 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
             validationSchema={routineValidationSchema}
         >
         {({
-            handleSubmit,
-            isSubmitting,
+            handleSubmit
         }) => (
             <from noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -49,7 +48,6 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
                     id="routine_creator"
                     name="routine_creator"
                     placeholder="Enter routine_creator"
-                    type="text"
                 />
                 <InputField
                     label="subject_id"
@@ -104,7 +102,7 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
                 <Grid item xs={12}>
                     <Button
                     color="primary"
-                    enabled={isSubmitting}
+                    onClick={handleSubmit}
                     fullWidth
                     type="submit"
                     variant="contained"

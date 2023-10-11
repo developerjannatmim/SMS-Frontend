@@ -21,8 +21,7 @@ const SyllabusEditForm = ({ syllabus, onSubmit }) => {
             validationSchema={syllabusValidationSchema}
         >
         {({
-            handleSubmit,
-            isSubmitting,
+            handleSubmit
         }) => (
             <from noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -65,7 +64,7 @@ const SyllabusEditForm = ({ syllabus, onSubmit }) => {
                 <Grid item xs={12}>
                     <Button
                     color="primary"
-                    enabled={isSubmitting}
+                    onClick={handleSubmit}
                     fullWidth
                     type="submit"
                     variant="contained"
