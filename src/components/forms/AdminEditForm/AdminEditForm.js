@@ -1,10 +1,10 @@
 import { Button, Grid } from '@mui/material';
 import { Formik } from 'formik';
 // import Select from '@mui/material/Select';
-// import * as React from 'react';
+import * as React from 'react';
 import * as Yup from 'yup';
 // import InputLabel from '@mui/material/InputLabel';
-// import FormControl from '@mui/material/FormControl';
+// import MenuItem from '@mui/material/MenuItem';
 
 import getAdminInitialValues from './getAdminInitialValues';
 import InputField from '../../InputField';
@@ -36,8 +36,14 @@ const adminValidationSchema = Yup.object().shape({
 const AdminEditForm = ({ admin, onSubmit }) => {
   // let userInformation;
   // try {
-  //   userInformation = JSON.parse(admin.user_information);
+  //   userInformation = JSON.parse(admin.user_information?.blood_group);
   // } catch (error) { /**/ }
+
+  // const [value, setValue] = React.useState(userInformation);
+
+  // const handleChange = (event) => {
+  //   setValue(event.target.value);
+  // };
 
   return (
     (admin === undefined || admin !== null) && (
@@ -101,22 +107,23 @@ const AdminEditForm = ({ admin, onSubmit }) => {
                 placeholder="Enter photo"
                 type="text"
               />
-              {/* <FormControl sx={{ m: 3, width: 485 }}>
-                <InputLabel id="multiple-name-label">Blood Group</InputLabel>
+                {/* <InputLabel sx={{ m: 1, width: 485 }} id="multiple-name-label">Blood Group</InputLabel>
                 <Select
+                  sx={{ m: 3, width: 485 }}
                   labelId="multiple-name-label"
                   id="multiple-name"
-                  value={userInformation?.blood_group}
+                  name="blood_group"
+                  value={value}
                   MenuProps={MenuProps}
+                  onChange={handleChange}
                 >
-                  <option value={userInformation?.blood_group == 'a+' ? 'a+': ''}>A+</option>
-                  <option value={userInformation?.blood_group == 'a' ? 'a': ''}>A</option>
-                  <option value={userInformation?.blood_group == 'a-' ? 'a-': ''}>A-</option>
-                  <option value={userInformation?.blood_group == 'ab+' ? 'ab+': ''}>AB+</option>
-                  <option value={userInformation?.blood_group == 'ab-' ? 'ab-': ''}>AB-</option>
-                  <option value={userInformation?.blood_group == 'o' ? 'o': ''}>O</option>
-                </Select>
-              </FormControl> */}
+                  <MenuItem value={'a+'}>A+</MenuItem>
+                  <MenuItem value={'a'}>A</MenuItem>
+                  <MenuItem value={'a-'}>A-</MenuItem>
+                  <MenuItem value={'ab+'}>AB+</MenuItem>
+                  <MenuItem value={'ab-'}>AB-</MenuItem>
+                  <MenuItem value={'o'}>O</MenuItem>
+                </Select> */}
               <InputField
                 label="Blood Group"
                 id="blood_group"

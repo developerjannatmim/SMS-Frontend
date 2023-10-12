@@ -3,6 +3,12 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import * as React from 'react';
 
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+
 import getParentCreateInitialValues from './getParentCreateInitialValues';
 import InputField from '../../InputField';
 
@@ -52,13 +58,33 @@ const ParentCreateForm = ({ parent, onSubmit }) => {
                 placeholder="Enter password"
                 type="password"
               />
-              <InputField
+              {/* <InputField
                 label="Gender"
                 id="gender"
                 name="gender"
                 placeholder="Enter gender"
                 type="text"
-              />
+              /> */}
+              <FormControl sx={{ minWidth: 120, my: 3, mx: 4 }}>
+                <FormLabel>Choose Your Gender</FormLabel>
+                <RadioGroup row name="gender" id="gender">
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio/>}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio/>}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="others"
+                    control={<Radio/>}
+                    label="Others"
+                  />
+                </RadioGroup>
+              </FormControl>
               <InputField
                 label="Birthday"
                 id="birthday"

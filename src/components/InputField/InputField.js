@@ -1,6 +1,7 @@
 import { FormHelperText, Grid, MenuItem, TextField } from '@mui/material';
 
-import DatePicker from "react-datepicker"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { Field, useField } from 'formik';
 
 interface InputFieldProps {
