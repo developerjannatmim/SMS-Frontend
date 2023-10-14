@@ -67,19 +67,19 @@ const MarksTable = ({
                               {mark?.id}
                           </TableCell>
                           <TableCell>
-                              {mark?.user_id}
+                              {mark?.user?.name}
                           </TableCell>
                           <TableCell>
-                              {mark?.exam_id}
+                              {mark?.exam?.name}
                           </TableCell>
                           <TableCell>
-                              {mark?.class_id}
+                              {mark?.class?.name}
                           </TableCell>
                           <TableCell>
-                              {mark?.section_id}
+                              {mark?.section.name}
                           </TableCell>
                           <TableCell>
-                              {mark?.subject_id}
+                              {mark?.subject.name}
                           </TableCell>
                           <TableCell>
                               {mark?.marks}

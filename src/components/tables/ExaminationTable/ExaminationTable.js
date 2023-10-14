@@ -70,10 +70,10 @@ const ExaminationTable = ({
                               {exam.name}
                           </TableCell>
                           <TableCell>
-                              {exam.class_id}
+                              {exam.class?.name}
                           </TableCell>
                           <TableCell>
-                              {exam.section_id}
+                              {exam.section.name}
                           </TableCell>
                           <TableCell>
                               {exam.exam_type}

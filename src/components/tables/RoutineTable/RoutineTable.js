@@ -73,19 +73,19 @@ const RoutineTable = ({
                               {routine?.id}
                           </TableCell>
                           <TableCell>
-                              {routine?.class_id}
+                              {routine?.class?.name}
                           </TableCell>
                           <TableCell>
-                              {routine?.section_id}
+                              {routine?.section?.name}
                           </TableCell>
                           <TableCell>
-                              {routine?.routine_creator}
+                              {routine?.routine_creator?.name}
                           </TableCell>
                           <TableCell>
-                              {routine?.subject_id}
+                              {routine?.subject?.name}
                           </TableCell>
                           <TableCell>
-                              {routine?.room_id}
+                              {routine?.room?.name}
                           </TableCell>
                           <TableCell>
                               {routine?.starting_hour}

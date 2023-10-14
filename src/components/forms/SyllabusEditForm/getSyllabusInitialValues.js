@@ -1,8 +1,8 @@
 const getSyllabusInitialValues = syllabus => ({
   title: syllabus?.title || '',
-  class_id: syllabus?.class_id || '',
-  section_id: syllabus?.section_id || '',
-  subject_id: syllabus?.subject_id || '',
+  class_id: syllabus?.class?.name || '',
+  section_id: syllabus?.section?.name || '',
+  subject_id: syllabus?.subject?.name || '',
   file: syllabus?.file || ''
 });
 export default getSyllabusInitialValues;

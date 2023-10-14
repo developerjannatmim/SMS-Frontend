@@ -8,9 +8,7 @@ import InputField from '../../InputField';
 const examValidationSchema = Yup.object().shape({
   name: Yup.string().required(),
   exam_type: Yup.string().required(),
-  starting_date: Yup.string().required(),
   starting_time: Yup.string().required(),
-  ending_date: Yup.string().required(),
   ending_time: Yup.string().required(),
   total_marks: Yup.string().required(),
   status: Yup.string().required(),

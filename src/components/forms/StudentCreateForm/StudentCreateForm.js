@@ -1,6 +1,16 @@
 import { Button, Grid } from '@mui/material';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+
+import {InputLabel, Select, FormHelperText, MenuItem } from '@mui/material';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import getStudentCreateInitialValues from './getStudentCreateInitialValues';
 import InputField from '../../InputField';
@@ -17,11 +27,25 @@ const studentValidationSchema = Yup.object().shape({
 	blood_group: Yup.string().required()
 });
 
+const ITEM_HEIGHT = 22;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
+
 const StudentCreateForm = ({ student, onSubmit }) => {
 	return (
 		(student === undefined || student !== null) && (
 			<Formik initialValues={getStudentCreateInitialValues(student)} onSubmit={onSubmit} validationSchema={studentValidationSchema}>
-				{({ handleSubmit }) => (
+				{({ handleSubmit, handleChange }) => (
 					<form noValidate onSubmit={handleSubmit}>
 						<Grid container spacing={3}>
 							<InputField
@@ -43,18 +67,6 @@ const StudentCreateForm = ({ student, onSubmit }) => {
 								placeholder="Enter password" type="password"
 							/>
 							<InputField
-								label="Gender"
-								id="gender"
-								name="gender"
-								placeholder="Enter gender"
-							/>
-							<InputField
-								label="Birthday"
-								id="birthday"
-								name="birthday"
-								placeholder="Enter birthday"
-							/>
-							<InputField
 								label="Address"
 								id="address"
 								name="address"
@@ -67,22 +79,82 @@ const StudentCreateForm = ({ student, onSubmit }) => {
 								placeholder="Enter phone"
 							/>
 							<InputField
-								label="Photo"
 								id="photo"
 								name="photo"
-								placeholder="Enter photo"
+                type="file"
 							/>
-							<InputField
-								label="Blood Group"
-								id="blood_group"
-								name="blood_group"
-								placeholder="Enter blood group"
-							/>
+              <Grid item >
+              <FormControl sx={{ mx: 2 }}>
+                <FormLabel>Choose Your Gender</FormLabel>
+                <RadioGroup
+                  row
+                  name="gender"
+                  id="gender"
+                  onChange={handleChange}
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio/>}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio/>}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="others"
+                    control={<Radio/>}
+                    label="Others"
+                  />
+                </RadioGroup>
+              </FormControl>
+              </Grid>
 
+              <Grid item>
+              <InputLabel>Birthday</InputLabel>
+                <Field name="birthday">
+                {({ field, form }) => (
+                  <DatePicker
+                    style={{ width: 180 }}
+                    showIcon={true}
+                    dateFormat="MMMM d, yyyy"
+                    id="date"
+                    {...field}
+                    selected={field.value}
+                    onChange={(date) => form.setFieldValue(field.name, date)}
+                  />
+                )}
+              </Field>
+              <FormHelperText>Add your birthday</FormHelperText>
+              </Grid>
+
+              <Grid item >
+              <InputLabel>Blood Group</InputLabel>
+                <FormControl
+                  sx ={{
+                    marginTop: 0,
+                    width: 250,
+                    height: 50,
+                  }}
+                >
+                  {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
+                  <Select
+                  labelId="simple-select-label"
+                  name="blood_group"
+                  onChange={handleChange}
+                  MenuProps={MenuProps}
+                  >
+                  {BloodData?.map((option) => {
+                  return <MenuItem value={option} key={option}>{option}</MenuItem>;
+                  })}
+                  </Select>
+                  <FormHelperText>Select a blood group</FormHelperText>
+                </FormControl>
+              </Grid>
 							<Grid item xs={12}>
 								<Button
 									color="primary"
-									onClick={handleSubmit}
 									fullWidth
 									type="submit"
 									variant="contained"

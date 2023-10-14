@@ -1,6 +1,9 @@
 import { Button, Grid } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import * as React from 'react';
+
+import {InputLabel, Select, FormHelperText, MenuItem, FormControl } from '@mui/material';
 
 import getExaminationCreateInitialValues from './getExaminationCreateInitialValues';
 import InputField from '../../InputField';
@@ -8,9 +11,7 @@ import InputField from '../../InputField';
 const examValidationSchema = Yup.object().shape({
   name: Yup.string().required(),
   exam_type: Yup.string().required(),
-  starting_date: Yup.string().required(),
   starting_time: Yup.string().required(),
-  ending_date: Yup.string().required(),
   ending_time: Yup.string().required(),
   total_marks: Yup.string().required(),
   status: Yup.string().required(),
@@ -18,7 +19,36 @@ const examValidationSchema = Yup.object().shape({
   section_id: Yup.string().required(),
 });
 
+const ITEM_HEIGHT = 22;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
 const ExaminationCreateForm = ({ exam, onSubmit }) => {
+  const [sections, setSections] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch(`http://127.0.0.1:8000/api/sections`, {
+      headers: {
+        Accept: 'application/json',
+      },
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.info(response);
+        setSections(response.data?.section);
+      });
+
+  }, []);
+
   return (exam === undefined || exam !== null) && (
     <Formik
       initialValues={getExaminationCreateInitialValues(exam)}
@@ -26,7 +56,7 @@ const ExaminationCreateForm = ({ exam, onSubmit }) => {
       validationSchema={examValidationSchema}
     >
       {({
-        handleSubmit
+        handleSubmit, handleChange
       }) => (
         <form noValidate onSubmit={handleSubmit}>
           <Grid container spacing={3}>
@@ -92,13 +122,40 @@ const ExaminationCreateForm = ({ exam, onSubmit }) => {
               placeholder="Enter class_id"
               type="text"
             />
-            <InputField
+            {/* <InputField
               label="section_id"
               id="section_id"
               name="section_id"
               placeholder="Enter section_id"
               type="text"
-            />
+            /> */}
+
+            <Grid item >
+              <InputLabel>Sections</InputLabel>
+                <FormControl
+                  sx ={{
+                    marginTop: 0,
+                    width: 250,
+                    height: 50,
+                  }}
+                >
+                  {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
+                  <Select
+                  labelId="simple-select-label"
+                  name="section_id"
+                  onChange={handleChange}
+                  MenuProps={MenuProps}
+                  display
+                  >
+                    {sections ? sections?.map((section) => {
+                      return <MenuItem key={section.id} value={section.name}>{section.name}</MenuItem>;
+                    })
+                    : null}
+                  </Select>
+                  <FormHelperText>Select a section</FormHelperText>
+                </FormControl>
+              </Grid>
+
             <Grid item xs={12}>
               <Button
                 color="primary"

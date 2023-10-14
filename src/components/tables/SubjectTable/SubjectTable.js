@@ -49,7 +49,7 @@ const SubjectTable = ({
                   {subject?.name}
                 </TableCell>
                 <TableCell>
-                  {subject?.class_id}
+                  {subject?.class?.name}
                 </TableCell>
                 <TableCell>
                   <ButtonGroup

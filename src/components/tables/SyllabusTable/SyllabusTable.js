@@ -61,13 +61,13 @@ const SyllabusTable = ({
                   {syllabus?.title}
                 </TableCell>
                 <TableCell>
-                  {syllabus?.class_id}
+                  {syllabus?.class?.name}
                 </TableCell>
                 <TableCell>
-                  {syllabus?.section_id}
+                  {syllabus?.section?.name}
                 </TableCell>
                 <TableCell>
-                  {syllabus?.subject_id}
+                  {syllabus?.subject?.name}
                 </TableCell>
                 <TableCell>
                   {syllabus?.file}

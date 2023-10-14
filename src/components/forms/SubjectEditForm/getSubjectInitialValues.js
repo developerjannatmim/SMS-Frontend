@@ -1,5 +1,5 @@
 const getSubjectInitialValues = subject => ({
   name: subject?.name || '',
-  class_id: subject?.class_id || ''
+  class_id: subject?.class?.name || ''
 });
 export default getSubjectInitialValues;

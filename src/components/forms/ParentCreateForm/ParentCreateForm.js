@@ -169,7 +169,6 @@ const ParentCreateForm = ({ parent, onSubmit }) => {
               <Grid item xs={12}>
                 <Button
                   color="primary"
-                  onClick={handleSubmit}
                   fullWidth
                   type="submit"
                   variant="contained"

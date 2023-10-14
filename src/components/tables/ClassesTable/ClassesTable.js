@@ -52,7 +52,7 @@ const ClassesTable = ({
                               {singleClass.name}
                           </TableCell>
                           <TableCell>
-                              {singleClass.section_id}
+                              {singleClass.section?.name}
                           </TableCell>
                           <TableCell>
                               <ButtonGroup

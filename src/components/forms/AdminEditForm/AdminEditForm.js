@@ -1,10 +1,10 @@
 import { Button, Grid } from '@mui/material';
 import { Formik } from 'formik';
-// import Select from '@mui/material/Select';
-import * as React from 'react';
+import Select from '@mui/material/Select';
+// import * as React from 'react';
 import * as Yup from 'yup';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 
 import getAdminInitialValues from './getAdminInitialValues';
 import InputField from '../../InputField';
@@ -21,16 +21,16 @@ const adminValidationSchema = Yup.object().shape({
   blood_group: Yup.string().required()
 });
 
-// const ITEM_HEIGHT = 28;
-// const ITEM_PADDING_TOP = 4;
-// const MenuProps = {
-//   PaperProps: {
-//     style: {
-//       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-//       width: 250,
-//     },
-//   },
-// };
+const ITEM_HEIGHT = 28;
+const ITEM_PADDING_TOP = 4;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 
 const AdminEditForm = ({ admin, onSubmit }) => {
@@ -53,7 +53,7 @@ const AdminEditForm = ({ admin, onSubmit }) => {
         validationSchema={adminValidationSchema}
       >
         {({
-          handleSubmit
+          handleSubmit, handleChange
         }) => (
           <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -107,29 +107,31 @@ const AdminEditForm = ({ admin, onSubmit }) => {
                 placeholder="Enter photo"
                 type="text"
               />
-                {/* <InputLabel sx={{ m: 1, width: 485 }} id="multiple-name-label">Blood Group</InputLabel>
+              <Grid item>
+              <InputLabel id="multiple-name-label">Blood Group</InputLabel>
                 <Select
-                  sx={{ m: 3, width: 485 }}
+                  sx={{ width: 485 }}
                   labelId="multiple-name-label"
                   id="multiple-name"
                   name="blood_group"
-                  value={value}
                   MenuProps={MenuProps}
                   onChange={handleChange}
+                  display
                 >
-                  <MenuItem value={'a+'}>A+</MenuItem>
-                  <MenuItem value={'a'}>A</MenuItem>
-                  <MenuItem value={'a-'}>A-</MenuItem>
-                  <MenuItem value={'ab+'}>AB+</MenuItem>
-                  <MenuItem value={'ab-'}>AB-</MenuItem>
-                  <MenuItem value={'o'}>O</MenuItem>
-                </Select> */}
-              <InputField
+                  <MenuItem value={ 'a+'}>A+</MenuItem>
+                  <MenuItem value={ 'a' }>A</MenuItem>
+                  <MenuItem value={ 'a-' }>A-</MenuItem>
+                  <MenuItem value={ 'ab+'}>AB+</MenuItem>
+                  <MenuItem value={'ab+' }>AB-</MenuItem>
+                  <MenuItem value={ 'o'}>O</MenuItem>
+                </Select>
+              </Grid>
+              {/* <InputField
                 label="Blood Group"
                 id="blood_group"
                 name="blood_group"
                 placeholder="Enter blood group"
-              />
+              /> */}
               <Grid item xs={12}>
                 <Button
                   color="primary"
