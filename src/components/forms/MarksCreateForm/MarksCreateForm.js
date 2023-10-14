@@ -26,7 +26,7 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
         {({
             handleSubmit
         }) => (
-            <from noValidate onSubmit={handleSubmit}>
+            <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
                 <InputField 
                     label="user_id"
@@ -85,7 +85,7 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
                     </Button>
                 </Grid>
             </Grid>
-          </from>
+          </form>
         )}
         </Formik>
     )

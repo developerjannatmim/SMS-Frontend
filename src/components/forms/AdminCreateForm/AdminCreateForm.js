@@ -1,7 +1,6 @@
 import { Button, Grid } from '@mui/material';
-import { Formik } from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
-import { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -10,9 +9,8 @@ import Radio from '@mui/material/Radio';
 
 import {InputLabel, Select, FormHelperText, MenuItem } from '@mui/material';
 
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import getAdminCreateInitialValues from './getAdminCreateInitialValues';
 import InputField from '../../InputField';
@@ -41,18 +39,9 @@ const MenuProps = {
   },
 };
 
+const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
+
 const AdminCreateForm = ({ admin, onSubmit }) => {
-  // const [gender, setGender] = useState('');
-
-  // const handleChange = (event) => {
-  //   setGender(event.target.value);
-  // };
-
-const [startDate, setStartDate] = useState(new Date());
-
-// const [blood, setBlood] = useState([]);
-
-const BloodData = ['A', 'A+', 'AB', 'AB-', 'AB+'];
 
   return (
     (admin === undefined || admin !== null) && (
@@ -86,13 +75,26 @@ const BloodData = ['A', 'A+', 'AB', 'AB-', 'AB+'];
                 placeholder="Enter password"
                 type="password"
               />
-              {/* <InputField
-                label="Gender"
-                id="gender"
-                name="gender"
-                placeholder="Enter gender"
+              <InputField
+                label="Address"
+                id="address"
+                name="address"
+                placeholder="Enter address"
                 type="text"
-              /> */}
+              />
+              <InputField
+                label="Phone"
+                id="phone"
+                name="phone"
+                placeholder="Enter phone"
+                type="text"
+              />
+              <InputField
+                id="photo"
+                name="photo"
+                placeholder="Enter photo"
+                type="file"
+              />
               <Grid item >
               <FormControl sx={{ mx: 2 }}>
                 <FormLabel>Choose Your Gender</FormLabel>
@@ -100,7 +102,6 @@ const BloodData = ['A', 'A+', 'AB', 'AB-', 'AB+'];
                   row
                   name="gender"
                   id="gender"
-                  // value={gender}
                   onChange={handleChange}
                 >
                   <FormControlLabel
@@ -122,69 +123,37 @@ const BloodData = ['A', 'A+', 'AB', 'AB-', 'AB+'];
               </FormControl>
               </Grid>
 
-              <Grid item >
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <Grid item>
+              <InputLabel>Birthday</InputLabel>
+                <Field name="birthday">
+                {({ field, form }) => (
                   <DatePicker
-                    label="Birthday"
-                    id="birthday"
-                    name="birthday"
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
+                    style={{ width: 180 }}
+                    showIcon={true}
+                    dateFormat="MMMM d, yyyy"
+                    id="date"
+                    {...field}
+                    selected={field.value}
+                    onChange={(date) => form.setFieldValue(field.name, date)}
                   />
-                </LocalizationProvider>
+                )}
+              </Field>
+              <FormHelperText>Add your birthday</FormHelperText>
               </Grid>
 
-              {/* <InputField
-                label="Birthday"
-                id="birthday"
-                name="birthday"
-                placeholder="Enter birthday"
-                // type="date"
-                // value={startDate}
-                // onChange={(date) => setStartDate(date)}
-              /> */}
-              {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
-
-              <InputField
-                // sx={{ mx: 24 }}
-                label="Address"
-                id="address"
-                name="address"
-                placeholder="Enter address"
-                type="text"
-              />
-              <InputField
-                label="Phone"
-                id="phone"
-                name="phone"
-                placeholder="Enter phone"
-                type="text"
-              />
-              <InputField
-                id="photo"
-                name="photo"
-                placeholder="Enter photo"
-                type="file"
-              />
-              {/* <InputField
-                label="Blood Group"
-                id="blood_group"
-                name="blood_group"
-                placeholder="Enter blood group"
-                type="text"
-              /> */}
               <Grid item >
+              <InputLabel>Blood Group</InputLabel>
                 <FormControl
                   sx ={{
+                    marginTop: 0,
                     width: 250,
                     height: 50,
                   }}
                 >
-                  <InputLabel id="simple-select-label">Blood Group</InputLabel>
+                  {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
                   <Select
                   labelId="simple-select-label"
                   name="blood_group"
-                  //value={blood}
                   onChange={handleChange}
                   MenuProps={MenuProps}
                   >
@@ -198,8 +167,6 @@ const BloodData = ['A', 'A+', 'AB', 'AB-', 'AB+'];
               <Grid item xs={12}>
                 <Button
                   color="primary"
-                  //disabled={isSubmitting}
-                  // onClick={handleSubmit}
                   fullWidth
                   type="submit"
                   variant="contained"

@@ -22,17 +22,62 @@ const StudentEditForm = ({ student, onSubmit }) => {
     (student === undefined || student !== null) && (
       <Formik initialValues={getStudentInitialValues(student)} onSubmit={onSubmit} validationSchema={studentValidationSchema}>
         {({ handleSubmit }) => (
-          <from noValidate onSubmit={handleSubmit}>
+          <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
-              <InputField label="Name" id="name" name="name" placeholder="Enter name" />
-              <InputField label="Email" id="email" name="email" placeholder="Enter email" type="email" />
-              <InputField label="Password" id="password" name="password" placeholder="Enter password" type="password" />
-              <InputField label="Gender" id="gender" name="gender" placeholder="Enter gender" />
-              <InputField label="Birthday" id="birthday" name="birthday" placeholder="Enter birthday" />
-              <InputField label="Address" id="address" name="address" placeholder="Enter address" />
-              <InputField label="Phone" id="phone" name="phone" placeholder="Enter phone" />
-              <InputField label="Photo" id="photo" name="photo" placeholder="Enter photo" />
-              <InputField label="Blood Group" id="blood_group" name="blood_group" placeholder="Enter blood group" />
+              <InputField
+                label="Name"
+                id="name"
+                name="name"
+                placeholder="Enter name"
+              />
+              <InputField
+                label="Email"
+                id="email"
+                name="email"
+                placeholder="Enter email" type="email"
+              />
+              <InputField
+                label="Password"
+                id="password"
+                name="password"
+                placeholder="Enter password" type="password"
+              />
+              <InputField
+                label="Gender"
+                id="gender"
+                name="gender"
+                placeholder="Enter gender"
+              />
+              <InputField
+                label="Birthday"
+                id="birthday"
+                name="birthday"
+                placeholder="Enter birthday"
+              />
+              <InputField
+                label="Address"
+                id="address"
+                name="address"
+                placeholder="Enter address"
+              />
+              <InputField
+                label="Phone"
+                id="phone"
+                name="phone"
+                placeholder="Enter phone"
+              />
+              <InputField
+                label="Photo"
+                id="photo"
+                name="photo"
+                placeholder="Enter photo"
+              />
+              <InputField
+                label="Blood Group"
+                id="blood_group"
+                name="blood_group"
+                placeholder="Enter blood group"
+              />
 
               <Grid item xs={12}>
                 <Button color="primary" onClick={handleSubmit} fullWidth type="submit" variant="contained">
@@ -40,7 +85,7 @@ const StudentEditForm = ({ student, onSubmit }) => {
                 </Button>
               </Grid>
             </Grid>
-          </from>
+          </form>
         )}
       </Formik>
     )

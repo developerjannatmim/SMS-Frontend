@@ -27,7 +27,7 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
         {({
             handleSubmit
         }) => (
-            <from noValidate onSubmit={handleSubmit}>
+            <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
                 <InputField 
                     label="Name"
@@ -98,7 +98,7 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
                     </Button>
                 </Grid>
             </Grid>
-          </from>
+          </form>
         )}
         </Formik>
     )

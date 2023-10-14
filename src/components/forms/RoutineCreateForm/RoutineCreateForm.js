@@ -28,7 +28,7 @@ const RoutineCreateForm = ({ routine, onSubmit }) => {
         {({
             handleSubmit
         }) => (
-            <from noValidate onSubmit={handleSubmit}>
+            <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
                 <InputField
                     label="class_id"
@@ -113,7 +113,7 @@ const RoutineCreateForm = ({ routine, onSubmit }) => {
                     </Button>
                 </Grid>
             </Grid>
-          </from>
+          </form>
         )}
         </Formik>
     )
