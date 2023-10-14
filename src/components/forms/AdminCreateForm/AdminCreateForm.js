@@ -8,6 +8,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 
+import {InputLabel, Select, FormHelperText, MenuItem } from '@mui/material';
+
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -27,14 +29,30 @@ const adminValidationSchema = Yup.object().shape({
   blood_group: Yup.string().required()
 });
 
-const AdminCreateForm = ({ admin, onSubmit }) => {
-  const [gender, setGender] = useState('');
+const ITEM_HEIGHT = 22;
+const ITEM_PADDING_TOP = 8;
 
-  const handleChange = (event) => {
-    setGender(event.target.value);
-  };
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const AdminCreateForm = ({ admin, onSubmit }) => {
+  // const [gender, setGender] = useState('');
+
+  // const handleChange = (event) => {
+  //   setGender(event.target.value);
+  // };
 
 const [startDate, setStartDate] = useState(new Date());
+
+// const [blood, setBlood] = useState([]);
+
+const BloodData = ['A', 'A+', 'AB', 'AB-', 'AB+'];
 
   return (
     (admin === undefined || admin !== null) && (
@@ -43,8 +61,8 @@ const [startDate, setStartDate] = useState(new Date());
         onSubmit={onSubmit}
         validationSchema={adminValidationSchema}
       >
-        {({ handleSubmit }) => (
-          <from noValidate onSubmit={handleSubmit}>
+        {({ handleSubmit, handleChange }) => (
+          <form noValidate onSubmit={handleSubmit}>
 
             <Grid container spacing={3}>
               <InputField
@@ -75,14 +93,14 @@ const [startDate, setStartDate] = useState(new Date());
                 placeholder="Enter gender"
                 type="text"
               /> */}
-              <Grid item spacing={3}>
-              <FormControl sx={{ minWidth: 100, my: 3, mx: 4 }}>
+              <Grid item >
+              <FormControl sx={{ mx: 2 }}>
                 <FormLabel>Choose Your Gender</FormLabel>
                 <RadioGroup
                   row
                   name="gender"
                   id="gender"
-                  value={gender}
+                  // value={gender}
                   onChange={handleChange}
                 >
                   <FormControlLabel
@@ -104,7 +122,7 @@ const [startDate, setStartDate] = useState(new Date());
               </FormControl>
               </Grid>
 
-              <Grid item spacing={3}>
+              <Grid item >
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DatePicker
                     label="Birthday"
@@ -128,6 +146,7 @@ const [startDate, setStartDate] = useState(new Date());
               {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
 
               <InputField
+                // sx={{ mx: 24 }}
                 label="Address"
                 id="address"
                 name="address"
@@ -147,18 +166,40 @@ const [startDate, setStartDate] = useState(new Date());
                 placeholder="Enter photo"
                 type="file"
               />
-              <InputField
+              {/* <InputField
                 label="Blood Group"
                 id="blood_group"
                 name="blood_group"
                 placeholder="Enter blood group"
                 type="text"
-              />
+              /> */}
+              <Grid item >
+                <FormControl
+                  sx ={{
+                    width: 250,
+                    height: 50,
+                  }}
+                >
+                  <InputLabel id="simple-select-label">Blood Group</InputLabel>
+                  <Select
+                  labelId="simple-select-label"
+                  name="blood_group"
+                  //value={blood}
+                  onChange={handleChange}
+                  MenuProps={MenuProps}
+                  >
+                  {BloodData?.map((option) => {
+                  return <MenuItem value={option} key={option}>{option}</MenuItem>;
+                  })}
+                  </Select>
+                  <FormHelperText>Select a blood group</FormHelperText>
+                </FormControl>
+              </Grid>
               <Grid item xs={12}>
                 <Button
                   color="primary"
                   //disabled={isSubmitting}
-                  onClick={handleSubmit}
+                  // onClick={handleSubmit}
                   fullWidth
                   type="submit"
                   variant="contained"
@@ -167,7 +208,7 @@ const [startDate, setStartDate] = useState(new Date());
                 </Button>
               </Grid>
             </Grid>
-          </from>
+          </form>
         )}
       </Formik>
     )

@@ -7,6 +7,10 @@ import MainCard from '../../../components/MainCard';
 
 const AdminCreate = () => {
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
+    console.log({
+      values,
+
+    });
     fetch('http://127.0.0.1:8000/api/admin', {
       body: JSON.stringify({
         ...values
@@ -46,7 +50,7 @@ const AdminCreate = () => {
             </Link>
           </Grid>
         </Grid>
-        <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
+        <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
           <AdminCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>

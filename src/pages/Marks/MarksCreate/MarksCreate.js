@@ -46,7 +46,7 @@ const MarksCreate = () => {
             </Link>
           </Grid>
         </Grid>
-        <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
+        <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
           <MarksCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>

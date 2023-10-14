@@ -46,7 +46,7 @@ const ClassesCreate = () => {
             </Link>
           </Grid>
         </Grid>
-        <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
+        <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
           <ClassesCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>

@@ -46,7 +46,7 @@ const RoutineCreate = () => {
             </Link>
           </Grid>
         </Grid>
-        <MainCard contentX={{ p: 3 }} sx={{ mt: 2 }}>
+        <MainCard contentSX={{ p: 3 }} sx={{ mt: 2 }}>
           <RoutineCreateForm onSubmit={handleSubmit} />
         </MainCard>
       </Grid>

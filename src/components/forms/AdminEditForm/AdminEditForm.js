@@ -55,7 +55,7 @@ const AdminEditForm = ({ admin, onSubmit }) => {
         {({
           handleSubmit
         }) => (
-          <from noValidate onSubmit={handleSubmit}>
+          <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <InputField
                 label="Name"
@@ -141,7 +141,7 @@ const AdminEditForm = ({ admin, onSubmit }) => {
                 </Button>
               </Grid>
             </Grid>
-          </from>
+          </form>
         )}
       </Formik>
     )
