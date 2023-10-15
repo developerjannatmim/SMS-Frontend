@@ -23,7 +23,7 @@ const adminValidationSchema = Yup.object().shape({
   birthday: Yup.string().required(),
   address: Yup.string().required(),
   phone: Yup.string().required(),
-  photo: Yup.string().required(),
+  image: Yup.string().required(),
   blood_group: Yup.string().required()
 });
 
@@ -42,7 +42,6 @@ const MenuProps = {
 const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
 
 const AdminCreateForm = ({ admin, onSubmit }) => {
-
   return (
     (admin === undefined || admin !== null) && (
       <Formik
@@ -51,7 +50,7 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
         validationSchema={adminValidationSchema}
       >
         {({ handleSubmit, handleChange }) => (
-          <form noValidate onSubmit={handleSubmit}>
+          <form noValidate onSubmit={handleSubmit} encType="multipart/form-data">
 
             <Grid container spacing={3}>
               <InputField
@@ -90,10 +89,12 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 type="text"
               />
               <InputField
-                id="photo"
-                name="photo"
-                placeholder="Enter photo"
+                id="image"
+                name="image"
+                placeholder="Enter image"
                 type="file"
+                onChange={handleChange}
+                //onChange={(event) => URL.createObjectURL(e.target.files[0])};
               />
               <Grid item >
               <FormControl sx={{ mx: 2 }}>
