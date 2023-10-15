@@ -12,63 +12,63 @@ const RoutineDetail = ({ routine }) => {
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            day
+            Day
           </Typography>
           <Typography component="dd">{routine?.day}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            starting_hour
+            Starting Hour
           </Typography>
           <Typography component="dd">{routine?.starting_hour}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            starting_minute
+            Starting Minute
           </Typography>
           <Typography component="dd">{routine?.starting_minute}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            ending_hour
+            Ending Hour
           </Typography>
           <Typography component="dd">{routine?.ending_hour}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            ending_minute
+            Ending Minute
           </Typography>
           <Typography component="dd">{routine?.ending_minute}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            routine_creator
+            Routine Creator
           </Typography>
-          <Typography component="dd">{routine?.routine_creator}</Typography>
+          <Typography component="dd">{routine?.routine_creator?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            class_id
+            Class
           </Typography>
-          <Typography component="dd">{routine?.class_id}</Typography>
+          <Typography component="dd">{routine?.class?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-          subject_id
+          Subject
           </Typography>
-          <Typography component="dd">{routine?.subject_id}</Typography>
+          <Typography component="dd">{routine?.subject?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-          section_id
+          Section
           </Typography>
-          <Typography component="dd">{routine?.section_id}</Typography>
+          <Typography component="dd">{routine?.section?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-          room_id
+          Class Room
           </Typography>
-          <Typography component="dd">{routine?.room_id}</Typography>
+          <Typography component="dd">{routine?.room?.name}</Typography>
         </Grid>
       </Grid>
     )

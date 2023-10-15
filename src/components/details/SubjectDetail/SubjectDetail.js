@@ -20,7 +20,7 @@ const SubjectDetail = ({ subject }) => {
           <Typography component="dt" variant="h5">
           Class
           </Typography>
-          <Typography component="dd">{subject?.class_id}</Typography>
+          <Typography component="dd">{subject?.class?.name}</Typography>
         </Grid>
       </Grid>
     )

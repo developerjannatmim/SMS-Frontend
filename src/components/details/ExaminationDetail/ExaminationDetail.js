@@ -8,55 +8,55 @@ const ExaminationDetail = ({ exam }) => {
           <Typography component="dt" variant="h5">
             ID
           </Typography>
-          <Typography component="dd">{exam.id}</Typography>
+          <Typography component="dd">{exam?.id}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
             Name
           </Typography>
-          <Typography component="dd">{exam.name}</Typography>
+          <Typography component="dd">{exam?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            exam_type
+            Exam Type
           </Typography>
-          <Typography component="dd">{exam.exam_type}</Typography>
+          <Typography component="dd">{exam?.exam_type}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            starting_time
+            Starting Time
           </Typography>
-          <Typography component="dd">{exam.starting_time}</Typography>
+          <Typography component="dd">{exam?.starting_time}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            ending_time
+            Ending Time
           </Typography>
-          <Typography component="dd">{exam.ending_time}</Typography>
+          <Typography component="dd">{exam?.ending_time}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            total_marks
+            Total Marks
           </Typography>
-          <Typography component="dd">{exam.total_marks}</Typography>
+          <Typography component="dd">{exam?.total_marks}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            status
+            Status
           </Typography>
-          <Typography component="dd">{exam.status}</Typography>
+          <Typography component="dd">{exam?.status}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            class_id
+            Class
           </Typography>
-          <Typography component="dd">{exam.class_id}</Typography>
+          <Typography component="dd">{exam?.class?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            section_id
+            Section
           </Typography>
-          <Typography component="dd">{exam.section_id}</Typography>
+          <Typography component="dd">{exam?.section?.name}</Typography>
         </Grid>
       </Grid>
     )

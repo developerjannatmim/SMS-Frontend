@@ -61,7 +61,7 @@ const RoutineList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/routine/create">
+            <Link to="/routines/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}

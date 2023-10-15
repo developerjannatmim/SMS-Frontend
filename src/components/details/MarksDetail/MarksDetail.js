@@ -12,45 +12,45 @@ const MarksDetail = ({ mark }) => {
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            grade_point
+            Grade Point
           </Typography>
           <Typography component="dd">{mark?.grade_point}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            comment
+            Comment
           </Typography>
           <Typography component="dd">{mark?.comment}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            user_id
+            Student Name
           </Typography>
-          <Typography component="dd">{mark?.user_id}</Typography>
+          <Typography component="dd">{mark?.user?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-          exam_id
+          Exam
           </Typography>
-          <Typography component="dd">{mark?.exam_id}</Typography>
+          <Typography component="dd">{mark?.exam?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-          class_id
+          Class
           </Typography>
-          <Typography component="dd">{mark?.class_id}</Typography>
+          <Typography component="dd">{mark?.class?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-          section_id
+          Section
           </Typography>
-          <Typography component="dd">{mark?.section_id}</Typography>
+          <Typography component="dd">{mark?.section?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-          subject_id
+          Subject
           </Typography>
-          <Typography component="dd">{mark?.subject_id}</Typography>
+          <Typography component="dd">{mark?.subject?.name}</Typography>
         </Grid>
       </Grid>
     )

@@ -3,7 +3,7 @@ import {
     EditOutlined,
     InfoOutlined,
   } from '@ant-design/icons';
-  import { Image } from 'mui-image';
+import { Image } from 'mui-image';
   import {
     Button,
     ButtonGroup,
@@ -91,7 +91,7 @@ const AdminTable = ({
                                 {userInformation?.phone}
                             </TableCell>
                             <TableCell>
-                            <Image src={userInformation?.photo} alt="image"/>
+                            <Image src={`http://127.0.0.1:8000/admin/${userInformation?.photo}`}  width="50px" alt={admin?.name}/>
                             </TableCell>
                             <TableCell>
                                 {userInformation?.blood_group}

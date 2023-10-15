@@ -20,7 +20,7 @@ const ClassesDetail = ({ singleClass }) => {
           <Typography component="dt" variant="h5">
             Section
           </Typography>
-          <Typography component="dd">{singleClass?.section_id}</Typography>
+          <Typography component="dd">{singleClass?.section?.name}</Typography>
         </Grid>
       </Grid>
     )

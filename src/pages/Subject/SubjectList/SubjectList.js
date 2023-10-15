@@ -61,7 +61,7 @@ const SubjectList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Link to="/subject/create">
+            <Link to="/subjects/create">
               <Button
                 color="primary"
                 startIcon={<PlusOutlined />}

@@ -12,33 +12,33 @@ const SyllabusDetail = ({ syllabus }) => {
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            title
+            Title
           </Typography>
           <Typography component="dd">{syllabus?.title}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            file
+            Syllabus Image
           </Typography>
           <Typography component="dd">{syllabus?.file}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            class_id
+            Class
           </Typography>
-          <Typography component="dd">{syllabus?.class_id}</Typography>
+          <Typography component="dd">{syllabus?.class?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            subject_id
+            Subject
           </Typography>
-          <Typography component="dd">{syllabus?.subject_id}</Typography>
+          <Typography component="dd">{syllabus?.subject?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">
-            section_id
+            Section
           </Typography>
-          <Typography component="dd">{syllabus?.section_id}</Typography>
+          <Typography component="dd">{syllabus?.section?.name}</Typography>
         </Grid>
       </Grid>
     )
