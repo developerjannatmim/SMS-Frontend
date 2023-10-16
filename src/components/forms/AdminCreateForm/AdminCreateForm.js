@@ -6,6 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+// import { useState } from 'react';
 
 import {InputLabel, Select, FormHelperText, MenuItem } from '@mui/material';
 
@@ -23,7 +24,7 @@ const adminValidationSchema = Yup.object().shape({
   birthday: Yup.string().required(),
   address: Yup.string().required(),
   phone: Yup.string().required(),
-  image: Yup.string().required(),
+  photo: Yup.string().required(),
   blood_group: Yup.string().required()
 });
 
@@ -42,6 +43,7 @@ const MenuProps = {
 const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
 
 const AdminCreateForm = ({ admin, onSubmit }) => {
+
   return (
     (admin === undefined || admin !== null) && (
       <Formik
@@ -89,12 +91,12 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 type="text"
               />
               <InputField
-                id="image"
-                name="image"
-                placeholder="Enter image"
+                id="photo"
+                name="photo"
+                placeholder="Enter photo"
                 type="file"
                 onChange={handleChange}
-                //onChange={(event) => URL.createObjectURL(e.target.files[0])};
+                //onChange={(event) => setFieldValue(event.target.files[0])};
               />
               <Grid item >
               <FormControl sx={{ mx: 2 }}>

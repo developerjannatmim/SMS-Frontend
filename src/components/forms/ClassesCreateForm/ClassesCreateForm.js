@@ -64,41 +64,40 @@ const ClassesCreateForm = ({ singleClass, onSubmit }) => {
                   placeholder="Enter name"
                   type="text"
               />
-                <Grid item >
-                 <InputLabel>Section</InputLabel>
-                    <FormControl
-                    sx ={{
-                        marginTop: 0,
-                        width: 250,
-                        height: 50,
-                    }}
-                    >
-                    {/* <InputLabel id="simple-select-label">sections</InputLabel> */}
-                    <Select
-                    labelId="simple-select-label"
-                    name="section_id"
-                    onChange={handleChange}
-                    MenuProps={MenuProps}
-                    display
-                    >
-                        {sections ? sections?.map((section) => {
-                        return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
-                        })
-                        : null}
-                    </Select>
-                    <FormHelperText>Select a section</FormHelperText>
-                    </FormControl>
-                </Grid>
-              <Grid item xs={12}>
-                  <Button
-                  color="primary"
-                  onClick={handleSubmit}
-                  fullWidth
-                  type="submit"
-                  variant="contained"
+              <Grid item >
+                <InputLabel>Section</InputLabel>
+                  <FormControl
+                  sx ={{
+                      marginTop: 0,
+                      width: 250,
+                      height: 50,
+                  }}
                   >
-                    Submit
-                  </Button>
+                  <Select
+                  labelId="simple-select-label"
+                  name="section_id"
+                  onChange={handleChange}
+                  MenuProps={MenuProps}
+                  display
+                  >
+                    {sections ? sections?.map((section) => {
+                    return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
+                    })
+                    : null}
+                  </Select>
+                  <FormHelperText>Select a section</FormHelperText>
+                  </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                color="primary"
+                onClick={handleSubmit}
+                fullWidth
+                type="submit"
+                variant="contained"
+                >
+                  Submit
+                </Button>
               </Grid>
           </Grid>
         </form>

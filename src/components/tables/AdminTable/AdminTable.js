@@ -91,7 +91,7 @@ const AdminTable = ({
                                 {userInformation?.phone}
                             </TableCell>
                             <TableCell>
-                            <Image src={`http://127.0.0.1:8000/admin/${userInformation?.photo}`}  width="50px" alt={admin?.name}/>
+                            <Image src={userInformation?.photo}  width="50px" alt={admin?.name}/>
                             </TableCell>
                             <TableCell>
                                 {userInformation?.blood_group}

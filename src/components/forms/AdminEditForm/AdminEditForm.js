@@ -1,10 +1,20 @@
 import { Button, Grid } from '@mui/material';
-import { Formik } from 'formik';
-import Select from '@mui/material/Select';
-// import * as React from 'react';
+import {
+  Formik,
+  Field,
+} from 'formik';
+
 import * as Yup from 'yup';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import getAdminInitialValues from './getAdminInitialValues';
 import InputField from '../../InputField';
@@ -12,7 +22,6 @@ import InputField from '../../InputField';
 const adminValidationSchema = Yup.object().shape({
   name: Yup.string().required(),
   email: Yup.string().email().required(),
-  password: Yup.string().min(6).required(),
   gender: Yup.string().required(),
   birthday: Yup.string().required(),
   address: Yup.string().required(),
@@ -21,29 +30,9 @@ const adminValidationSchema = Yup.object().shape({
   blood_group: Yup.string().required()
 });
 
-const ITEM_HEIGHT = 28;
-const ITEM_PADDING_TOP = 4;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
+const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
 
 const AdminEditForm = ({ admin, onSubmit }) => {
-  // let userInformation;
-  // try {
-  //   userInformation = JSON.parse(admin.user_information?.blood_group);
-  // } catch (error) { /**/ }
-
-  // const [value, setValue] = React.useState(userInformation);
-
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-  // };
 
   return (
     (admin === undefined || admin !== null) && (
@@ -53,97 +42,114 @@ const AdminEditForm = ({ admin, onSubmit }) => {
         validationSchema={adminValidationSchema}
       >
         {({
-          handleSubmit, handleChange
+          handleSubmit, handleChange, values
         }) => (
-          <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-              <InputField
-                label="Name"
-                id="name"
-                name="name"
-                placeholder="Enter name"
+        <form noValidate onSubmit={handleSubmit}>
+          <Grid container spacing={3}>
+            <InputField
+              label="Name"
+              id="name"
+              name="name"
+              placeholder="Enter name"
             />
-              <InputField
-                label="Email"
-                id="email"
-                name="email"
-                placeholder="Enter email"
-                type="email"
-              />
-              <InputField
-                label="Password"
-                id="password"
-                name="password"
-                placeholder="Enter password"
-                type="password"
-              />
-              <InputField
-                label="Gender"
-                id="gender"
+
+            <InputField
+              label="Email"
+              id="email"
+              name="email"
+              placeholder="Enter email"
+              type="email"
+            />
+
+            <Grid item >
+            <FormControl sx={{ mx: 2 }}>
+              <FormLabel>Choose Your Gender</FormLabel>
+              <RadioGroup
+                row
                 name="gender"
-                placeholder="Enter gender"
-              />
-              <InputField
-                label="Birthday"
-                id="birthday"
-                name="birthday"
-                placeholder="Enter birthday"
-              />
-              <InputField
-                label="Address"
-                id="address"
-                name="address"
-                placeholder="Enter address"
-              />
-              <InputField
-                label="Phone"
-                id="phone"
-                name="phone"
-                placeholder="Enter phone"
-              />
-              <InputField
-                id="photo"
-                name="photo"
-                placeholder="Enter photo"
-                type="text"
-              />
-              <Grid item>
-              <InputLabel id="multiple-name-label">Blood Group</InputLabel>
-                <Select
-                  sx={{ width: 485 }}
-                  labelId="multiple-name-label"
-                  id="multiple-name"
-                  name="blood_group"
-                  MenuProps={MenuProps}
-                  onChange={handleChange}
-                  display
-                >
-                  <MenuItem value={ 'a+'}>A+</MenuItem>
-                  <MenuItem value={ 'a' }>A</MenuItem>
-                  <MenuItem value={ 'a-' }>A-</MenuItem>
-                  <MenuItem value={ 'ab+'}>AB+</MenuItem>
-                  <MenuItem value={'ab+' }>AB-</MenuItem>
-                  <MenuItem value={ 'o'}>O</MenuItem>
-                </Select>
-              </Grid>
-              {/* <InputField
-                label="Blood Group"
-                id="blood_group"
-                name="blood_group"
-                placeholder="Enter blood group"
-              /> */}
-              <Grid item xs={12}>
-                <Button
-                  color="primary"
-                  onClick={handleSubmit}
-                  fullWidth type="submit"
-                  variant="contained"
+                id="gender"
+                onChange={handleChange}
+                defaultValue={values.gender}
               >
-                  Submit
-                </Button>
-              </Grid>
+                <FormControlLabel
+                  value="female"
+                  control={<Radio/>}
+                  label="Female"
+                />
+                <FormControlLabel
+                  value="male"
+                  control={<Radio/>}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="others"
+                  control={<Radio/>}
+                  label="Others"
+                />
+              </RadioGroup>
+            </FormControl>
             </Grid>
-          </form>
+
+            <InputField
+              label="Address"
+              id="address"
+              name="address"
+              placeholder="Enter address"
+            />
+
+            <InputField
+              label="Phone"
+              id="phone"
+              name="phone"
+              placeholder="Enter phone"
+            />
+
+            <InputField
+              id="photo"
+              name="photo"
+              placeholder="Enter photo"
+              type="text"
+            />
+
+            <Grid item>
+              <InputLabel>Birthday</InputLabel>
+              <Field name="birthday">
+                {({ field, form }) => (
+                  <DatePicker
+                    {...field}
+                    style={{ width: 180 }}
+                    showIcon
+                    dateFormat="yyyy-MM-dd"
+                    id="birthday"
+                    selected={field.value}
+                    onChange={(date) => form.setFieldValue(field.name, date)}
+                  />
+                )}
+              </Field>
+              <FormHelperText>Add your birthday</FormHelperText>
+            </Grid>
+
+            <InputField
+              label="Blood Group"
+              id="blood_group"
+              name="blood_group"
+              options={BloodData.map((option) => ({ label: option, value: option }))}
+              placeholder="Select a blood group"
+              type="select"
+            />
+
+            <Grid item xs={12}>
+              <Button
+                color="primary"
+                onClick={handleSubmit}
+                fullWidth type="submit"
+                variant="contained"
+            >
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
         )}
       </Formik>
     )

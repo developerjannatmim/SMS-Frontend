@@ -1,6 +1,8 @@
 import { Button, Grid } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useEffect, useState } from 'react';
+import {InputLabel, Select, FormHelperText, MenuItem, FormControl } from '@mui/material';
 
 import getClassesInitialValues from './getClassesInitialValues';
 import InputField from '../../InputField';
@@ -10,7 +12,40 @@ const classesValidationSchema = Yup.object().shape({
     section_id: Yup.string().required()
 });
 
+const ITEM_HEIGHT = 22;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
 const ClassesEditForm = ({ singleClass, onSubmit }) => {
+    const [sections, setSections] = useState('');
+    useEffect(() => {
+        console.log({sections});
+        fetch(`http://127.0.0.1:8000/api/sections`, {
+          headers: {
+            Accept: 'application/json',
+          },
+          method: 'GET',
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.info(response);
+            setSections(response.data?.section);
+          })
+          .catch((error) => {
+            console.error(error);
+            setSections(null);
+          });
+
+    }, []);
+
     return (singleClass === undefined || singleClass !== null) && (
         <Formik
             initialValues={getClassesInitialValues(singleClass)}
@@ -18,24 +53,42 @@ const ClassesEditForm = ({ singleClass, onSubmit }) => {
             validationSchema={classesValidationSchema}
         >
         {({
-            handleSubmit
+            handleSubmit, handleChange
         }) => (
             <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
-                <InputField 
+                <InputField
                     label="Name"
                     id="name"
                     name="name"
                     placeholder="Enter name"
                     type="text"
                 />
-                <InputField 
-                    label="Section"
-                    id="section_id"
+                <Grid item >
+                 <InputLabel>Section</InputLabel>
+                    <FormControl
+                    sx ={{
+                        marginTop: 0,
+                        width: 250,
+                        height: 50,
+                    }}
+                    >
+                    {/* <InputLabel id="simple-select-label">sections</InputLabel> */}
+                    <Select
+                    labelId="simple-select-label"
                     name="section_id"
-                    placeholder="Enter section_id"
-                    type="text"
-                />
+                    defaultValue={singleClass?.section_id}
+                    onChange={handleChange}
+                    MenuProps={MenuProps}
+                    >
+                    {sections ? sections?.map((section) => {
+                    return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
+                    })
+                    : null}
+                    </Select>
+                    <FormHelperText>Select a section</FormHelperText>
+                    </FormControl>
+                </Grid>
                 <Grid item xs={12}>
                     <Button
                     color="primary"

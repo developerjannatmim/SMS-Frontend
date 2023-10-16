@@ -1,12 +1,20 @@
-const getAdminInitialValues = admin => ({
+const getAdminInitialValues = (admin) => {
+  let userInformation;
+  try {
+    userInformation = JSON.parse(admin.user_information);
+  } catch (error) {
+    /**/
+  }
+
+  return {
     name: admin?.name || '',
     email: admin?.email || '',
-    password: admin?.password || '',
-    gender: JSON.parse(admin.user_information)?.gender || '',
-    birthday: JSON.parse(admin.user_information)?.birthday || '',
-    address: JSON.parse(admin.user_information)?.address || '',
-    phone: JSON.parse(admin.user_information)?.phone || '',
-    photo: JSON.parse(admin.user_information)?.photo || '',
-    blood_group: JSON.parse(admin.user_information)?.blood_group || ''
-});
+    gender: userInformation?.gender || '',
+    birthday: userInformation?.birthday ? new Date(userInformation.birthday) : '',
+    address: userInformation?.address || '',
+    phone: userInformation?.phone || '',
+    photo: userInformation?.photo || '',
+    blood_group: userInformation?.blood_group || ''
+  };
+};
 export default getAdminInitialValues;

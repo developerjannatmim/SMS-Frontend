@@ -6,7 +6,7 @@ const getAdminCreateInitialValues = admin => ({
     birthday: admin?.birthday || '',
     address: admin?.address || '',
     phone: admin?.phone || '',
-    image: admin?.image || '',
+    photo: admin?.photo || '',
     blood_group: admin?.blood_group || ''
 });
 export default getAdminCreateInitialValues;
