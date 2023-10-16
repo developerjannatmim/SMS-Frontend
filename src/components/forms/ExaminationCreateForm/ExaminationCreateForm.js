@@ -35,6 +35,7 @@ const MenuProps = {
 
 const ExaminationCreateForm = ({ exam, onSubmit }) => {
   const [sections, setSections] = useState('');
+  const [classes, setClasses] = useState('');
 
   useEffect(() => {
     console.log({sections});
@@ -55,8 +56,6 @@ const ExaminationCreateForm = ({ exam, onSubmit }) => {
       });
 
   }, []);
-
-  const [classes, setClasses] = useState('');
 
   useEffect(() => {
     console.log({classes});
@@ -133,55 +132,52 @@ const ExaminationCreateForm = ({ exam, onSubmit }) => {
 
             <Grid item >
               <InputLabel>Class</InputLabel>
-                <FormControl
-                  sx ={{
-                    marginTop: 0,
-                    width: 250,
-                    height: 50,
-                  }}
+              <FormControl
+                sx ={{
+                  marginTop: 0,
+                  width: 250,
+                  height: 50,
+                }}
+              >
+                <Select
+                labelId="simple-select-label"
+                name="class_id"
+                onChange={handleChange}
+                MenuProps={MenuProps}
+                display
                 >
-                  {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
-                  <Select
-                  labelId="simple-select-label"
-                  name="class_id"
-                  onChange={handleChange}
-                  MenuProps={MenuProps}
-                  display
-                  >
-                    {classes ? classes?.map((classItem) => {
-                      return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
-                    })
-                    : null}
-                  </Select>
-                  <FormHelperText>Select a class</FormHelperText>
-                </FormControl>
+                  {classes ? classes?.map((classItem) => {
+                    return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
+                  })
+                  : null}
+                </Select>
+                <FormHelperText>Select a class</FormHelperText>
+              </FormControl>
             </Grid>
 
             <Grid item >
               <InputLabel>Sections</InputLabel>
-                <FormControl
-                  sx ={{
-                    marginTop: 0,
-                    width: 250,
-                    height: 50,
-                  }}
-                >
-                  {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
-                  <Select
-                  labelId="simple-select-label"
-                  name="section_id"
-                  onChange={handleChange}
-                  MenuProps={MenuProps}
-                  display
-                  >
-                    {sections ? sections?.map((section) => {
-                      return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
-                    })
-                    : null}
-                  </Select>
-                  <FormHelperText>Select a section</FormHelperText>
-                </FormControl>
-              </Grid>
+              <FormControl
+                sx ={{
+                  marginTop: 0,
+                  width: 250,
+                  height: 50,
+                }}
+              >
+              <Select
+                labelId="simple-select-label"
+                name="section_id"
+                onChange={handleChange}
+                MenuProps={MenuProps}
+              >
+                {sections ? sections?.map((section) => {
+                  return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a section</FormHelperText>
+              </FormControl>
+            </Grid>
 
             <Grid item xs={12}>
               <Button

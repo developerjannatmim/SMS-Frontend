@@ -73,19 +73,19 @@ const ClassesEditForm = ({ singleClass, onSubmit }) => {
                 height: 50,
               }}
             >
-            <Select
-              labelId="simple-select-label"
-              name="section_id"
-              defaultValue={singleClass?.section_id}
-              onChange={handleChange}
-              MenuProps={MenuProps}
-            >
-              {sections ? sections?.map((section) => {
-              return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
-              })
-            : null}
-            </Select>
-            <FormHelperText>Select a section</FormHelperText>
+              <Select
+                labelId="simple-select-label"
+                name="section_id"
+                defaultValue={singleClass?.section_id}
+                onChange={handleChange}
+                MenuProps={MenuProps}
+              >
+                {sections ? sections?.map((section) => {
+                return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
+                })
+              : null}
+              </Select>
+              <FormHelperText>Select a section</FormHelperText>
             </FormControl>
         </Grid>
         <Grid item xs={12}>

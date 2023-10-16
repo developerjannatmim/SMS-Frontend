@@ -1,99 +1,324 @@
 import { Button, Grid } from '@mui/material';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { useEffect, useState } from 'react';
+import {InputLabel, Select, FormHelperText, MenuItem, FormControl } from '@mui/material';
 
 import getMarksInitialValues from './getMarksInitialValues';
 import InputField from '../../InputField';
 
 const markValidationSchema = Yup.object().shape({
-    user_id: Yup.string().required(),
-    exam_id: Yup.string().required(),
-    class_id: Yup.string().required(),
-    section_id: Yup.string().required(),
-    subject_id: Yup.string().required(),
-    marks: Yup.string().required(),
-    grade_point: Yup.string().required(),
-    comment: Yup.string().required()
+  user_id: Yup.string().required(),
+  exam_id: Yup.string().required(),
+  class_id: Yup.string().required(),
+  section_id: Yup.string().required(),
+  subject_id: Yup.string().required(),
+  marks: Yup.string().required(),
+  grade_point: Yup.string().required(),
+  comment: Yup.string().required()
 });
+const ITEM_HEIGHT = 22;
+const ITEM_PADDING_TOP = 8;
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 const MarksEditForm = ({ mark, onSubmit }) => {
-    return (mark === undefined || mark !== null) && (
-        <Formik
-            initialValues={getMarksInitialValues(mark)}
-            onSubmit={onSubmit}
-            validationSchema={markValidationSchema}
-        >
-        {({
-            handleSubmit
-        }) => (
-            <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-                <InputField 
-                    label="user_id"
-                    id="user_id"
-                    name="user_id"
-                    placeholder="Enter user_id"
-                    type="text"
-                />
-                <InputField 
-                    label="exam_id"
-                    id="exam_id"
-                    name="exam_id"
-                    placeholder="Enter exam_id"
-                    type="text"
-                />
-                <InputField 
-                    label="class_id"
-                    id="class_id"
-                    name="class_id"
-                    placeholder="Enter class_id"
-                    type="text"
-                />
-                <InputField 
-                    label="section_id"
-                    id="section_id"
-                    name="section_id"
-                    placeholder="Enter section_id"
-                    type="text"
-                />
-                <InputField 
-                    label="marks"
-                    id="marks"
-                    name="marks"
-                    placeholder="Enter marks"
-                    type="text"
-                />
-                <InputField 
-                    label="grade_point"
-                    id="grade_point"
-                    name="grade_point"
-                    placeholder="Enter grade_point"
-                    type="text"
-                />
-                <InputField 
-                    label="comment"
-                    id="comment"
-                    name="comment"
-                    placeholder="Enter comment"
-                    type="text"
-                />
+  const [students, setStudents] = useState('');
+  const [exams, setExams] = useState('');
+  const [sections, setSections] = useState('');
+  const [classes, setClasses] = useState('');
+  const [subjects, setSubjects] = useState('');
 
-                <Grid item xs={12}>
-                    <Button
-                    color="primary"
-                    onClick={handleSubmit}
-                    fullWidth
-                    type="submit"
-                    variant="contained"
-                    >
-                      Submit
-                    </Button>
-                </Grid>
-            </Grid>
-          </form>
-        )}
-        </Formik>
-    )
+  useEffect(() => {
+    console.log({students});
+    fetch(`http://127.0.0.1:8000/api/students`, {
+      headers: {
+        Accept: 'application/json',
+      },
+      method: 'GET',
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setStudents(response.data?.students);
+    })
+    .catch((error) => {
+      console.error(error);
+      setStudents(null);
+    });
+
+  }, []);
+
+  useEffect(() => {
+    console.log({exams});
+    fetch(`http://127.0.0.1:8000/api/exams`, {
+      headers: {
+        Accept: 'application/json',
+      },
+      method: 'GET',
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setExams(response.data?.exam);
+    })
+    .catch((error) => {
+      console.error(error);
+      setExams(null);
+    });
+
+  }, []);
+
+  useEffect(() => {
+    console.log({sections});
+    fetch(`http://127.0.0.1:8000/api/sections`, {
+      headers: {
+        Accept: 'application/json',
+      },
+      method: 'GET',
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setSections(response.data?.section);
+    })
+    .catch((error) => {
+      console.error(error);
+      setSections(null);
+    });
+
+  }, []);
+
+  useEffect(() => {
+    console.log({classes});
+    fetch(`http://127.0.0.1:8000/api/classes`, {
+      headers: {
+        Accept: 'application/json',
+      },
+      method: 'GET',
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setClasses(response.data?.classes);
+    })
+    .catch((error) => {
+      console.error(error);
+      setClasses(null);
+    });
+
+  }, []);
+
+  useEffect(() => {
+    console.log({subjects});
+    fetch(`http://127.0.0.1:8000/api/subjects`, {
+      headers: {
+        Accept: 'application/json',
+      },
+      method: 'GET',
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setSubjects(response.data?.subject);
+    })
+    .catch((error) => {
+      console.error(error);
+      setSubjects(null);
+    });
+
+  }, []);
+
+  return (mark === undefined || mark !== null) && (
+    <Formik
+      initialValues={getMarksInitialValues(mark)}
+      onSubmit={onSubmit}
+      validationSchema={markValidationSchema}
+    >
+    {({
+      handleSubmit, handleChange
+    }) => (
+      <form noValidate onSubmit={handleSubmit}>
+        <Grid container spacing={3}>
+          <Grid item >
+            <InputLabel >Student Name</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+              }}
+            >
+              <Select
+                labelId="simple-select-label"
+                name="user_id"
+                onChange={handleChange}
+                defaultValue={mark?.user_id}
+                MenuProps={MenuProps}
+                display
+              >
+                {students ? students?.map((student) => {
+                return <MenuItem key={student.id} value={student.id}>{student.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+            <FormHelperText>Select a student</FormHelperText>
+            </FormControl>
+          </Grid>
+
+          <Grid item >
+            <InputLabel sx={{ mx: 12.5 }}>Exam name</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+                marginLeft: 12.5,
+              }}
+            >
+              <Select
+                labelId="simple-select-label"
+                name="exam_id"
+                onChange={handleChange}
+                defaultValue={mark?.exam_id}
+                MenuProps={MenuProps}
+                display
+              >
+                {exams ? exams?.map((exam) => {
+                return <MenuItem key={exam.id} value={exam.id}>{exam.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a exam</FormHelperText>
+            </FormControl>
+          </Grid>
+
+          <Grid item >
+            <InputLabel>Section</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+              }}
+            >
+              <Select
+                labelId="simple-select-label"
+                name="section_id"
+                onChange={handleChange}
+                defaultValue={mark?.section_id}
+                MenuProps={MenuProps}
+                display
+              >
+                {sections ? sections?.map((section) => {
+                return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a section</FormHelperText>
+            </FormControl>
+          </Grid>
+
+          <Grid item >
+            <InputLabel sx={{ mx: 12.5 }}>Class</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+                marginLeft: 12.5,
+              }}
+            >
+              <Select
+                labelId="simple-select-label"
+                name="class_id"
+                onChange={handleChange}
+                defaultValue={mark?.class_id}
+                MenuProps={MenuProps}
+                display
+              >
+                {classes ? classes?.map((classItem) => {
+                return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a class</FormHelperText>
+            </FormControl>
+          </Grid>
+
+          <Grid item >
+            <InputLabel>Subject</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+              }}
+            >
+              <Select
+                labelId="simple-select-label"
+                name="subject_id"
+                onChange={handleChange}
+                defaultValue={mark?.subject_id}
+                MenuProps={MenuProps}
+                display
+              >
+                {subjects ? subjects?.map((subject) => {
+                return <MenuItem key={subject.id} value={subject.id}>{subject.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a subject</FormHelperText>
+            </FormControl>
+          </Grid>
+
+          <InputField
+            label="marks"
+            id="marks"
+            name="marks"
+            placeholder="Enter marks"
+            type="text"
+          />
+
+          <InputField
+            label="grade_point"
+            id="grade_point"
+            name="grade_point"
+            placeholder="Enter grade_point"
+            type="text"
+          />
+
+          <InputField
+            label="comment"
+            id="comment"
+            name="comment"
+            placeholder="Enter comment"
+            type="text"
+          />
+
+          <Grid item xs={12}>
+            <Button
+              color="primary"
+              onClick={handleSubmit}
+              fullWidth
+              type="submit"
+              variant="contained"
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    )}
+    </Formik>
+  )
 }
 
 export default MarksEditForm;
