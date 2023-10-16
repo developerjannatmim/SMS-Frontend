@@ -1,5 +1,8 @@
 import { Button, Grid } from '@mui/material';
-import { Formik, Field } from 'formik';
+import {
+  Formik,
+  Field,
+} from 'formik';
 import * as Yup from 'yup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -68,7 +71,7 @@ const ParentEditForm = ({ parent, onSubmit }) => {
               id="phone"
               name="phone"
               placeholder="Enter phone"
-              type="number"
+              type="text"
             />
 
             <InputField
@@ -76,6 +79,15 @@ const ParentEditForm = ({ parent, onSubmit }) => {
               name="photo"
               placeholder="Enter photo"
               type="text"
+            />
+
+            <InputField
+              label="Blood Group"
+              id="blood_group"
+              name="blood_group"
+              options={BloodData.map((option) => ({ label: option, value: option }))}
+              placeholder="Select a blood group"
+              type="select"
             />
 
             <Grid item>
@@ -95,15 +107,6 @@ const ParentEditForm = ({ parent, onSubmit }) => {
               </Field>
               <FormHelperText>Add your birthday</FormHelperText>
             </Grid>
-
-            <InputField
-              label="Blood Group"
-              id="blood_group"
-              name="blood_group"
-              options={BloodData.map((option) => ({ label: option, value: option }))}
-              placeholder="Select a blood group"
-              type="select"
-            />
 
             <Grid item >
             <FormControl sx={{ mx: 2 }}>

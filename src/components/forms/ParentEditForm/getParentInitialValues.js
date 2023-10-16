@@ -1,7 +1,7 @@
 const getParentInitialValues = parent => {
   let userInformation;
   try {
-      userInformation = JSON.parse(parent.user_information);
+    userInformation = JSON.parse(parent.user_information);
   } catch (error) { /**/ }
 
   return {

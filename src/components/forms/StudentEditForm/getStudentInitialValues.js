@@ -1,13 +1,19 @@
-const getStudentInitialValues = student => ({
-  name: student?.name || '',
-  email: student?.email || '',
-  password: student?.password || '',
-  gender: JSON.parse(student.user_information)?.gender || '',
-  birthday: JSON.parse(student.user_information)?.birthday || '',
-  address: JSON.parse(student.user_information)?.address || '',
-  phone: JSON.parse(student.user_information)?.phone || '',
-  photo: JSON.parse(student.user_information)?.photo || '',
-  blood_group: JSON.parse(student.user_information)?.blood_group || ''
-});
+const getStudentInitialValues = student => {
+  let userInformation;
+  try {
+    userInformation = JSON.parse(student.user_information);
+  } catch (error) { /**/ }
+
+  return {
+    name: student?.name || '',
+    email: student?.email || '',
+    gender: userInformation?.gender || '',
+    birthday: userInformation?.birthday ? new Date(userInformation.birthday) : '',
+    address: userInformation?.address || '',
+    phone: userInformation?.phone || '',
+    photo: userInformation?.photo || '',
+    blood_group: userInformation?.blood_group || '',
+  };
+};
 
 export default getStudentInitialValues;
