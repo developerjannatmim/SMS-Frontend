@@ -40,17 +40,17 @@ const SyllabusCreateForm = ({ syllabus, onSubmit }) => {
       },
       method: 'GET',
     })
-      .then((response) => response.json())
-      .then((response) => {
-        console.info(response);
-        setSections(response.data?.section);
-      })
-      .catch((error) => {
-        console.error(error);
-        setSections(null);
-      });
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setSections(response.data?.section);
+    })
+    .catch((error) => {
+      console.error(error);
+      setSections(null);
+    });
 
-}, []);
+  }, []);
 
   useEffect(() => {
     console.log({classes});
@@ -70,9 +70,9 @@ const SyllabusCreateForm = ({ syllabus, onSubmit }) => {
         setClasses(null);
       });
 
-}, []);
+  }, []);
 
-useEffect(() => {
+  useEffect(() => {
     console.log({subjects});
     fetch(`http://127.0.0.1:8000/api/subjects`, {
       headers: {
@@ -90,125 +90,120 @@ useEffect(() => {
         setSubjects(null);
       });
 
-}, []);
-    return (syllabus === undefined || syllabus !== null) && (
-        <Formik
-            initialValues={getSyllabusCreateInitialValues(syllabus)}
-            onSubmit={onSubmit}
-            validationSchema={syllabusValidationSchema}
-        >
-        {({
-            handleSubmit, handleChange
-        }) => (
-            <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-                <InputField
-                  label="title"
-                  id="title"
-                  name="title"
-                  placeholder="Enter title"
-                  type="text"
-                />
-                <InputField 
-                  id="file"
-                  name="file"
-                  placeholder="Enter file"
-                  type="file"
-                />
-                <Grid item >
-                 <InputLabel>Section</InputLabel>
-                    <FormControl
-                    sx ={{
-                        marginTop: 0,
-                        width: 250,
-                        height: 50,
-                    }}
-                    >
-                    {/* <InputLabel id="simple-select-label">sections</InputLabel> */}
-                    <Select
-                    labelId="simple-select-label"
-                    name="section_id"
-                    onChange={handleChange}
-                    MenuProps={MenuProps}
-                    display
-                    >
-                        {sections ? sections?.map((section) => {
-                        return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
-                        })
-                        : null}
-                    </Select>
-                    <FormHelperText>Select a section</FormHelperText>
-                    </FormControl>
-                </Grid>
+  }, []);
 
-                <Grid item >
-                 <InputLabel>Class</InputLabel>
-                    <FormControl
-                    sx ={{
-                        marginTop: 0,
-                        width: 250,
-                        height: 50,
-                    }}
-                    >
-                    {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
-                    <Select
-                    labelId="simple-select-label"
-                    name="class_id"
-                    onChange={handleChange}
-                    MenuProps={MenuProps}
-                    display
-                    >
-                        {classes ? classes?.map((classItem) => {
-                        return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
-                        })
-                        : null}
-                    </Select>
-                    <FormHelperText>Select a class</FormHelperText>
-                    </FormControl>
-                </Grid>
+  return (syllabus === undefined || syllabus !== null) && (
+    <Formik
+      initialValues={getSyllabusCreateInitialValues(syllabus)}
+      onSubmit={onSubmit}
+      validationSchema={syllabusValidationSchema}
+    >
+    {({
+      handleSubmit, handleChange
+    }) => (
+    <form noValidate onSubmit={handleSubmit}>
+      <Grid container spacing={3}>
+        <InputField
+          label="title"
+          id="title"
+          name="title"
+          placeholder="Enter title"
+          type="text"
+        />
+        <InputField
+          id="file"
+          name="file"
+          placeholder="Enter file"
+          type="file"
+        />
+        <Grid item >
+          <InputLabel>Section</InputLabel>
+          <FormControl
+            sx ={{
+              marginTop: 0,
+              width: 250,
+              height: 50,
+            }}
+          >
+            <Select
+              labelId="simple-select-label"
+              name="section_id"
+              onChange={handleChange}
+              MenuProps={MenuProps}
+            >
+              {sections ? sections?.map((section) => {
+              return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
+              })
+              : null}
+            </Select>
+            <FormHelperText>Select a section</FormHelperText>
+          </FormControl>
+        </Grid>
 
-                <Grid item >
-                 <InputLabel>Subject</InputLabel>
-                    <FormControl
-                    sx ={{
-                        marginTop: 0,
-                        width: 250,
-                        height: 50,
-                    }}
-                    >
-                    {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
-                    <Select
-                    labelId="simple-select-label"
-                    name="subject_id"
-                    onChange={handleChange}
-                    MenuProps={MenuProps}
-                    display
-                    >
-                        {subjects ? subjects?.map((subject) => {
-                        return <MenuItem key={subject.id} value={subject.id}>{subject.name}</MenuItem>;
-                        })
-                        : null}
-                    </Select>
-                    <FormHelperText>Select a subject</FormHelperText>
-                    </FormControl>
-                </Grid>
+        <Grid item >
+          <InputLabel>Class</InputLabel>
+          <FormControl
+            sx ={{
+              marginTop: 0,
+              width: 250,
+              height: 50,
+            }}
+          >
+            <Select
+              labelId="simple-select-label"
+              name="class_id"
+              onChange={handleChange}
+              MenuProps={MenuProps}
+            >
+              {classes ? classes?.map((classItem) => {
+              return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
+              })
+              : null}
+            </Select>
+            <FormHelperText>Select a class</FormHelperText>
+          </FormControl>
+        </Grid>
 
-                <Grid item xs={12}>
-                    <Button
-                    color="primary"
-                    onClick={handleSubmit}
-                    fullWidth
-                    type="submit"
-                    variant="contained"
-                    >
-                      Submit
-                    </Button>
-                </Grid>
-            </Grid>
-          </form>
-        )}
-        </Formik>
-    )
+        <Grid item >
+          <InputLabel>Subject</InputLabel>
+          <FormControl
+            sx ={{
+              marginTop: 0,
+              width: 250,
+              height: 50,
+            }}
+          >
+            <Select
+              labelId="simple-select-label"
+              name="subject_id"
+              onChange={handleChange}
+              MenuProps={MenuProps}
+            >
+              {subjects ? subjects?.map((subject) => {
+              return <MenuItem key={subject.id} value={subject.id}>{subject.name}</MenuItem>;
+              })
+              : null}
+            </Select>
+            <FormHelperText>Select a subject</FormHelperText>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button
+            color="primary"
+            onClick={handleSubmit}
+            fullWidth
+            type="submit"
+            variant="contained"
+          >
+            Submit
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
+    )}
+    </Formik>
+  )
 }
 
 export default SyllabusCreateForm;

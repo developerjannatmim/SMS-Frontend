@@ -8,7 +8,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 // import { useState } from 'react';
 
-import {InputLabel, Select, FormHelperText, MenuItem } from '@mui/material';
+import {InputLabel, FormHelperText, } from '@mui/material';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -27,18 +27,6 @@ const adminValidationSchema = Yup.object().shape({
   photo: Yup.string().required(),
   blood_group: Yup.string().required()
 });
-
-const ITEM_HEIGHT = 22;
-const ITEM_PADDING_TOP = 8;
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
 
 const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
 
@@ -91,12 +79,13 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 type="text"
               />
               <InputField
+                accept="image/*"
                 id="photo"
                 name="photo"
                 placeholder="Enter photo"
                 type="file"
                 onChange={handleChange}
-                //onChange={(event) => setFieldValue(event.target.files[0])};
+                //onChange={(event) => setFieldValue(event.target.files[0])}
               />
               <Grid item >
               <FormControl sx={{ mx: 2 }}>
@@ -144,30 +133,15 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
               <FormHelperText>Add your birthday</FormHelperText>
               </Grid>
 
-              <Grid item >
-              <InputLabel>Blood Group</InputLabel>
-                <FormControl
-                  sx ={{
-                    marginTop: 0,
-                    width: 250,
-                    height: 50,
-                  }}
-                >
-                  {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
-                  <Select
-                  labelId="simple-select-label"
-                  name="blood_group"
-                  onChange={handleChange}
-                  MenuProps={MenuProps}
-                  >
-                  {BloodData?.map((option) => {
-                  return <MenuItem value={option} key={option}>{option}</MenuItem>;
-                  })}
-                  </Select>
-                  <FormHelperText>Select a blood group</FormHelperText>
-                </FormControl>
-              </Grid>
-              
+              <InputField
+              label="Blood Group"
+              id="blood_group"
+              name="blood_group"
+              options={BloodData.map((option) => ({ label: option, value: option }))}
+              placeholder="Select a blood group"
+              type="select"
+            />
+
               <Grid item xs={12}>
                 <Button
                   color="primary"

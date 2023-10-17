@@ -12,6 +12,7 @@ const RoutineEdit = () => {
   const [routine, setRoutine] = useState(null);
 
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
+    console.log(routine);
     fetch(`http://127.0.0.1:8000/api/routines/${routineId}`, {
       body: JSON.stringify({
         ...values,

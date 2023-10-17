@@ -56,7 +56,7 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
           console.error(error);
           setTeachers(null);
         });
-  
+
     }, []);
 
     useEffect(() => {
@@ -76,7 +76,7 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
           console.error(error);
           setClassRooms(null);
         });
-  
+
     }, []);
 
     useEffect(() => {
@@ -96,7 +96,7 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
             console.error(error);
             setSections(null);
           });
-    
+
     }, []);
 
       useEffect(() => {
@@ -116,7 +116,7 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
             console.error(error);
             setClasses(null);
           });
-    
+
     }, []);
 
     useEffect(() => {
@@ -136,8 +136,9 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
             console.error(error);
             setSubjects(null);
           });
-    
+
     }, []);
+
   return (routine === undefined || routine !== null) && (
     <Formik
       initialValues={getRoutineInitialValues(routine)}
@@ -145,12 +146,14 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
       validationSchema={routineValidationSchema}
     >
     {({
-      handleSubmit, handleChange, values
+      handleSubmit,
+      handleChange,
+      values
     }) => (
       <form noValidate onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item >
-            <InputLabel >Routine Creator</InputLabel>
+          <Grid item>
+            <InputLabel>Routine Creator</InputLabel>
             <FormControl
               sx ={{
                 marginTop: 0,
@@ -191,66 +194,64 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
                     defaultValue={values?.room_id}
                     MenuProps={MenuProps}
                   >
-                      {classRooms ? classRooms?.map((classRoom) => {
-                      return <MenuItem key={classRoom.id} value={classRoom.id}>{classRoom.name}</MenuItem>;
-                      })
-                      : null}
+                    {classRooms ? classRooms?.map((classRoom) => {
+                    return <MenuItem key={classRoom.id} value={classRoom.id}>{classRoom.name}</MenuItem>;
+                    })
+                    : null}
                   </Select>
                   <FormHelperText>Select a class room</FormHelperText>
                   </FormControl>
               </Grid>
 
-              <Grid item >
-              <InputLabel>Section</InputLabel>
-                  <FormControl
+              <Grid item>
+                <InputLabel>Section</InputLabel>
+                <FormControl
                   sx ={{
-                      marginTop: 0,
-                      width: 250,
-                      height: 50,
+                    marginTop: 0,
+                    width: 250,
+                    height: 50,
                   }}
-                  >
-                  {/* <InputLabel id="simple-select-label">sections</InputLabel> */}
+                >
                   <Select
-                  labelId="simple-select-label"
-                  name="section_id"
-                  onChange={handleChange}
-                  defaultValue={values?.section_id}
-                  MenuProps={MenuProps}
+                    labelId="simple-select-label"
+                    name="section_id"
+                    onChange={handleChange}
+                    defaultValue={values?.section_id}
+                    MenuProps={MenuProps}
                   >
-                      {sections ? sections?.map((section) => {
-                      return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
-                      })
-                      : null}
+                    {sections ? sections?.map((section) => {
+                    return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
+                    })
+                    : null}
                   </Select>
                   <FormHelperText>Select a section</FormHelperText>
-                  </FormControl>
+                </FormControl>
               </Grid>
 
-              <Grid item >
-              <InputLabel sx={{ mx: 12.5 }}>Class</InputLabel>
-                  <FormControl
+              <Grid item>
+                <InputLabel sx={{ mx: 12.5 }}>Class</InputLabel>
+                <FormControl
                   sx ={{
-                      marginTop: 0,
-                      width: 250,
-                      height: 50,
-                      marginLeft: 12.5,
+                    marginTop: 0,
+                    width: 250,
+                    height: 50,
+                    marginLeft: 12.5,
                   }}
-                  >
-                  {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
+                >
                   <Select
-                  labelId="simple-select-label"
-                  name="class_id"
-                  onChange={handleChange}
-                  defaultValue={values?.class_id}
-                  MenuProps={MenuProps}
+                    labelId="simple-select-label"
+                    name="class_id"
+                    onChange={handleChange}
+                    defaultValue={values?.class_id}
+                    MenuProps={MenuProps}
                   >
-                      {classes ? classes?.map((classItem) => {
-                      return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
-                      })
-                      : null}
+                    {classes ? classes?.map((classItem) => {
+                    return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
+                    })
+                    : null}
                   </Select>
                   <FormHelperText>Select a class</FormHelperText>
-                  </FormControl>
+                </FormControl>
               </Grid>
 
               <Grid item >
