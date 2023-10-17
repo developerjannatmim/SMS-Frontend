@@ -38,7 +38,7 @@ const registerValidationSchema = Yup.object().shape({
   password: Yup.string().min(6).required(),
 });
 
-const csrfToken = $('meta[name="csrf-token"]').attr('content');
+//const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
 // ============================|| FIREBASE - REGISTER ||============================ //
 
@@ -52,7 +52,6 @@ const AuthRegister = ({ register, onSubmit }) => {
       >
         {({ handleSubmit, handleChange }) => (
           <form noValidate onSubmit={handleSubmit}>
-          <input type="hidden" name="_token" value={csrfToken} />
 
             <Grid container spacing={3}>
               <InputField
@@ -62,7 +61,6 @@ const AuthRegister = ({ register, onSubmit }) => {
                 placeholder="Enter name"
                 onChange={handleChange}
                 type="text"
-                value={csrf_token}
               />
               <InputField
                 label="Email"

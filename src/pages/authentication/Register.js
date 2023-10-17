@@ -8,7 +8,7 @@ import { Grid, Stack, Typography } from '@mui/material';
 import getRegisterInitialValues from './auth-forms/getRegisterInitialValues';
 import FirebaseRegister from './auth-forms/AuthRegister';
 import AuthWrapper from './AuthWrapper';
-
+import axios from 'axios';
 
 // ================================|| REGISTER ||================================ //
 
@@ -18,6 +18,7 @@ const Register = () => {
       values,
 
     });
+    axios.get('/sanctum/csrf-cookie').then((response) => {
     fetch('http://127.0.0.1:8000/api/register', {
       body: JSON.stringify({
         ...values
@@ -41,7 +42,8 @@ const Register = () => {
       console.error(error);
       setSubmitting(false);
     });
-    
+    console.info(response);
+  });
   };
 
   return (
