@@ -184,7 +184,7 @@ const SyllabusEditForm = ({ syllabus, onSubmit }) => {
                 labelId="simple-select-label"
                 name="subject_id"
                 onChange={handleChange}
-                defaultValue={values?.subject_id ? values?.subject_id : ''}
+                defaultValue={values?.subject_id}
                 MenuProps={MenuProps}
               >
                 {subjects ? subjects?.map((subject) => {

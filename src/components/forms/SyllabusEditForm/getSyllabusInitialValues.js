@@ -3,6 +3,6 @@ const getSyllabusInitialValues = syllabus => ({
   class_id: syllabus?.class_id || '',
   section_id: syllabus?.section_id || '',
   subject_id: syllabus?.subject_id || '',
-  file: syllabus?.file || ''
+  file: syllabus?.file || '',
 });
 export default getSyllabusInitialValues;
