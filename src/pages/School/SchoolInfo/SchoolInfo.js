@@ -1,12 +1,14 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import SchoolEditForm, { getSchoolInitialValues } from '../../../components/forms/SchoolEditForm';
 import MainCard from '../../../components/MainCard';
 
 const SchoolInfo = () => {
+  const navigate = useNavigate();
   const { schoolId } = useParams();
 
   const [school, setSchool] = useState(null);
@@ -29,6 +31,8 @@ const SchoolInfo = () => {
         resetForm({
           values: getSchoolInitialValues(response.data?.school),
         });
+        swal('Success', response?.message, "success");
+        navigate("/schools");
       })
       .catch((error) => {
         console.error(error);

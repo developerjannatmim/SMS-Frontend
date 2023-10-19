@@ -1,12 +1,14 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import MarksEditForm, { getMarksInitialValues } from '../../../components/forms/MarksEditForm';
 import MainCard from '../../../components/MainCard';
 
 const MarksEdit = () => {
+  const navigate = useNavigate();
   const { markId } = useParams();
 
   const [mark, setMark] = useState(null);
@@ -29,6 +31,8 @@ const MarksEdit = () => {
         resetForm({
           values: getMarksInitialValues(response.data?.mark),
         });
+        swal('Success', response?.message, "success");
+        navigate("/marks");
       })
       .catch((error) => {
         console.error(error);

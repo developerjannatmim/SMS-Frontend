@@ -1,12 +1,12 @@
 import { Button, Grid } from '@mui/material';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
+// import React, { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-// import { useState } from 'react';
 
 import {InputLabel, FormHelperText, } from '@mui/material';
 
@@ -36,11 +36,11 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
     (admin === undefined || admin !== null) && (
       <Formik
         initialValues={getAdminCreateInitialValues(admin)}
-        onSubmit={onSubmit}
+        onSubmit={ onSubmit }
         validationSchema={adminValidationSchema}
       >
         {({ handleSubmit, handleChange }) => (
-          <form noValidate onSubmit={handleSubmit} encType="multipart/form-data">
+          <form noValidate onSubmit={handleSubmit} >
 
             <Grid container spacing={3}>
               <InputField
@@ -78,15 +78,26 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 placeholder="Enter phone"
                 type="text"
               />
-              <InputField
-                accept="image/*"
+              {/* <InputField
+                //accept="image/*"
                 id="photo"
                 name="photo"
                 placeholder="Enter photo"
                 type="file"
+                onChange={handleImage}
+                // onChange={(event) =>{
+                //   formProps.setFieldValue("photo", event.currentTarget.files[0]);
+                // }}
+              /> */}
+              <Field
+                name="photo"
+                type="file"
                 onChange={handleChange}
-                //onChange={(event) => setFieldValue(event.target.files[0])}
+                // onChange={(event) => {
+                //   setFieldValue("photo", event.currentTarget.files[0]);
+                // }}
               />
+
               <Grid item >
               <FormControl sx={{ mx: 2 }}>
                 <FormLabel>Choose Your Gender</FormLabel>

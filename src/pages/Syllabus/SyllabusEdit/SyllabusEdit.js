@@ -1,12 +1,14 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import SyllabusEditForm, { getSyllabusInitialValues } from '../../../components/forms/SyllabusEditForm';
 import MainCard from '../../../components/MainCard';
 
 const SyllabusEdit = () => {
+  const navigate = useNavigate();
   const { syllabusId } = useParams();
 
   const [syllabus, setSyllabus] = useState(null);
@@ -29,6 +31,8 @@ const SyllabusEdit = () => {
         resetForm({
           values: getSyllabusInitialValues(response.data?.syllabus),
         });
+        swal('Success', response?.message, "success");
+        navigate("/syllabuses");
       })
       .catch((error) => {
         console.error(error);

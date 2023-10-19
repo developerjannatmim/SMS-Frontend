@@ -1,12 +1,14 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import RoutineEditForm, { getRoutineInitialValues } from '../../../components/forms/RoutineEditForm';
 import MainCard from '../../../components/MainCard';
 
 const RoutineEdit = () => {
+  const navigate = useNavigate();
   const { routineId } = useParams();
 
   const [routine, setRoutine] = useState(null);
@@ -30,6 +32,8 @@ const RoutineEdit = () => {
         resetForm({
           values: getRoutineInitialValues(response.data?.routine),
         });
+        swal('Success', response?.message, "success");
+        navigate("/routines");
       })
       .catch((error) => {
         console.error(error);

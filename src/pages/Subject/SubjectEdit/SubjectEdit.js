@@ -1,12 +1,14 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import SubjectEditForm, { getSubjectInitialValues } from '../../../components/forms/SubjectEditForm';
 import MainCard from '../../../components/MainCard';
 
 const SubjectEdit = () => {
+  const navigate = useNavigate();
   const { subjectId } = useParams();
 
   const [subject, setSubject] = useState(null);
@@ -29,6 +31,8 @@ const SubjectEdit = () => {
         resetForm({
           values: getSubjectInitialValues(response.data?.subject),
         });
+        swal('Success', response?.message, "success");
+        navigate("/subjects");
       })
       .catch((error) => {
         console.error(error);

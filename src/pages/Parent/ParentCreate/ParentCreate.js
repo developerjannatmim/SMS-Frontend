@@ -1,11 +1,13 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import ParentCreateForm, { getParentCreateInitialValues } from '../../../components/forms/ParentCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const ParentCreate = () => {
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     fetch('http://127.0.0.1:8000/api/parents', {
       body: JSON.stringify({
@@ -24,6 +26,8 @@ const ParentCreate = () => {
         resetForm({
           values: getParentCreateInitialValues(undefined)
         });
+        swal('Success', response?.message, "success");
+        navigate("/parents");
       })
       .catch((error) => {
         console.error(error);

@@ -1,12 +1,14 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import ParentEditForm, { getParentInitialValues } from '../../../components/forms/ParentEditForm';
 import MainCard from '../../../components/MainCard';
 
 const ParentEdit = () => {
+  const navigate = useNavigate();
   const { parentId } = useParams();
 
   const [parent, setParent] = useState(null);
@@ -29,6 +31,8 @@ const ParentEdit = () => {
         resetForm({
           values: getParentInitialValues(response.data?.parent),
         });
+        swal('Success', response?.message, "success");
+        navigate("/parents");
       })
       .catch((error) => {
         console.error(error);

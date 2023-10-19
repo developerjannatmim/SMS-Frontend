@@ -1,11 +1,15 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
+// project import
 import AdminCreateForm, { getAdminCreateInitialValues } from '../../../components/forms/AdminCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const AdminCreate = () => {
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     console.log({
       values,
@@ -28,6 +32,8 @@ const AdminCreate = () => {
         resetForm({
           values: getAdminCreateInitialValues(undefined)
         });
+        swal('Success', response?.message, "success");
+        navigate("/admin");
       })
       .catch((error) => {
         console.error(error);

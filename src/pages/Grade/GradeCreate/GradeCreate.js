@@ -1,11 +1,13 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import GradeCreateForm, { getGradeCreateInitialValues } from '../../../components/forms/GradeCreateForm';
 import MainCard from '../../../components/MainCard';
+import swal from 'sweetalert';
 
 const GradeCreate = () => {
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     fetch('http://127.0.0.1:8000/api/grades', {
       body: JSON.stringify({
@@ -24,6 +26,8 @@ const GradeCreate = () => {
         resetForm({
           values: getGradeCreateInitialValues(undefined)
         });
+        swal('Success', response?.message, "success");
+        navigate("/grades");
       })
       .catch((error) => {
         console.error(error);

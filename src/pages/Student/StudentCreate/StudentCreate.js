@@ -1,11 +1,13 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import StudentCreateForm, { getStudentCreateInitialValues } from '../../../components/forms/StudentCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const StudentCreate = () => {
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     fetch('http://127.0.0.1:8000/api/students', {
       body: JSON.stringify({
@@ -24,6 +26,8 @@ const StudentCreate = () => {
         resetForm({
           values: getStudentCreateInitialValues(undefined)
         });
+        swal('Success', response?.message, "success");
+        navigate("/students");
       })
       .catch((error) => {
         console.error(error);
