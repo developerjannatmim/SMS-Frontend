@@ -39,7 +39,7 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
         onSubmit={ onSubmit }
         validationSchema={adminValidationSchema}
       >
-        {({ handleSubmit, handleChange }) => (
+        {({ handleSubmit, handleChange, setFieldValue }) => (
           <form noValidate onSubmit={handleSubmit} >
 
             <Grid container spacing={3}>
@@ -78,25 +78,23 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 placeholder="Enter phone"
                 type="text"
               />
-              {/* <InputField
-                //accept="image/*"
+              <InputField
                 id="photo"
                 name="photo"
-                placeholder="Enter photo"
                 type="file"
-                onChange={handleImage}
-                // onChange={(event) =>{
-                //   formProps.setFieldValue("photo", event.currentTarget.files[0]);
-                // }}
-              /> */}
-              <Field
+                onChange={(event) =>{
+                    setFieldValue("photo", event.target.files[0]);
+                }}
+              />
+              
+              {/* <Field
                 name="photo"
                 type="file"
                 onChange={handleChange}
                 // onChange={(event) => {
-                //   setFieldValue("photo", event.currentTarget.files[0]);
+                //   setFieldValue("photo", event.target.files[0]);
                 // }}
-              />
+              /> */}
 
               <Grid item >
               <FormControl sx={{ mx: 2 }}>
