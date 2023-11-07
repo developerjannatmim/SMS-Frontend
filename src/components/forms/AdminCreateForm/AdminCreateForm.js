@@ -1,13 +1,11 @@
 import { Button, Grid } from '@mui/material';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
-// import React, { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-
 import {InputLabel, FormHelperText, } from '@mui/material';
 
 import DatePicker from 'react-datepicker';
@@ -39,10 +37,9 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
         onSubmit={ onSubmit }
         validationSchema={adminValidationSchema}
       >
-        {({ handleSubmit, handleChange, setFieldValue }) => (
+        {({ handleSubmit, handleChange, setFieldValue } ) => (
           <form noValidate onSubmit={handleSubmit} >
-
-            <Grid container spacing={3}>
+            <Grid container spacing={4}>
               <InputField
                 label="Name"
                 id="name"
@@ -79,23 +76,22 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 type="text"
               />
               <InputField
-                id="photo"
                 name="photo"
                 type="file"
-                onChange={(event) =>{
-                    setFieldValue("photo", event.target.files[0]);
+                onChange={(e) => {
+                  if(e.currentTarget.files){
+                    setFieldValue('photo', e.currentTarget.files[0]);
+                  }
                 }}
               />
-              
-              {/* <Field
-                name="photo"
-                type="file"
-                onChange={handleChange}
-                // onChange={(event) => {
-                //   setFieldValue("photo", event.target.files[0]);
-                // }}
-              /> */}
-
+              <InputField
+                label="Blood Group"
+                id="blood_group"
+                name="blood_group"
+                options={BloodData.map((option) => ({ label: option, value: option }))}
+                placeholder="Select a blood group"
+                type="select"
+              />
               <Grid item >
               <FormControl sx={{ mx: 2 }}>
                 <FormLabel>Choose Your Gender</FormLabel>
@@ -141,16 +137,6 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
               </Field>
               <FormHelperText>Add your birthday</FormHelperText>
               </Grid>
-
-              <InputField
-              label="Blood Group"
-              id="blood_group"
-              name="blood_group"
-              options={BloodData.map((option) => ({ label: option, value: option }))}
-              placeholder="Select a blood group"
-              type="select"
-            />
-
               <Grid item xs={12}>
                 <Button
                   color="primary"

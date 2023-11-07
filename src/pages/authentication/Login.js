@@ -14,20 +14,21 @@ import AuthWrapper from './AuthWrapper';
 
 const Login = () => {
   const navigate = useNavigate();
-  const handleSubmit = (values, { resetForm, setSubmitting }) => {
+
+  const handleSubmit = (values, { resetForm }) => {
+
     console.log({
       values,
-
     });
-    fetch('http://127.0.0.1:8000/api/login' , {
+    fetch('http://127.0.0.1:8000/api/login', {
       body: JSON.stringify({
-        ...values
+        ...values,
       }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      method: 'POST'
+      method: 'POST',
     })
     .then((response) => response.json())
     .then((response) => {
@@ -44,10 +45,10 @@ const Login = () => {
         swal('Warning', response?.message, "warning");
       }
     })
-    .catch((error) => {
-      console.error(error);
-      setSubmitting(false);
-    });
+    // .catch((error) => {
+    //   console.error(error);
+    //   setSubmitting(false);
+    // });
   };
   return(
     <AuthWrapper>

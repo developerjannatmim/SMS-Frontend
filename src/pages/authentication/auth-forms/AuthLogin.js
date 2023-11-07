@@ -26,17 +26,15 @@ const AuthLogin = ({ login, onSubmit }) => {
           <form noValidate onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <InputField
-                label="Email"
-                id="email"
                 name="email"
+                id="email"
                 placeholder="Enter email"
                 onChange={handleChange}
                 type="email"
               />
               <InputField
-                label="Password"
-                id="password"
                 name="password"
+                id="password"
                 placeholder="Enter password"
                 onChange={handleChange}
                 type="password"
