@@ -1,4 +1,5 @@
 import { Grid, Typography } from '@mui/material';
+import { Image } from 'mui-image';
 
 const TeacherDetail = ({ teacher }) => {
   let userInformation;
@@ -7,7 +8,7 @@ const TeacherDetail = ({ teacher }) => {
   } catch (error) { /**/ }
   return (
     teacher && (
-      <Grid component="dl" contianer flexDirection="column" spacing={2}>
+      <Grid component="dl" container flexDirection="column" spacing={2}>
         <Grid item>
           <Typography component="dt" variant="h5">
             ID
@@ -54,7 +55,13 @@ const TeacherDetail = ({ teacher }) => {
           <Typography component="dt" variant="h5">
             Photo
           </Typography>
-          <Typography component="dd">{userInformation?.photo}</Typography>
+          <Typography component="dd">
+            <Image
+              src={`http://127.0.0.1:8000/teacher-images/${userInformation?.photo}`}
+              width="50px"
+              alt={teacher?.name}
+            />
+          </Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">

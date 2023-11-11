@@ -39,17 +39,19 @@ const ParentEditForm = ({ parent, onSubmit }) => {
         validationSchema={ parentValidationSchema }
       >
       {({
-        handleSubmit, handleChange, values
+        handleSubmit,
+        handleChange,
+        values,
+        setFieldValue
       }) => (
         <form noValidate onSubmit={handleSubmit}>
-          <Grid container spacing={3}>
+          <Grid container spacing={4}>
             <InputField
               label="Name"
               id="name"
               name="name"
               placeholder="Enter name"
             />
-
             <InputField
               label="Email"
               id="email"
@@ -57,7 +59,6 @@ const ParentEditForm = ({ parent, onSubmit }) => {
               placeholder="Enter email"
               type="email"
             />
-
             <InputField
               label="Address"
               id="address"
@@ -65,7 +66,6 @@ const ParentEditForm = ({ parent, onSubmit }) => {
               placeholder="Enter address"
               type="text"
             />
-
             <InputField
               label="Phone"
               id="phone"
@@ -73,14 +73,6 @@ const ParentEditForm = ({ parent, onSubmit }) => {
               placeholder="Enter phone"
               type="text"
             />
-
-            <InputField
-              id="photo"
-              name="photo"
-              placeholder="Enter photo"
-              type="text"
-            />
-
             <InputField
               label="Blood Group"
               id="blood_group"
@@ -89,8 +81,35 @@ const ParentEditForm = ({ parent, onSubmit }) => {
               placeholder="Select a blood group"
               type="select"
             />
-
-            <Grid item>
+            <Grid item >
+              <FormControl sx={{ mx: 2 }}>
+                <FormLabel>Choose Your Gender</FormLabel>
+                <RadioGroup
+                  row
+                  name="gender"
+                  id="gender"
+                  onChange={handleChange}
+                  defaultValue={values.gender}
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio/>}
+                    label="Female"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio/>}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value="others"
+                    control={<Radio/>}
+                    label="Others"
+                  />
+                </RadioGroup>
+              </FormControl>
+            </Grid>
+            <Grid item style={{ marginTop: '-28px', marginLeft: '5px' }}>
               <InputLabel>Birthday</InputLabel>
               <Field name="birthday">
                 {({ field, form }) => (
@@ -107,47 +126,27 @@ const ParentEditForm = ({ parent, onSubmit }) => {
               </Field>
               <FormHelperText>Add your birthday</FormHelperText>
             </Grid>
-
-            <Grid item >
-            <FormControl sx={{ mx: 2 }}>
-              <FormLabel>Choose Your Gender</FormLabel>
-              <RadioGroup
-                row
-                name="gender"
-                id="gender"
-                onChange={handleChange}
-                defaultValue={values.gender}
+            <input
+              name="photo"
+              type="file"
+              onChange={(e) => {
+                if(e.currentTarget.files){
+                  setFieldValue('photo', e.currentTarget.files[0]);
+                }
+              }}
+              style={{ marginTop: '30px', marginLeft: '320px' }}
+            />
+            <Grid item xs={12}>
+              <Button
+                color="primary"
+                onClick={handleSubmit}
+                fullWidth
+                type="submit"
+                variant="contained"
               >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio/>}
-                  label="Female"
-                />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio/>}
-                  label="Male"
-                />
-                <FormControlLabel
-                  value="others"
-                  control={<Radio/>}
-                  label="Others"
-                />
-              </RadioGroup>
-            </FormControl>
+                Submit
+              </Button>
             </Grid>
-
-              <Grid item xs={12}>
-                <Button
-                  color="primary"
-                  onClick={handleSubmit}
-                  fullWidth
-                  type="submit"
-                  variant="contained"
-                >
-                  Submit
-                </Button>
-              </Grid>
           </Grid>
         </form>
       )}

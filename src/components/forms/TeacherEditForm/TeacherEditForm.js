@@ -41,17 +41,17 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
     {({
       handleSubmit,
       handleChange,
-      values
+      values,
+      setFieldValue
     }) => (
       <form noValidate onSubmit={handleSubmit}>
-        <Grid container spacing={3}>
+        <Grid container spacing={4}>
           <InputField
             label="Name"
             id="name"
             name="name"
             placeholder="Enter name"
           />
-
           <InputField
             label="Email"
             id="email"
@@ -59,28 +59,18 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
             placeholder="Enter email"
             type="email"
           />
-
           <InputField
             label="Address"
             id="address"
             name="address"
             placeholder="Enter address"
           />
-
           <InputField
             label="Phone"
             id="phone"
             name="phone"
             placeholder="Enter phone"
           />
-
-          <InputField
-            label="Photo"
-            id="photo"
-            name="photo"
-            placeholder="Enter photo"
-          />
-
           <InputField
             label="Blood Group"
             id="blood_group"
@@ -89,25 +79,6 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
             placeholder="Select a blood group"
             type="select"
           />
-
-          <Grid item>
-            <InputLabel>Birthday</InputLabel>
-            <Field name="birthday">
-              {({ field, form }) => (
-              <DatePicker
-                {...field}
-                style={{ width: 180 }}
-                showIcon
-                dateFormat="yyyy-MM-dd"
-                id="birthday"
-                selected={field.value}
-                onChange={(date) => form.setFieldValue(field.name, date)}
-              />
-              )}
-            </Field>
-            <FormHelperText>Add your birthday</FormHelperText>
-          </Grid>
-
           <Grid item >
             <FormControl sx={{ mx: 2 }}>
             <FormLabel>Choose Your Gender</FormLabel>
@@ -136,7 +107,33 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
             </RadioGroup>
             </FormControl>
           </Grid>
-
+          <Grid item style={{ marginTop: '-28px', marginLeft: '5px' }}>
+            <InputLabel>Birthday</InputLabel>
+            <Field name="birthday">
+              {({ field, form }) => (
+              <DatePicker
+                {...field}
+                style={{ width: 180 }}
+                showIcon
+                dateFormat="yyyy-MM-dd"
+                id="birthday"
+                selected={field.value}
+                onChange={(date) => form.setFieldValue(field.name, date)}
+              />
+              )}
+            </Field>
+            <FormHelperText>Add your birthday</FormHelperText>
+          </Grid>
+          <input
+            name="photo"
+            type="file"
+            onChange={(e) => {
+              if(e.currentTarget.files){
+                setFieldValue('photo', e.currentTarget.files[0]);
+              }
+            }}
+            style={{ marginTop: '30px', marginLeft: '320px' }}
+          />
           <Grid item xs={12}>
             <Button
               color="primary"

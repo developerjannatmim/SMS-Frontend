@@ -38,101 +38,96 @@ const StudentEditForm = ({ student, onSubmit }) => {
         onSubmit={onSubmit}
         validationSchema={studentValidationSchema}
       >
-        {({ handleSubmit, handleChange, values }) => (
+        {({ handleSubmit, handleChange, values, setFieldValue }) => (
           <form noValidate onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
+            <Grid container spacing={4}>
               <InputField
                 label="Name"
                 id="name"
                 name="name"
                 placeholder="Enter name"
               />
-
               <InputField
                 label="Email"
                 id="email"
                 name="email"
                 placeholder="Enter email" type="email"
               />
-
               <InputField
                 label="Address"
                 id="address"
                 name="address"
                 placeholder="Enter address"
               />
-
               <InputField
                 label="Phone"
                 id="phone"
                 name="phone"
                 placeholder="Enter phone"
               />
-
               <InputField
-                label="Photo"
-                id="photo"
-                name="photo"
-                placeholder="Enter photo"
-                type="text"
+                label="Blood Group"
+                id="blood_group"
+                name="blood_group"
+                options={BloodData.map((option) => ({ label: option, value: option }))}
+                placeholder="Select a blood group"
+                type="select"
               />
-
-            <Grid item>
-              <InputLabel>Birthday</InputLabel>
-              <Field name="birthday">
-                {({ field, form }) => (
-                  <DatePicker
-                    {...field}
-                    style={{ width: 180 }}
-                    showIcon
-                    dateFormat="yyyy-MM-dd"
-                    id="birthday"
-                    selected={field.value}
-                    onChange={(date) => form.setFieldValue(field.name, date)}
-                  />
-                )}
-              </Field>
-              <FormHelperText>Add your birthday</FormHelperText>
-            </Grid>
-
-            <InputField
-              label="Blood Group"
-              id="blood_group"
-              name="blood_group"
-              options={BloodData.map((option) => ({ label: option, value: option }))}
-              placeholder="Select a blood group"
-              type="select"
-            />
-
-            <Grid item >
-            <FormControl sx={{ mx: 2 }}>
-              <FormLabel>Choose Your Gender</FormLabel>
-              <RadioGroup
-                row
-                name="gender"
-                id="gender"
-                onChange={handleChange}
-                defaultValue={values.gender}
-              >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio/>}
-                  label="Female"
-                />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio/>}
-                  label="Male"
-                />
-                <FormControlLabel
-                  value="others"
-                  control={<Radio/>}
-                  label="Others"
-                />
-              </RadioGroup>
-            </FormControl>
-            </Grid>
-
+              <Grid item >
+                <FormControl sx={{ mx: 2 }}>
+                  <FormLabel>Choose Your Gender</FormLabel>
+                  <RadioGroup
+                    row
+                    name="gender"
+                    id="gender"
+                    onChange={handleChange}
+                    defaultValue={values.gender}
+                  >
+                    <FormControlLabel
+                      value="female"
+                      control={<Radio/>}
+                      label="Female"
+                    />
+                    <FormControlLabel
+                      value="male"
+                      control={<Radio/>}
+                      label="Male"
+                    />
+                    <FormControlLabel
+                      value="others"
+                      control={<Radio/>}
+                      label="Others"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              </Grid>
+              <Grid item style={{ marginTop: '-28px', marginLeft: '5px' }}>
+                <InputLabel>Birthday</InputLabel>
+                <Field name="birthday">
+                  {({ field, form }) => (
+                    <DatePicker
+                      {...field}
+                      style={{ width: 180 }}
+                      showIcon
+                      dateFormat="yyyy-MM-dd"
+                      id="birthday"
+                      selected={field.value}
+                      onChange={(date) => form.setFieldValue(field.name, date)}
+                    />
+                  )}
+                </Field>
+                <FormHelperText>Add your birthday</FormHelperText>
+              </Grid>
+              <input
+                name="photo"
+                type="file"
+                onChange={(e) => {
+                  if(e.currentTarget.files){
+                    setFieldValue('photo', e.currentTarget.files[0]);
+                  }
+                }}
+                style={{ marginTop: '30px', marginLeft: '320px' }}
+              />
               <Grid item xs={12}>
                 <Button color="primary" onClick={handleSubmit} fullWidth type="submit" variant="contained">
                   Submit

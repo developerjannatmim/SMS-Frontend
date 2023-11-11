@@ -30,7 +30,7 @@ const adminValidationSchema = Yup.object().shape({
     (value) => !value || (value && value.size <= 1024 * 2048)
   )
   .required('Enter your photo'),
-  blood_group: Yup.string().required()
+  blood_group: Yup.string().required(),
 });
 
 const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
