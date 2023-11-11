@@ -27,6 +27,7 @@ const TeacherEdit = () => {
 
     console.log(values);
     console.log(formData);
+
     fetch(`http://127.0.0.1:8000/api/teachers/${teacherId}`, {
       body: formData,
       headers: {
@@ -57,15 +58,15 @@ const TeacherEdit = () => {
       },
       method: 'GET',
     })
-      .then((response) => response.json())
-      .then((response) => {
-        console.info(response);
-        setTeacher(response.data?.teacher);
-      })
-      .catch((error) => {
-        console.error(error);
-        setTeacher(null);
-      });
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setTeacher(response.data?.teacher);
+    })
+    .catch((error) => {
+      console.error(error);
+      setTeacher(null);
+    });
   }, [teacherId]);
 
   return (

@@ -27,6 +27,7 @@ const ParentEdit = () => {
 
     console.log(values);
     console.log(formData);
+
     fetch(`http://127.0.0.1:8000/api/parents/${parentId}`, {
       body: formData,
       headers: {
@@ -34,20 +35,20 @@ const ParentEdit = () => {
       },
       method: 'POST',
     })
-      .then((response) => response.json())
-      .then((response) => {
-        console.info(response);
-        setSubmitting(false);
-        resetForm({
-          values: getParentInitialValues(response.data?.parent),
-        });
-        swal('Success', response?.message, "success");
-        navigate("/parents");
-      })
-      .catch((error) => {
-        console.error(error);
-        setSubmitting(false);
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setSubmitting(false);
+      resetForm({
+        values: getParentInitialValues(response.data?.parent),
       });
+      swal('Success', response?.message, "success");
+      navigate("/parents");
+    })
+    .catch((error) => {
+      console.error(error);
+      setSubmitting(false);
+    });
   };
 
   useEffect(() => {
@@ -57,15 +58,15 @@ const ParentEdit = () => {
       },
       method: 'GET',
     })
-      .then((response) => response.json())
-      .then((response) => {
-        console.info(response);
-        setParent(response.data?.parent);
-      })
-      .catch((error) => {
-        console.error(error);
-        setParent(null);
-      });
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setParent(response.data?.parent);
+    })
+    .catch((error) => {
+      console.error(error);
+      setParent(null);
+    });
   }, [parentId]);
 
   return (

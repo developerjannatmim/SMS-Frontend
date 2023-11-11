@@ -27,6 +27,7 @@ const StudentEdit = () => {
 
     console.log(values);
     console.log(formData);
+
     fetch(`http://127.0.0.1:8000/api/students/${studentId}`, {
       body: formData,
       headers: {
@@ -34,20 +35,20 @@ const StudentEdit = () => {
       },
       method: 'POST',
     })
-      .then((response) => response.json())
-      .then((response) => {
-        console.info(response);
-        setSubmitting(false);
-        resetForm({
-          values: getStudentInitialValues(response.data?.student),
-        });
-        swal('Success', response?.message, "success");
-        navigate("/students");
-      })
-      .catch((error) => {
-        console.error(error);
-        setSubmitting(false);
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setSubmitting(false);
+      resetForm({
+        values: getStudentInitialValues(response.data?.student),
       });
+      swal('Success', response?.message, "success");
+      navigate("/students");
+    })
+    .catch((error) => {
+      console.error(error);
+      setSubmitting(false);
+    });
   };
 
   useEffect(() => {
@@ -57,15 +58,15 @@ const StudentEdit = () => {
       },
       method: 'GET',
     })
-      .then((response) => response.json())
-      .then((response) => {
-        console.info(response);
-        setStudent(response.data?.student);
-      })
-      .catch((error) => {
-        console.error(error);
-        setStudent(null);
-      });
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setStudent(response.data?.student);
+    })
+    .catch((error) => {
+      console.error(error);
+      setStudent(null);
+    });
   }, [studentId]);
 
   return (

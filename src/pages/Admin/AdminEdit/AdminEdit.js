@@ -36,20 +36,20 @@ const AdminEdit = () => {
       },
       method: 'POST',
     })
-      .then((response) => response.json())
-      .then((response) => {
-        console.info(response);
-        setSubmitting(false);
-        resetForm({
-          values: getAdminInitialValues(response.data?.admin),
-        });
-        swal('Success', response?.message, "success");
-        navigate("/admin");
-      })
-      .catch((error) => {
-        console.error(error);
-        setSubmitting(false);
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setSubmitting(false);
+      resetForm({
+        values: getAdminInitialValues(response.data?.admin),
       });
+      swal('Success', response?.message, "success");
+      navigate("/admin");
+    })
+    .catch((error) => {
+      console.error(error);
+      setSubmitting(false);
+    });
   };
 
   useEffect(() => {
@@ -59,15 +59,15 @@ const AdminEdit = () => {
       },
       method: 'GET',
     })
-      .then((response) => response.json())
-      .then((response) => {
-        console.info(response);
-        setAdmin(response.data?.admin);
-      })
-      .catch((error) => {
-        console.error(error);
-        setAdmin(null);
-      });
+    .then((response) => response.json())
+    .then((response) => {
+      console.info(response);
+      setAdmin(response.data?.admin);
+    })
+    .catch((error) => {
+      console.error(error);
+      setAdmin(null);
+    });
   }, [adminId]);
 
   return (

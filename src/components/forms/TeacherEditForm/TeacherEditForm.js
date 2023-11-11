@@ -81,30 +81,30 @@ const TeacherEditForm = ({ teacher, onSubmit }) => {
           />
           <Grid item >
             <FormControl sx={{ mx: 2 }}>
-            <FormLabel>Choose Your Gender</FormLabel>
-            <RadioGroup
-              row
-              name="gender"
-              id="gender"
-              onChange={handleChange}
-              defaultValue={values.gender}
-            >
-              <FormControlLabel
-                value="female"
-                control={<Radio/>}
-                label="Female"
-              />
-              <FormControlLabel
-                value="male"
-                control={<Radio/>}
-                label="Male"
-              />
-              <FormControlLabel
-                value="others"
-                control={<Radio/>}
-                label="Others"
-              />
-            </RadioGroup>
+              <FormLabel>Choose Your Gender</FormLabel>
+              <RadioGroup
+                row
+                name="gender"
+                id="gender"
+                onChange={handleChange}
+                defaultValue={values.gender}
+              >
+                <FormControlLabel
+                  value="female"
+                  control={<Radio/>}
+                  label="Female"
+                />
+                <FormControlLabel
+                  value="male"
+                  control={<Radio/>}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="others"
+                  control={<Radio/>}
+                  label="Others"
+                />
+              </RadioGroup>
             </FormControl>
           </Grid>
           <Grid item style={{ marginTop: '-28px', marginLeft: '5px' }}>
