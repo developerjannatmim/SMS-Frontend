@@ -9,15 +9,25 @@ import MainCard from '../../../components/MainCard';
 const StudentCreate = () => {
   const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
+
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('email', values.email);
+    formData.append('password', values.password);
+    formData.append('gender', values.gender);
+    formData.append('address', values.address);
+    formData.append('phone', values.phone);
+    formData.append('photo', values.photo);
+    formData.append('blood_group', values.blood_group);
+    formData.append('birthday', values.birthday);
+    console.log(values);
+
     fetch('http://127.0.0.1:8000/api/students', {
-      body: JSON.stringify({
-        ...values
-      }),
+      body: formData,
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
       },
-      method: 'POST'
+      method: 'POST',
     })
       .then((response) => response.json())
       .then((response) => {

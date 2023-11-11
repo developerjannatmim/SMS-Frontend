@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-import {InputLabel, FormHelperText, } from '@mui/material';
+import {InputLabel, FormHelperText } from '@mui/material';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -22,7 +22,14 @@ const adminValidationSchema = Yup.object().shape({
   birthday: Yup.string().required(),
   address: Yup.string().required(),
   phone: Yup.string().required(),
-  photo: Yup.string().required(),
+  photo: Yup.mixed()
+  .nullable()
+  .test(
+    'FILE_SIZE',
+    'UPLOAD FILE IS TOO BIG',
+    (value) => !value || (value && value.size <= 1024 * 2048)
+  )
+  .required('Enter your photo'),
   blood_group: Yup.string().required()
 });
 
@@ -75,7 +82,7 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 placeholder="Enter phone"
                 type="text"
               />
-              <InputField
+              <input
                 name="photo"
                 type="file"
                 onChange={(e) => {
@@ -83,6 +90,7 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                     setFieldValue('photo', e.currentTarget.files[0]);
                   }
                 }}
+                style={{ marginTop: '37px', marginLeft: '35px' }}
               />
               <InputField
                 label="Blood Group"
