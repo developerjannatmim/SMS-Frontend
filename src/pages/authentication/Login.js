@@ -34,7 +34,7 @@ const Login = () => {
     .then((response) => {
       if(response?.status === 200){
         const ObjData = {
-          auth_name: response?.auth_name,
+          auth_name: response?.auth_name || '',
           auth_email: response?.auth_email,
           gender: response?.gender,
           phone: response?.phone,
