@@ -135,6 +135,7 @@ const ParentEditForm = ({ parent, onSubmit }) => {
                 }
               }}
               style={{ marginTop: '30px', marginLeft: '320px' }}
+              required
             />
             <Grid item xs={12}>
               <Button

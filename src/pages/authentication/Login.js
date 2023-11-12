@@ -33,8 +33,17 @@ const Login = () => {
     .then((response) => response.json())
     .then((response) => {
       if(response?.status === 200){
+        const ObjData = {
+          auth_name: response?.auth_name,
+          auth_email: response?.auth_email,
+          gender: response?.gender,
+          phone: response?.phone,
+          birthday: response?.birthday,
+          photo: response?.photo,
+          address: response?.address,
+        }
         localStorage.setItem('auth_token', response?.token);
-        localStorage.setItem('auth_name', response?.username);
+        localStorage.setItem('auth_info', JSON.stringify(ObjData));
         console.info(response);
         resetForm({
           values: getLoginInitialValues(undefined)
@@ -45,10 +54,6 @@ const Login = () => {
         swal('Warning', response?.message, "warning");
       }
     })
-    // .catch((error) => {
-    //   console.error(error);
-    //   setSubmitting(false);
-    // });
   };
   return(
     <AuthWrapper>
