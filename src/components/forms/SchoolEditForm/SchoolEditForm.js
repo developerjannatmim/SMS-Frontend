@@ -82,18 +82,6 @@ const SchoolEditForm = ({ school, onSubmit }) => {
               color="primary"
             />
             </InputLabel>
-            {/* 
-            <InputLabel sx={{ my: 3, mx: 4, display: 'block' }}>Active
-            <Radio
-              type="radio"
-              id= "2"
-              name="status"
-              value= "2"
-              checked={ selected === "2" }
-              onChange={handleChange}
-              color="success"
-            />
-            </InputLabel> */}
             <Grid item xs={12}>
               <Button
                 color="primary"

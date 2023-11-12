@@ -6,9 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
-// import { useState } from 'react';
-
-import {InputLabel, FormHelperText, } from '@mui/material';
+import {InputLabel, FormHelperText } from '@mui/material';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -24,8 +22,15 @@ const adminValidationSchema = Yup.object().shape({
   birthday: Yup.string().required(),
   address: Yup.string().required(),
   phone: Yup.string().required(),
-  photo: Yup.string().required(),
-  blood_group: Yup.string().required()
+  photo: Yup.mixed()
+  .nullable()
+  .test(
+    'FILE_SIZE',
+    'UPLOAD FILE IS TOO BIG',
+    (value) => !value || (value && value.size <= 1024 * 2048)
+  )
+  .required('Enter your photo'),
+  blood_group: Yup.string().required(),
 });
 
 const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
@@ -36,13 +41,12 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
     (admin === undefined || admin !== null) && (
       <Formik
         initialValues={getAdminCreateInitialValues(admin)}
-        onSubmit={onSubmit}
+        onSubmit={ onSubmit }
         validationSchema={adminValidationSchema}
       >
-        {({ handleSubmit, handleChange }) => (
-          <form noValidate onSubmit={handleSubmit} encType="multipart/form-data">
-
-            <Grid container spacing={3}>
+        {({ handleSubmit, handleChange, setFieldValue } ) => (
+          <form noValidate onSubmit={handleSubmit} >
+            <Grid container spacing={4}>
               <InputField
                 label="Name"
                 id="name"
@@ -78,14 +82,23 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
                 placeholder="Enter phone"
                 type="text"
               />
-              <InputField
-                accept="image/*"
-                id="photo"
+              <input
                 name="photo"
-                placeholder="Enter photo"
                 type="file"
-                onChange={handleChange}
-                //onChange={(event) => setFieldValue(event.target.files[0])}
+                onChange={(e) => {
+                  if(e.currentTarget.files){
+                    setFieldValue('photo', e.currentTarget.files[0]);
+                  }
+                }}
+                style={{ marginTop: '37px', marginLeft: '35px' }}
+              />
+              <InputField
+                label="Blood Group"
+                id="blood_group"
+                name="blood_group"
+                options={BloodData.map((option) => ({ label: option, value: option }))}
+                placeholder="Select a blood group"
+                type="select"
               />
               <Grid item >
               <FormControl sx={{ mx: 2 }}>
@@ -132,16 +145,6 @@ const AdminCreateForm = ({ admin, onSubmit }) => {
               </Field>
               <FormHelperText>Add your birthday</FormHelperText>
               </Grid>
-
-              <InputField
-              label="Blood Group"
-              id="blood_group"
-              name="blood_group"
-              options={BloodData.map((option) => ({ label: option, value: option }))}
-              placeholder="Select a blood group"
-              type="select"
-            />
-
               <Grid item xs={12}>
                 <Button
                   color="primary"

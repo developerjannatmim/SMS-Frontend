@@ -5,8 +5,6 @@ import examination from './examination';
 import academic from './academic';
 import authentication from './authentication';
 import settings from './settings';
-// import utilities from './utilities';
-// import support from './support';
 
 // ==============================|| MENU ITEMS ||============================== //
 

@@ -1,11 +1,13 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import MarksCreateForm, { getMarksCreateInitialValues } from '../../../components/forms/MarksCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const MarksCreate = () => {
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     fetch('http://127.0.0.1:8000/api/marks', {
       body: JSON.stringify({
@@ -24,6 +26,8 @@ const MarksCreate = () => {
         resetForm({
           values: getMarksCreateInitialValues(undefined)
         });
+        swal('Success', response?.message, "success");
+        navigate("/marks");
       })
       .catch((error) => {
         console.error(error);

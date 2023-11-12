@@ -79,7 +79,7 @@ const RoutineTable = ({
                               {routine?.section?.name}
                           </TableCell>
                           <TableCell>
-                              {routine?.routine_creator?.name}
+                              {routine?.creator?.name}
                           </TableCell>
                           <TableCell>
                               {routine?.subject?.name}

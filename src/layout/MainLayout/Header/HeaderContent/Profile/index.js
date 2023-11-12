@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -54,10 +55,13 @@ function a11yProps(index) {
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
 const Profile = () => {
+  const navigate = useNavigate();
   const theme = useTheme();
+  const authName = JSON.parse(localStorage.getItem('auth_info'));
 
   const handleLogout = async () => {
-    // logout
+    localStorage.clear();
+    navigate('/login');
   };
 
   const anchorRef = useRef(null);
@@ -98,7 +102,7 @@ const Profile = () => {
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
           <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
-          <Typography variant="subtitle1">Jannat</Typography>
+          <Typography variant="subtitle1">{authName.auth_name}</Typography>
         </Stack>
       </ButtonBase>
       <Popper
@@ -141,7 +145,7 @@ const Profile = () => {
                           <Stack direction="row" spacing={1.25} alignItems="center">
                             <Avatar alt="profile user" src={avatar1} sx={{ width: 32, height: 32 }} />
                             <Stack>
-                              <Typography variant="h6">Jannat</Typography>
+                              <Typography variant="h6">{authName.auth_name}</Typography>
                               <Typography variant="body2" color="textSecondary">
                                 Admin
                               </Typography>

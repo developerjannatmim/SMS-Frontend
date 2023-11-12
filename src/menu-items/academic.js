@@ -13,7 +13,7 @@ const pages = {
   children: [
     {
       id: 'routines',
-      title: 'Class Routiune',
+      title: 'Class Routine',
       type: 'item',
       url: '/routines',
       icon: TextSnippetIcon,

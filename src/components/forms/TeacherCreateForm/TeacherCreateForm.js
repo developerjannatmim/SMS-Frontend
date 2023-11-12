@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 
-import {InputLabel, Select, FormHelperText, MenuItem } from '@mui/material';
+import {InputLabel, FormHelperText } from '@mui/material';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -16,28 +16,23 @@ import getTeacherCreateInitialValues from './getTeacherCreateInitialValues';
 import InputField from '../../InputField';
 
 const teacherValidationSchema = Yup.object().shape({
-    name: Yup.string().required(),
-    email: Yup.string().email().required(),
-    password: Yup.string().min(6).required(),
-    gender: Yup.string().required(),
-    birthday: Yup.string().required(),
-    address: Yup.string().required(),
-    phone: Yup.string().required(),
-    photo: Yup.string().required(),
-    blood_group: Yup.string().required()
+  name: Yup.string().required(),
+  email: Yup.string().email().required(),
+  password: Yup.string().min(6).required(),
+  gender: Yup.string().required(),
+  birthday: Yup.string().required(),
+  address: Yup.string().required(),
+  phone: Yup.string().required(),
+  photo: Yup.mixed()
+  .nullable()
+  .test(
+    'FILE_SIZE',
+    'UPLOAD FILE IS TOO BIG',
+    (value) => !value || (value && value.size <= 1024 * 2048)
+  )
+  .required('Enter your photo'),
+  blood_group: Yup.string().required()
 });
-
-const ITEM_HEIGHT = 22;
-const ITEM_PADDING_TOP = 8;
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
 
 const BloodData = ['A', 'A+','A-', 'AB', 'AB-', 'AB+', 'O'];
 
@@ -49,7 +44,9 @@ const TeacherCreateForm = ({ teacher, onSubmit }) => {
       validationSchema={ teacherValidationSchema }
     >
     {({
-      handleSubmit, handleChange
+      handleSubmit,
+      handleChange,
+      setFieldValue
     }) => (
       <form noValidate onSubmit={handleSubmit}>
         <Grid container spacing={3}>
@@ -85,10 +82,15 @@ const TeacherCreateForm = ({ teacher, onSubmit }) => {
             name="phone"
             placeholder="Enter phone"
           />
-          <InputField
-            id="photo"
+          <input
             name="photo"
             type="file"
+            onChange={(e) => {
+              if(e.currentTarget.files){
+                setFieldValue('photo', e.currentTarget.files[0]);
+              }
+            }}
+            style={{ marginTop: '37px', marginLeft: '35px' }}
           />
           <Grid item >
             <FormControl sx={{ mx: 2 }}>
@@ -117,7 +119,6 @@ const TeacherCreateForm = ({ teacher, onSubmit }) => {
               </RadioGroup>
             </FormControl>
           </Grid>
-
           <Grid item>
           <InputLabel>Birthday</InputLabel>
             <Field name="birthday">
@@ -135,30 +136,17 @@ const TeacherCreateForm = ({ teacher, onSubmit }) => {
           </Field>
           <FormHelperText>Add your birthday</FormHelperText>
           </Grid>
-
-          <Grid item >
-            <InputLabel>Blood Group</InputLabel>
-              <FormControl
-                sx ={{
-                  marginTop: 0,
-                  width: 250,
-                  height: 50,
-                }}
-              >
-                {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
-                <Select
-                  labelId="simple-select-label"
-                  name="blood_group"
-                  onChange={handleChange}
-                  MenuProps={MenuProps}
-                >
-                {BloodData?.map((option) => {
-                return <MenuItem value={option} key={option}>{option}</MenuItem>;
-                })}
-                </Select>
-                <FormHelperText>Select a blood group</FormHelperText>
-              </FormControl>
-          </Grid>
+          <InputField
+            label="Blood Group"
+            id='blood_group'
+            name='blood_group'
+            options={BloodData.map((option) => ({
+              label: option,
+              value: option
+            }))}
+            placeholder="Select a blood group"
+            type="select"
+          />
           <Grid item xs={12}>
             <Button
               color="primary"

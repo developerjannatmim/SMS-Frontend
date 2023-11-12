@@ -1,4 +1,5 @@
 import { Grid, Typography } from '@mui/material';
+import { Image } from 'mui-image';
 
 const AdminDetail = ({ admin }) => {
   let userInformation;
@@ -7,7 +8,7 @@ const AdminDetail = ({ admin }) => {
   } catch (error) { /**/ }
   return (
     admin && (
-      <Grid component="dl" contianer flexDirection="column" spacing={2}>
+      <Grid component="dl" container flexDirection="column" spacing={2}>
         <Grid item>
           <Typography component="dt" variant="h5">
             ID
@@ -54,7 +55,13 @@ const AdminDetail = ({ admin }) => {
           <Typography component="dt" variant="h5">
             Photo
           </Typography>
-          <Typography component="dd">{userInformation?.photo}</Typography>
+          <Typography component="dd">
+            <Image
+              src={`http://127.0.0.1:8000/admin-images/${userInformation?.photo}`}
+              width="50px"
+              alt={admin?.name}
+            />
+          </Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">

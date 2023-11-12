@@ -165,7 +165,7 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
                 labelId="simple-select-label"
                 name="routine_creator"
                 onChange={handleChange}
-                defaultValue={values?.routine_creator}
+                defaultValue={values?.routine_creator || ''}
                 MenuProps={MenuProps}
               >
                 {teachers ? teachers?.map((teacher) => {

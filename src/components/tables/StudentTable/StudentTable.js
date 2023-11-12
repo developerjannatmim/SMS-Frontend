@@ -91,7 +91,7 @@ const StudentTable = ({
                               {userInformation?.phone}
                           </TableCell>
                           <TableCell>
-                          <Image src={userInformation?.photo} alt="image"/>
+                          <Image src={`http://127.0.0.1:8000/student-images/${userInformation?.photo}`} width="50px" alt={student?.name}/>
                           </TableCell>
                           <TableCell>
                               {userInformation?.blood_group}

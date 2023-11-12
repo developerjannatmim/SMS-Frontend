@@ -1,16 +1,62 @@
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 // material-ui
 import { Grid, Stack, Typography } from '@mui/material';
 
 // project import
+import getLoginInitialValues from '../../pages/authentication/auth-forms/getLoginInitialValues';
 import AuthLogin from './auth-forms/AuthLogin';
 import AuthWrapper from './AuthWrapper';
 
 // ================================|| LOGIN ||================================ //
 
-const Login = () => (
-  <AuthWrapper>
+const Login = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (values, { resetForm }) => {
+
+    console.log({
+      values,
+    });
+    fetch('http://127.0.0.1:8000/api/login', {
+      body: JSON.stringify({
+        ...values,
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      if(response?.status === 200){
+        const ObjData = {
+          auth_name: response?.auth_name,
+          auth_email: response?.auth_email,
+          gender: response?.gender,
+          phone: response?.phone,
+          birthday: response?.birthday,
+          photo: response?.photo,
+          address: response?.address,
+        }
+        localStorage.setItem('auth_token', response?.token);
+        localStorage.setItem('auth_info', JSON.stringify(ObjData));
+        console.info(response);
+        resetForm({
+          values: getLoginInitialValues(undefined)
+        });
+        swal('Success', response?.message, "success");
+        navigate("/");
+      }else {
+        swal('Warning', response?.message, "warning");
+      }
+    })
+  };
+  return(
+    <AuthWrapper>
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
@@ -21,10 +67,11 @@ const Login = () => (
         </Stack>
       </Grid>
       <Grid item xs={12}>
-        <AuthLogin />
+        <AuthLogin onSubmit={handleSubmit}/>
       </Grid>
     </Grid>
   </AuthWrapper>
-);
+  )
+};
 
 export default Login;

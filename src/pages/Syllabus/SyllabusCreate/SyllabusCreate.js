@@ -1,11 +1,13 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import SyllabusCreateForm, { getSyllabusCreateInitialValues } from '../../../components/forms/SyllabusCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const SyllabusCreate = () => {
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     fetch('http://127.0.0.1:8000/api/syllabuses', {
       body: JSON.stringify({
@@ -24,6 +26,8 @@ const SyllabusCreate = () => {
         resetForm({
           values: getSyllabusCreateInitialValues(undefined)
         });
+        swal('Success', response?.message, "success");
+        navigate("/syllabuses");
       })
       .catch((error) => {
         console.error(error);

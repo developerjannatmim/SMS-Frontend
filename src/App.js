@@ -3,9 +3,6 @@ import React, { Suspense } from 'react';
 import Routes from './routes';
 import ThemeCustomization from './themes';
 import ScrollTop from './components/ScrollTop';
-import axios from 'axios';
-
-axios.defaults.withCredentials = true;
 
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 

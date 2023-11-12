@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 // material-ui
 import { Grid, Stack, Typography } from '@mui/material';
@@ -8,42 +9,46 @@ import { Grid, Stack, Typography } from '@mui/material';
 import getRegisterInitialValues from './auth-forms/getRegisterInitialValues';
 import FirebaseRegister from './auth-forms/AuthRegister';
 import AuthWrapper from './AuthWrapper';
-import axios from 'axios';
 
 // ================================|| REGISTER ||================================ //
 
 const Register = () => {
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     console.log({
       values,
 
     });
-    axios.get('/sanctum/csrf-cookie').then((response) => {
-    fetch('http://127.0.0.1:8000/api/register', {
+    fetch('http://127.0.0.1:8000/api/register' , {
       body: JSON.stringify({
         ...values
       }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        //'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //'X-CSRF-TOKEN': csrf_token
       },
       method: 'POST'
     })
     .then((response) => response.json())
     .then((response) => {
-      console.info(response);
-      setSubmitting(false);
-      resetForm({
-        values: getRegisterInitialValues(undefined)
-      });
+      if(response?.status === 200){
+        localStorage.setItem('auth_token', response?.token);
+        localStorage.setItem('auth_name', response?.username);
+        console.info(response);
+        resetForm({
+          values: getRegisterInitialValues(undefined)
+        });
+        swal('Success', response?.message, "success");
+        navigate("/");
+      }else{
+        swal('Warning', response?.message, "warning");
+      }
     })
     .catch((error) => {
       console.error(error);
       setSubmitting(false);
     });
-    console.info(response);
-  });
   };
 
   return (

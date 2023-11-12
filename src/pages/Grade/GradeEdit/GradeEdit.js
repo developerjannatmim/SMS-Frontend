@@ -1,12 +1,14 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import GradeEditForm, { getGradeInitialValues } from '../../../components/forms/GradeEditForm';
 import MainCard from '../../../components/MainCard';
 
 const GradeEdit = () => {
+  const navigate = useNavigate();
   const { gradeId } = useParams();
 
   const [grade, setGrade] = useState(null);
@@ -29,6 +31,8 @@ const GradeEdit = () => {
         resetForm({
           values: getGradeInitialValues(response.data?.grade),
         });
+        swal('Success', response?.message, "success");
+        navigate("/grades");
       })
       .catch((error) => {
         console.error(error);

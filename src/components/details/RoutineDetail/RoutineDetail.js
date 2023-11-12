@@ -44,7 +44,7 @@ const RoutineDetail = ({ routine }) => {
           <Typography component="dt" variant="h5">
             Routine Creator
           </Typography>
-          <Typography component="dd">{routine?.routine_creator?.name}</Typography>
+          <Typography component="dd">{routine?.creator?.name}</Typography>
         </Grid>
         <Grid item>
           <Typography component="dt" variant="h5">

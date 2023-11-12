@@ -1,11 +1,13 @@
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button, Grid, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 import ClassesCreateForm, { getClassesCreateInitialValues } from '../../../components/forms/ClassesCreateForm';
 import MainCard from '../../../components/MainCard';
 
 const ClassesCreate = () => {
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm, setSubmitting }) => {
     fetch('http://127.0.0.1:8000/api/classes', {
       body: JSON.stringify({
@@ -24,6 +26,8 @@ const ClassesCreate = () => {
         resetForm({
           values: getClassesCreateInitialValues(undefined)
         });
+        swal('Success', response?.message, "success");
+        navigate("/classes");
       })
       .catch((error) => {
         console.error(error);
