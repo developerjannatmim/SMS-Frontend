@@ -145,7 +145,45 @@ const RoutineCreateForm = ({ routine, onSubmit }) => {
       }) => (
       <form noValidate onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item >
+          <InputField
+            label="Starting Hour"
+            id="starting_hour"
+            name="starting_hour"
+            placeholder="Enter starting_hour"
+            type="text"
+          />
+          <InputField
+            label="Ending Hour"
+            id="ending_hour"
+            name="ending_hour"
+            placeholder="Enter ending_hour"
+            type="text"
+          />
+          <InputField
+            style={{ marginTop: '24px' }}
+            label="Starting Minute"
+            id="starting_minute"
+            name="starting_minute"
+            placeholder="Enter starting_minute"
+            type="text"
+          />
+          <InputField
+            style={{ marginTop: '24px' }}
+            label="Ending Minute"
+            id="ending_minute"
+            name="ending_minute"
+            placeholder="Enter ending_minute"
+            type="text"
+          />
+          <InputField
+            style={{ marginTop: '23px' }}
+            label="Day"
+            id="day"
+            name="day"
+            placeholder="Enter day"
+            type="text"
+          />
+          <Grid item style={{ marginTop: '3px' }}>
             <InputLabel >Routine Creator</InputLabel>
               <FormControl
                 sx ={{
@@ -169,7 +207,7 @@ const RoutineCreateForm = ({ routine, onSubmit }) => {
                 <FormHelperText>Select a routine creator</FormHelperText>
               </FormControl>
           </Grid>
-          <Grid item >
+          <Grid item style={{ marginLeft: '-100px' }}>
             <InputLabel sx={{ mx: 12.5 }}>Class Room</InputLabel>
               <FormControl
                 sx ={{
@@ -194,7 +232,7 @@ const RoutineCreateForm = ({ routine, onSubmit }) => {
               <FormHelperText>Select a class room</FormHelperText>
               </FormControl>
           </Grid>
-          <Grid item >
+          <Grid item style={{ marginLeft: '230px' }}>
             <InputLabel>Section</InputLabel>
               <FormControl
                 sx ={{
@@ -218,7 +256,7 @@ const RoutineCreateForm = ({ routine, onSubmit }) => {
               <FormHelperText>Select a section</FormHelperText>
               </FormControl>
           </Grid>
-          <Grid item >
+          <Grid item style={{ marginLeft: '-100px' }}>
             <InputLabel sx={{ mx: 12.5 }}>Class</InputLabel>
               <FormControl
                 sx ={{
@@ -243,7 +281,7 @@ const RoutineCreateForm = ({ routine, onSubmit }) => {
               <FormHelperText>Select a class</FormHelperText>
               </FormControl>
           </Grid>
-          <Grid item >
+          <Grid item style={{ marginLeft: '230px' }}>
             <InputLabel>Subject</InputLabel>
               <FormControl
                 sx ={{
@@ -267,41 +305,6 @@ const RoutineCreateForm = ({ routine, onSubmit }) => {
                 <FormHelperText>Select a subject</FormHelperText>
               </FormControl>
           </Grid>
-          <InputField
-            label="starting_hour"
-            id="starting_hour"
-            name="starting_hour"
-            placeholder="Enter starting_hour"
-            type="text"
-          />
-          <InputField
-            label="ending_hour"
-            id="ending_hour"
-            name="ending_hour"
-            placeholder="Enter ending_hour"
-            type="text"
-          />
-          <InputField
-            label="starting_minute"
-            id="starting_minute"
-            name="starting_minute"
-            placeholder="Enter starting_minute"
-            type="text"
-          />
-          <InputField
-            label="ending_minute"
-            id="ending_minute"
-            name="ending_minute"
-            placeholder="Enter ending_minute"
-            type="text"
-          />
-          <InputField
-            label="day"
-            id="day"
-            name="day"
-            placeholder="Enter day"
-            type="text"
-          />
           <Grid item xs={12}>
             <Button
               color="primary"

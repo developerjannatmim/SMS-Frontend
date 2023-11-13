@@ -64,7 +64,7 @@ const ClassesEditForm = ({ singleClass, onSubmit }) => {
           placeholder="Enter name"
           type="text"
         />
-        <Grid item >
+        <Grid item style={{ marginLeft: '30px', marginTop: '-20px' }}>
           <InputLabel>Section</InputLabel>
             <FormControl
               sx ={{

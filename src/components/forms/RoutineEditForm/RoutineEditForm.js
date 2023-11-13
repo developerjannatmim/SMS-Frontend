@@ -152,7 +152,45 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
     }) => (
       <form noValidate onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item>
+          <InputField
+            label="Starting Hour"
+            id="starting_hour"
+            name="starting_hour"
+            placeholder="Enter starting_hour"
+            type="text"
+          />
+          <InputField
+            label="Ending Hour"
+            id="ending_hour"
+            name="ending_hour"
+            placeholder="Enter ending_hour"
+            type="text"
+          />
+          <InputField
+            style={{ marginTop: '24px' }}
+            label="Starting Minute"
+            id="starting_minute"
+            name="starting_minute"
+            placeholder="Enter starting_minute"
+            type="text"
+          />
+          <InputField
+            style={{ marginTop: '24px' }}
+            label="Ending Minute"
+            id="ending_minute"
+            name="ending_minute"
+            placeholder="Enter ending_minute"
+            type="text"
+          />
+          <InputField
+            style={{ marginTop: '23px' }}
+            label="Day"
+            id="day"
+            name="day"
+            placeholder="Enter day"
+            type="text"
+          />
+          <Grid item style={{ marginTop: '3px' }}>
             <InputLabel>Routine Creator</InputLabel>
             <FormControl
               sx ={{
@@ -176,156 +214,115 @@ const RoutineEditForm = ({ routine, onSubmit }) => {
               <FormHelperText>Select a routine creator</FormHelperText>
             </FormControl>
           </Grid>
-
-              <Grid item >
-              <InputLabel sx={{ mx: 12.5 }}>Class Room</InputLabel>
-                  <FormControl
-                  sx ={{
-                    marginTop: 0,
-                    width: 250,
-                    height: 50,
-                    marginLeft: 12.5,
-                  }}
-                  >
-                  <Select
-                    labelId="simple-select-label"
-                    name="room_id"
-                    onChange={handleChange}
-                    defaultValue={values?.room_id}
-                    MenuProps={MenuProps}
-                  >
-                    {classRooms ? classRooms?.map((classRoom) => {
-                    return <MenuItem key={classRoom.id} value={classRoom.id}>{classRoom.name}</MenuItem>;
-                    })
-                    : null}
-                  </Select>
-                  <FormHelperText>Select a class room</FormHelperText>
-                  </FormControl>
-              </Grid>
-
-              <Grid item>
-                <InputLabel>Section</InputLabel>
-                <FormControl
-                  sx ={{
-                    marginTop: 0,
-                    width: 250,
-                    height: 50,
-                  }}
-                >
-                  <Select
-                    labelId="simple-select-label"
-                    name="section_id"
-                    onChange={handleChange}
-                    defaultValue={values?.section_id}
-                    MenuProps={MenuProps}
-                  >
-                    {sections ? sections?.map((section) => {
-                    return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
-                    })
-                    : null}
-                  </Select>
-                  <FormHelperText>Select a section</FormHelperText>
-                </FormControl>
-              </Grid>
-
-              <Grid item>
-                <InputLabel sx={{ mx: 12.5 }}>Class</InputLabel>
-                <FormControl
-                  sx ={{
-                    marginTop: 0,
-                    width: 250,
-                    height: 50,
-                    marginLeft: 12.5,
-                  }}
-                >
-                  <Select
-                    labelId="simple-select-label"
-                    name="class_id"
-                    onChange={handleChange}
-                    defaultValue={values?.class_id}
-                    MenuProps={MenuProps}
-                  >
-                    {classes ? classes?.map((classItem) => {
-                    return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
-                    })
-                    : null}
-                  </Select>
-                  <FormHelperText>Select a class</FormHelperText>
-                </FormControl>
-              </Grid>
-
-              <Grid item >
-              <InputLabel>Subject</InputLabel>
-                  <FormControl
-                  sx ={{
-                      marginTop: 0,
-                      width: 250,
-                      height: 50,
-                  }}
-                  >
-                  {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
-                  <Select
-                  labelId="simple-select-label"
-                  name="subject_id"
-                  onChange={handleChange}
-                  defaultValue={values?.subject_id}
-                  MenuProps={MenuProps}
-                  >
-                      {subjects ? subjects?.map((subject) => {
-                      return <MenuItem key={subject.id} value={subject.id}>{subject.name}</MenuItem>;
-                      })
-                      : null}
-                  </Select>
-                  <FormHelperText>Select a subject</FormHelperText>
-                  </FormControl>
-              </Grid>
-              <InputField
-                  label="starting_hour"
-                  id="starting_hour"
-                  name="starting_hour"
-                  placeholder="Enter starting_hour"
-                  type="text"
-              />
-              <InputField
-                  label="ending_hour"
-                  id="ending_hour"
-                  name="ending_hour"
-                  placeholder="Enter ending_hour"
-                  type="text"
-              />
-              <InputField
-                  label="starting_minute"
-                  id="starting_minute"
-                  name="starting_minute"
-                  placeholder="Enter starting_minute"
-                  type="text"
-              />
-              <InputField
-                  label="ending_minute"
-                  id="ending_minute"
-                  name="ending_minute"
-                  placeholder="Enter ending_minute"
-                  type="text"
-              />
-              <InputField
-                  label="day"
-                  id="day"
-                  name="day"
-                  placeholder="Enter day"
-                  type="text"
-              />
-
-              <Grid item xs={12}>
-                  <Button
-                  color="primary"
-                  onClick={handleSubmit}
-                  fullWidth
-                  type="submit"
-                  variant="contained"
-                  >
-                  Submit
-                  </Button>
-              </Grid>
+          <Grid item style={{ marginLeft: '-100px' }}>
+            <InputLabel sx={{ mx: 12.5 }}>Class Room</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+                marginLeft: 12.5,
+              }}
+              >
+              <Select
+                labelId="simple-select-label"
+                name="room_id"
+                onChange={handleChange}
+                defaultValue={values?.room_id}
+                MenuProps={MenuProps}
+              >
+                {classRooms ? classRooms?.map((classRoom) => {
+                return <MenuItem key={classRoom.id} value={classRoom.id}>{classRoom.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a class room</FormHelperText>
+            </FormControl>
+          </Grid>
+          <Grid item style={{ marginLeft: '230px' }}>
+            <InputLabel>Section</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+              }}
+            >
+              <Select
+                labelId="simple-select-label"
+                name="section_id"
+                onChange={handleChange}
+                defaultValue={values?.section_id}
+                MenuProps={MenuProps}
+              >
+                {sections ? sections?.map((section) => {
+                return <MenuItem key={section.id} value={section.id}>{section.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a section</FormHelperText>
+            </FormControl>
+          </Grid>
+          <Grid item style={{ marginLeft: '-100px' }}>
+            <InputLabel sx={{ mx: 12.5 }}>Class</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+                marginLeft: 12.5,
+              }}
+            >
+              <Select
+                labelId="simple-select-label"
+                name="class_id"
+                onChange={handleChange}
+                defaultValue={values?.class_id}
+                MenuProps={MenuProps}
+              >
+                {classes ? classes?.map((classItem) => {
+                return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a class</FormHelperText>
+            </FormControl>
+          </Grid>
+          <Grid item style={{ marginLeft: '230px' }}>
+            <InputLabel>Subject</InputLabel>
+            <FormControl
+              sx ={{
+                marginTop: 0,
+                width: 250,
+                height: 50,
+              }}
+              >
+              <Select
+                labelId="simple-select-label"
+                name="subject_id"
+                onChange={handleChange}
+                defaultValue={values?.subject_id}
+                MenuProps={MenuProps}
+              >
+                {subjects ? subjects?.map((subject) => {
+                return <MenuItem key={subject.id} value={subject.id}>{subject.name}</MenuItem>;
+                })
+                : null}
+              </Select>
+              <FormHelperText>Select a subject</FormHelperText>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+            color="primary"
+            onClick={handleSubmit}
+            fullWidth
+            type="submit"
+            variant="contained"
+            >
+            Submit
+            </Button>
+          </Grid>
         </Grid>
       </form>
     )}

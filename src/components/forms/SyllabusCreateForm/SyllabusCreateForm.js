@@ -140,7 +140,7 @@ const SyllabusCreateForm = ({ syllabus, onSubmit }) => {
           </FormControl>
         </Grid>
 
-        <Grid item >
+        <Grid item style={{ marginLeft: '243px' }}>
           <InputLabel>Class</InputLabel>
           <FormControl
             sx ={{

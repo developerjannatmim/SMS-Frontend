@@ -57,49 +57,47 @@ const SubjectCreateForm = ({ subject, onSubmit }) => {
     }) => (
       <form noValidate onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-            <InputField 
-                label="Name"
-                id="name"
-                name="name"
-                placeholder="Enter name"
-                type="text"
+            <InputField
+              label="Name"
+              id="name"
+              name="name"
+              placeholder="Enter name"
+              type="text"
             />
-            <Grid item >
+            <Grid item style={{ marginLeft: '30px', marginTop: '-20px' }}>
               <InputLabel>Class</InputLabel>
-                <FormControl
+              <FormControl
                 sx ={{
-                    marginTop: 0,
-                    width: 250,
-                    height: 50,
+                  marginTop: 0,
+                  width: 250,
+                  height: 50,
                 }}
                 >
-                {/* <InputLabel id="simple-select-label">Blood Group</InputLabel> */}
                 <Select
-                labelId="simple-select-label"
-                name="class_id"
-                onChange={handleChange}
-                MenuProps={MenuProps}
-                display
+                  labelId="simple-select-label"
+                  name="class_id"
+                  onChange={handleChange}
+                  MenuProps={MenuProps}
+                  display
                 >
-                    {classes ? classes?.map((classItem) => {
-                    return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
-                    })
-                    : null}
+                  {classes ? classes?.map((classItem) => {
+                  return <MenuItem key={classItem.id} value={classItem.id}>{classItem.name}</MenuItem>;
+                  })
+                  : null}
                 </Select>
                 <FormHelperText>Select a class</FormHelperText>
-                </FormControl>
+              </FormControl>
             </Grid>
-
             <Grid item xs={12}>
-                <Button
-                color="primary"
-                onClick={handleSubmit}
-                fullWidth
-                type="submit"
-                variant="contained"
-                >
-                  Submit
-                </Button>
+              <Button
+              color="primary"
+              onClick={handleSubmit}
+              fullWidth
+              type="submit"
+              variant="contained"
+              >
+                Submit
+              </Button>
             </Grid>
         </Grid>
     </form>
