@@ -90,7 +90,18 @@ const TeacherCreateForm = ({ teacher, onSubmit }) => {
                 setFieldValue('photo', e.currentTarget.files[0]);
               }
             }}
-            style={{ marginTop: '37px', marginLeft: '35px' }}
+            style={{ marginTop: '37px', marginLeft: '28px' }}
+          />
+          <InputField
+            label="Blood Group"
+            id='blood_group'
+            name='blood_group'
+            options={BloodData.map((option) => ({
+              label: option,
+              value: option
+            }))}
+            placeholder="Select a blood group"
+            type="select"
           />
           <Grid item >
             <FormControl sx={{ mx: 2 }}>
@@ -136,17 +147,6 @@ const TeacherCreateForm = ({ teacher, onSubmit }) => {
           </Field>
           <FormHelperText>Add your birthday</FormHelperText>
           </Grid>
-          <InputField
-            label="Blood Group"
-            id='blood_group'
-            name='blood_group'
-            options={BloodData.map((option) => ({
-              label: option,
-              value: option
-            }))}
-            placeholder="Select a blood group"
-            type="select"
-          />
           <Grid item xs={12}>
             <Button
               color="primary"
