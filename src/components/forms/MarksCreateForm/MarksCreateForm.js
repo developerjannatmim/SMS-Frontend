@@ -63,7 +63,6 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
       console.error(error);
       setStudents(null);
     });
-
   }, []);
 
   useEffect(() => {
@@ -103,7 +102,6 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
       console.error(error);
       setSections(null);
     });
-
   }, []);
 
   useEffect(() => {
@@ -123,7 +121,6 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
       console.error(error);
       setClasses(null);
     });
-
   }, []);
 
   useEffect(() => {
@@ -157,6 +154,19 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
       }) => (
       <form noValidate onSubmit={handleSubmit}>
         <Grid container spacing={3}>
+          <InputField
+            label="marks"
+            id="marks"
+            name="marks"
+            placeholder="Enter marks"
+            type="text"
+          />
+          <InputField
+            label="grade_point"
+            id="grade_point"
+            name="grade_point"
+            placeholder="Enter grade_point"
+          />
           <Grid item >
             <InputLabel >Student Name</InputLabel>
             <FormControl
@@ -182,8 +192,8 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
             </FormControl>
           </Grid>
 
-          <Grid item >
-            <InputLabel sx={{ mx: 12.5 }}>Exam name</InputLabel>
+          <Grid item style={{ marginLeft: '140px' }}>
+            <InputLabel sx={{ mx: 12.5 }}>Exam</InputLabel>
             <FormControl
               sx ={{
                 marginTop: 0,
@@ -233,7 +243,7 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
             </FormControl>
           </Grid>
 
-          <Grid item >
+          <Grid item style={{ marginLeft: '140px' }}>
             <InputLabel sx={{ mx: 12.5 }}>Class</InputLabel>
               <FormControl
               sx ={{
@@ -283,21 +293,8 @@ const MarksCreateForm = ({ marks, onSubmit }) => {
               <FormHelperText>Select a subject</FormHelperText>
             </FormControl>
           </Grid>
-
           <InputField
-            sx={{ mx: 12.5, my: 2.5 }}
-            label="marks"
-            id="marks"
-            name="marks"
-            placeholder="Enter marks"
-          />
-          <InputField
-            label="grade_point"
-            id="grade_point"
-            name="grade_point"
-            placeholder="Enter grade_point"
-          />
-          <InputField
+            style={{ marginLeft: '240px', marginTop: '20px' }}
             label="comment"
             id="comment"
             name="comment"

@@ -142,11 +142,25 @@ const MarksEditForm = ({ mark, onSubmit }) => {
       onSubmit={onSubmit}
       validationSchema={markValidationSchema}
     >
-    {({
-      handleSubmit, handleChange
-    }) => (
+      {({
+        handleSubmit, handleChange
+      }) => (
       <form noValidate onSubmit={handleSubmit}>
         <Grid container spacing={3}>
+          <InputField
+            label="marks"
+            id="marks"
+            name="marks"
+            placeholder="Enter marks"
+            type="text"
+          />
+          <InputField
+            label="grade_point"
+            id="grade_point"
+            name="grade_point"
+            placeholder="Enter grade_point"
+            type="text"
+          />
           <Grid item >
             <InputLabel >Student Name</InputLabel>
             <FormControl
@@ -172,9 +186,8 @@ const MarksEditForm = ({ mark, onSubmit }) => {
             <FormHelperText>Select a student</FormHelperText>
             </FormControl>
           </Grid>
-
-          <Grid item >
-            <InputLabel sx={{ mx: 12.5 }}>Exam name</InputLabel>
+          <Grid item style={{ marginLeft: '140px' }}>
+            <InputLabel sx={{ mx: 12.5 }}>Exam</InputLabel>
             <FormControl
               sx ={{
                 marginTop: 0,
@@ -199,7 +212,6 @@ const MarksEditForm = ({ mark, onSubmit }) => {
               <FormHelperText>Select a exam</FormHelperText>
             </FormControl>
           </Grid>
-
           <Grid item >
             <InputLabel>Section</InputLabel>
             <FormControl
@@ -225,8 +237,7 @@ const MarksEditForm = ({ mark, onSubmit }) => {
               <FormHelperText>Select a section</FormHelperText>
             </FormControl>
           </Grid>
-
-          <Grid item >
+          <Grid item style={{ marginLeft: '140px' }}>
             <InputLabel sx={{ mx: 12.5 }}>Class</InputLabel>
             <FormControl
               sx ={{
@@ -252,7 +263,6 @@ const MarksEditForm = ({ mark, onSubmit }) => {
               <FormHelperText>Select a class</FormHelperText>
             </FormControl>
           </Grid>
-
           <Grid item >
             <InputLabel>Subject</InputLabel>
             <FormControl
@@ -278,31 +288,14 @@ const MarksEditForm = ({ mark, onSubmit }) => {
               <FormHelperText>Select a subject</FormHelperText>
             </FormControl>
           </Grid>
-
           <InputField
-            label="marks"
-            id="marks"
-            name="marks"
-            placeholder="Enter marks"
-            type="text"
-          />
-
-          <InputField
-            label="grade_point"
-            id="grade_point"
-            name="grade_point"
-            placeholder="Enter grade_point"
-            type="text"
-          />
-
-          <InputField
+            style={{ marginLeft: '240px', marginTop: '20px' }}
             label="comment"
             id="comment"
             name="comment"
             placeholder="Enter comment"
             type="text"
           />
-
           <Grid item xs={12}>
             <Button
               color="primary"
